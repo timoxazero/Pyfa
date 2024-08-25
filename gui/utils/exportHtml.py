@@ -225,11 +225,12 @@ class exportHtmlThread(threading.Thread):
                                     'data-corners="false">\n'
                                     '           <h2>' + fit[1] + '</h2>\n'
                                     '               <ul data-role="listview" data-shadow="false" data-inset="true" '
-                                                                 'data-corners="false">\n'
+                                                                'data-corners="false">\n'
                             )
-
-                            HTMLfit += '                   <li><pre>' + eftFit + '\n                   </pre></li>\n'
-
+                            HTMLfit += '                   <li><pre>' + eftFit + '</pre></li>\n'
+                            if fit[4]:
+                                HTMLfit += '                   <li><h3>Notes</h3><pre style = "white-space:pre-wrap">' + fit[4] + '</pre></li>\n'
+                                
                             HTMLfit += '              </ul>\n          </li>\n'
                             HTMLship += HTMLfit
                         except (KeyboardInterrupt, SystemExit):
@@ -298,13 +299,14 @@ class exportHtmlThread(threading.Thread):
                             HTMLfit = (
                                     '           <li data-role="collapsible" data-iconpos="right" data-shadow="false" '
                                     'data-corners="false">\n'
-                                    '           <h2>' + ship.name + " - " + fit[1] + '</h2>\n'
+                                    '           <h2>' + fit[1] + '</h2>\n'
                                     '               <ul data-role="listview" data-shadow="false" data-inset="true" '
-                                                                 'data-corners="false">\n'
+                                                                'data-corners="false">\n'
                             )
-
-                            HTMLfit += '                   <li><pre>' + eftFit + '\n                   </pre></li>\n'
-
+                            HTMLfit += '                   <li><pre>' + eftFit + '</pre></li>\n'
+                            if fit[4]:
+                                HTMLfit += '                   <li><h3>Notes</h3><pre style = "white-space:pre-wrap">' + fit[4] + '</pre></li>\n'
+                                
                             HTMLfit += '              </ul>\n          </li>\n'
                             HTML += HTMLfit
                         except (KeyboardInterrupt, SystemExit):
