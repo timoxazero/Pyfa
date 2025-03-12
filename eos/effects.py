@@ -462,7 +462,7 @@ class Effect67(BaseEffect):
     Used by:
     Modules from group: Frequency Mining Laser (3 of 3)
     Modules from group: Mining Laser (15 of 15)
-    Modules from group: Strip Miner (5 of 5)
+    Modules from group: Strip Miner (6 of 6)
     Module: Citizen Miner
     """
 
@@ -594,7 +594,7 @@ class Effect101(BaseEffect):
     Used by:
     Modules from group: Missile Launcher Heavy (12 of 12)
     Modules from group: Missile Launcher Rocket (16 of 16)
-    Modules named like: Launcher (156 of 156)
+    Modules named like: Launcher (158 of 158)
     Structure Modules named like: Standup Launcher (7 of 7)
     """
 
@@ -1674,12 +1674,11 @@ class Effect550(BaseEffect):
     shipHTDmgBonusGB
 
     Used by:
+    Ships from group: Black Ops (3 of 6)
     Ship: Dominix Navy Issue
     Ship: Hyperion
     Ship: Kronos
-    Ship: Marshal
     Ship: Megathron Federate Issue
-    Ship: Sin
     """
 
     type = 'passive'
@@ -1716,6 +1715,7 @@ class Effect562(BaseEffect):
     Variations of ship: Vexor (3 of 4)
     Ship: Adrestia
     Ship: Arazu
+    Ship: Cobra
     Ship: Cybele
     Ship: Deimos
     Ship: Enforcer
@@ -1775,7 +1775,6 @@ class Effect584(BaseEffect):
     Implants named like: Eifyr and Co. 'Gunslinger' Surgical Strike SS (6 of 6)
     Implants named like: Halcyon Y Booster (5 of 5)
     Implant: AIR Pyrolancea Booster II
-    Implant: Standard Cerebral Accelerator
     """
 
     type = 'passive'
@@ -1857,7 +1856,7 @@ class Effect596(BaseEffect):
     ammoInfluenceRange
 
     Used by:
-    Items from category: Charge (608 of 1010)
+    Items from category: Charge (608 of 1013)
     """
 
     type = 'passive'
@@ -1935,6 +1934,7 @@ class Effect602(BaseEffect):
     Used by:
     Variations of ship: Stabber (3 of 3)
     Ship: Broadsword
+    Ship: Cobra
     Ship: Enforcer
     Ship: Huginn
     Ship: Rupture
@@ -1954,10 +1954,9 @@ class Effect604(BaseEffect):
     shipPTspeedBonusMB2
 
     Used by:
+    Ships from group: Black Ops (3 of 6)
     Variations of ship: Tempest (3 of 4)
     Ship: Maelstrom
-    Ship: Marshal
-    Ship: Panther
     Ship: Typhoon Fleet Issue
     """
 
@@ -2178,7 +2177,7 @@ class Effect706(BaseEffect):
     covertOpsWarpResistance
 
     Used by:
-    Ships from group: Covert Ops (5 of 8)
+    Ships from group: Covert Ops (5 of 9)
     """
 
     type = 'passive'
@@ -2414,6 +2413,7 @@ class Effect784(BaseEffect):
     Implants named like: Zainou 'Deadeye' Missile Bombardment MB (6 of 6)
     Modules named like: Rocket Fuel Cache Partition (8 of 8)
     Implant: Antipharmakon Toxot
+    Implant: Mithridate Volatile Booster
     Skill: Missile Bombardment
     """
 
@@ -2433,7 +2433,7 @@ class Effect804(BaseEffect):
     ammoInfluenceCapNeed
 
     Used by:
-    Items from category: Charge (538 of 1010)
+    Items from category: Charge (538 of 1013)
     """
 
     type = 'passive'
@@ -2733,6 +2733,7 @@ class Effect919(BaseEffect):
     shipHybridTrackingGC2
 
     Used by:
+    Ship: Cobra
     Ship: Enforcer
     Ship: Thorax
     """
@@ -5239,7 +5240,7 @@ class Effect1738(BaseEffect):
     doHacking
 
     Used by:
-    Modules from group: Data Miners (10 of 10)
+    Modules from group: Data Miners (11 of 11)
     """
 
     type = 'active'
@@ -5252,7 +5253,6 @@ class Effect1763(BaseEffect):
     Used by:
     Implants named like: Halcyon R Booster (5 of 5)
     Implants named like: Zainou 'Deadeye' Rapid Launch RL (6 of 6)
-    Implant: Standard Cerebral Accelerator
     Implant: Whelan Machorin's Ballistic Smartlink
     Skill: Missile Launcher Operation
     Skill: Rapid Launch
@@ -5881,8 +5881,8 @@ class Effect2008(BaseEffect):
     cynosuralDurationBonus
 
     Used by:
-    Ships from group: Black Ops (5 of 5)
-    Ships from group: Force Recon Ship (8 of 9)
+    Ships from group: Black Ops (6 of 6)
+    Ships from group: Force Recon Ship (9 of 10)
     """
 
     type = 'passive'
@@ -6476,23 +6476,6 @@ class Effect2157(BaseEffect):
                                       skill='Command Ships', **kwargs)
 
 
-class Effect2158(BaseEffect):
-    """
-    eliteBonusCommandShipLaserROFCS2
-
-    Used by:
-    Ship: Absolution
-    """
-
-    type = 'passive'
-
-    @staticmethod
-    def handler(fit, ship, context, projectionRange, **kwargs):
-        fit.modules.filteredItemBoost(lambda mod: mod.item.requiresSkill('Medium Energy Turret'),
-                                      'speed', ship.getModifiedItemAttr('eliteBonusCommandShips2'),
-                                      skill='Command Ships', **kwargs)
-
-
 class Effect2160(BaseEffect):
     """
     eliteBonusCommandShipHybridFalloffCS2
@@ -6736,17 +6719,19 @@ class Effect2252(BaseEffect):
     covertOpsAndReconOpsCloakModuleDelayBonus
 
     Used by:
-    Ships from group: Black Ops (5 of 5)
+    Ships from group: Black Ops (6 of 6)
     Ships from group: Blockade Runner (5 of 5)
-    Ships from group: Covert Ops (8 of 8)
+    Ships from group: Covert Ops (9 of 9)
     Ships from group: Expedition Frigate (2 of 2)
-    Ships from group: Force Recon Ship (9 of 9)
+    Ships from group: Force Recon Ship (10 of 10)
     Ships from group: Stealth Bomber (5 of 5)
     Ships named like: Stratios (2 of 2)
     Subsystems named like: Defensive Covert Reconfiguration (4 of 4)
     Ship: Astero
+    Ship: Cenotaph
     Ship: Metamorphosis
     Ship: Rabisu
+    Ship: Tholos
     """
 
     type = 'passive'
@@ -6763,13 +6748,14 @@ class Effect2253(BaseEffect):
     covertOpsStealthBomberTargettingDelayBonus
 
     Used by:
-    Ships from group: Black Ops (5 of 5)
+    Ships from group: Black Ops (6 of 6)
     Ships from group: Stealth Bomber (5 of 5)
     Ship: Caedes
     Ship: Chremoas
     Ship: Endurance
     Ship: Etana
     Ship: Rabisu
+    Ship: Sidewinder
     """
 
     type = 'passive'
@@ -6799,7 +6785,6 @@ class Effect2296(BaseEffect):
 
     Used by:
     Implants named like: Halcyon Y Booster (5 of 5)
-    Implants named like: Tetrimon Resistance Booster (4 of 4)
     """
 
     type = 'passive'
@@ -6997,8 +6982,8 @@ class Effect2432(BaseEffect):
     Implants named like: Halcyon Y Booster (5 of 5)
     Implants named like: Inherent Implants 'Squire' Capacitor Management EM (6 of 6)
     Implants named like: Mindflood Booster (4 of 4)
-    Implants named like: Tetrimon Capacitor Booster (4 of 4)
     Modules named like: Semiconductor Memory Cell (8 of 8)
+    Implant: Aegytica Volatile Booster
     Implant: Antipharmakon Aeolis
     Implant: Basic Capsuleer Engineering Augmentation Chip
     Implant: Genolution Core Augmentation CA-1
@@ -7214,6 +7199,7 @@ class Effect2503(BaseEffect):
     Used by:
     Ships named like: Megathron (3 of 3)
     Ship: Marshal
+    Ship: Python
     """
 
     type = 'passive'
@@ -7233,6 +7219,7 @@ class Effect2504(BaseEffect):
     Ship: Ares
     Ship: Federation Navy Comet
     Ship: Pacifier
+    Ship: Sidewinder
     Ship: Tristan
     """
 
@@ -7622,7 +7609,6 @@ class Effect2696(BaseEffect):
     maxRangeBonusEffectLasers
 
     Used by:
-    Implants named like: Tetrimon Precision Booster (4 of 4)
     Modules named like: Energy Locus Coordinator (8 of 8)
     """
 
@@ -7875,6 +7861,7 @@ class Effect2735(BaseEffect):
     Implants named like: X Instinct Booster (3 of 4)
     """
 
+    runTime = 'late'
     attr = 'boosterArmorHPPenalty'
     displayName = 'Armor Capacity'
     type = 'boosterSideEffect'
@@ -7894,6 +7881,7 @@ class Effect2736(BaseEffect):
     Implants named like: Sooth Sayer Booster (3 of 4)
     """
 
+    runTime = 'late'
     attr = 'boosterArmorRepairAmountPenalty'
     displayName = 'Armor Repair Amount'
     type = 'boosterSideEffect'
@@ -7915,6 +7903,7 @@ class Effect2737(BaseEffect):
     Implants named like: X Instinct Booster (3 of 4)
     """
 
+    runTime = 'late'
     attr = 'boosterShieldCapacityPenalty'
     displayName = 'Shield Capacity'
     type = 'boosterSideEffect'
@@ -7934,6 +7923,7 @@ class Effect2739(BaseEffect):
     Implants named like: Sooth Sayer Booster (3 of 4)
     """
 
+    runTime = 'late'
     attr = 'boosterTurretOptimalRangePenalty'
     displayName = 'Turret Optimal Range'
     type = 'boosterSideEffect'
@@ -7953,6 +7943,7 @@ class Effect2741(BaseEffect):
     Implants named like: X Instinct Booster (3 of 4)
     """
 
+    runTime = 'late'
     attr = 'boosterTurretFalloffPenalty'
     displayName = 'Turret Falloff'
     type = 'boosterSideEffect'
@@ -7972,6 +7963,7 @@ class Effect2745(BaseEffect):
     Implants named like: Exile Booster (3 of 4)
     """
 
+    runTime = 'late'
     attr = 'boosterCapacitorCapacityPenalty'
     displayName = 'Cap Capacity'
     type = 'boosterSideEffect'
@@ -7990,6 +7982,7 @@ class Effect2746(BaseEffect):
     Items from market group: Implants & Boosters > Booster > Booster Slot 02 (9 of 13)
     """
 
+    runTime = 'late'
     attr = 'boosterMaxVelocityPenalty'
     displayName = 'Velocity'
     type = 'boosterSideEffect'
@@ -8008,6 +8001,7 @@ class Effect2747(BaseEffect):
     Implants named like: Frentix Booster (3 of 4)
     """
 
+    runTime = 'late'
     attr = 'boosterTurretTrackingPenalty'
     displayName = 'Turret Tracking'
     type = 'boosterSideEffect'
@@ -8027,6 +8021,7 @@ class Effect2748(BaseEffect):
     Implants named like: X Instinct Booster (3 of 4)
     """
 
+    runTime = 'late'
     attr = 'boosterMissileVelocityPenalty'
     displayName = 'Missile Velocity'
     type = 'boosterSideEffect'
@@ -8045,6 +8040,7 @@ class Effect2749(BaseEffect):
     Implants named like: Blue Pill Booster (3 of 5)
     """
 
+    runTime = 'late'
     attr = 'boosterAOEVelocityPenalty'
     displayName = 'Missile Explosion Velocity'
     type = 'boosterSideEffect'
@@ -8373,7 +8369,6 @@ class Effect2803(BaseEffect):
     energyWeaponDamageMultiplyPassive
 
     Used by:
-    Implants named like: Harvest Damage Booster (4 of 4)
     Modules named like: Energy Collision Accelerator (8 of 8)
     Implant: Wisdom of Gheinok
     """
@@ -8412,6 +8407,7 @@ class Effect2805(BaseEffect):
     Used by:
     Ship: Abaddon
     Ship: Marshal
+    Ship: Python
     """
 
     type = 'passive'
@@ -8483,6 +8479,7 @@ class Effect2847(BaseEffect):
     Implants named like: Halcyon G Booster (5 of 5)
     Implant: Antipharmakon Iokira
     Implant: Ogdin's Eye Coordination Enhancer
+    Implant: Theriac Volatile Booster
     Skill: Motion Prediction
     """
 
@@ -8521,6 +8518,7 @@ class Effect2849(BaseEffect):
     Used by:
     Modules named like: Memetic Algorithm Bank (8 of 8)
     Implant: Neural Lace 'Blackglass' Net Intrusion 920-40
+    Implant: Neural Lace 'Bluefire' Net Ablation 960-10
     Implant: Poteque 'Prospector' Environmental Analysis EY-1005
     Implant: Poteque 'Prospector' Hacking HC-905
     """
@@ -9261,7 +9259,7 @@ class Effect3001(BaseEffect):
 
     Used by:
     Modules from group: Missile Launcher Torpedo (22 of 22)
-    Items from market group: Ship Equipment > Turrets & Launchers (446 of 926)
+    Items from market group: Ship Equipment > Turrets & Launchers (446 of 928)
     Module: Interdiction Sphere Launcher I
     """
 
@@ -10369,6 +10367,7 @@ class Effect3447(BaseEffect):
 
     Used by:
     Ship: Marshal
+    Ship: Python
     Ship: Vargur
     """
 
@@ -10728,7 +10727,7 @@ class Effect3526(BaseEffect):
     cynosuralTheoryConsumptionBonus
 
     Used by:
-    Ships from group: Force Recon Ship (8 of 9)
+    Ships from group: Force Recon Ship (9 of 10)
     Ship: Venture
     Skill: Cynosural Field Theory
     """
@@ -13112,7 +13111,8 @@ class Effect4088(BaseEffect):
 
     Used by:
     Celestials named like: Class Cataclysmic Variable Effects (6 of 6)
-    Celestial: Dazh Liminality Locus
+    Celestial: Final Liminality
+    Celestial: Triglavian Minor Victory
     """
 
     runTime = 'early'
@@ -13133,7 +13133,8 @@ class Effect4089(BaseEffect):
 
     Used by:
     Celestials named like: Class Cataclysmic Variable Effects (6 of 6)
-    Celestial: Dazh Liminality Locus
+    Celestial: Final Liminality
+    Celestial: Triglavian Minor Victory
     """
 
     runTime = 'early'
@@ -13289,6 +13290,7 @@ class Effect4135(BaseEffect):
 
     Used by:
     Celestials named like: Class Wolf Rayet Effects (6 of 6)
+    Celestial: Drifter Crisis
     """
 
     runTime = 'early'
@@ -13306,6 +13308,7 @@ class Effect4136(BaseEffect):
 
     Used by:
     Celestials named like: Class Wolf Rayet Effects (6 of 6)
+    Celestial: Drifter Crisis
     """
 
     runTime = 'early'
@@ -13324,6 +13327,7 @@ class Effect4137(BaseEffect):
 
     Used by:
     Celestials named like: Class Wolf Rayet Effects (6 of 6)
+    Celestial: Drifter Crisis
     """
 
     runTime = 'early'
@@ -13343,6 +13347,7 @@ class Effect4138(BaseEffect):
     Used by:
     Celestials named like: Class Wolf Rayet Effects (6 of 6)
     Celestials named like: Volatile Ice Storm (2 of 2)
+    Celestial: Drifter Crisis
     """
 
     runTime = 'early'
@@ -13563,7 +13568,7 @@ class Effect4168(BaseEffect):
     eliteBonusCoverOpsScanProbeStrength2
 
     Used by:
-    Ships from group: Covert Ops (8 of 8)
+    Ships from group: Covert Ops (9 of 9)
     """
 
     type = 'passive'
@@ -14946,7 +14951,7 @@ class Effect4479(BaseEffect):
     shipBonusSurveyProbeExplosionDelaySkillSurveyCovertOps3
 
     Used by:
-    Ships from group: Covert Ops (5 of 8)
+    Ships from group: Covert Ops (6 of 9)
     """
 
     type = 'passive'
@@ -14965,6 +14970,7 @@ class Effect4482(BaseEffect):
     Used by:
     Ship: Imperial Navy Slicer
     Ship: Pacifier
+    Ship: Sidewinder
     """
 
     type = 'passive'
@@ -16300,6 +16306,7 @@ class Effect4902(BaseEffect):
     Used by:
     Ships from group: Assault Frigate (10 of 15)
     Ships from group: Command Destroyer (5 of 5)
+    Ships from group: Heavy Assault Cruiser (9 of 14)
     """
 
     type = 'passive'
@@ -16596,6 +16603,7 @@ class Effect4951(BaseEffect):
     Implants named like: Halcyon R Booster (5 of 5)
     Implant: AIR Hardshell Booster II
     Implant: Antipharmakon Thureo
+    Implant: Balneum Volatile Booster
     """
 
     type = 'passive'
@@ -17742,6 +17750,7 @@ class Effect5131(BaseEffect):
 
     Used by:
     Ships named like: Caracal (2 of 2)
+    Ship: Cobra
     Ship: Enforcer
     """
 
@@ -17759,6 +17768,7 @@ class Effect5132(BaseEffect):
     shipPTurretFalloffBonusMC2
 
     Used by:
+    Ship: Cobra
     Ship: Enforcer
     Ship: Stabber
     """
@@ -17793,6 +17803,7 @@ class Effect5136(BaseEffect):
 
     Used by:
     Ship: Augoror Navy Issue
+    Ship: Cobra
     Ship: Enforcer
     Ship: Maller
     Ship: Omen Navy Issue
@@ -18012,7 +18023,6 @@ class Effect5189(BaseEffect):
     trackingSpeedBonusEffectLasers
 
     Used by:
-    Implants named like: Tetrimon Precision Booster (4 of 4)
     Modules named like: Energy Metastasis Adjuster (8 of 8)
     """
 
@@ -18548,7 +18558,7 @@ class Effect5259(BaseEffect):
     reconShipCloakCpuBonus1
 
     Used by:
-    Ships from group: Force Recon Ship (7 of 9)
+    Ships from group: Force Recon Ship (7 of 10)
     """
 
     runTime = 'early'
@@ -18565,7 +18575,7 @@ class Effect5260(BaseEffect):
     covertOpsCloakCpuPercentBonus1
 
     Used by:
-    Ships from group: Covert Ops (6 of 8)
+    Ships from group: Covert Ops (6 of 9)
     """
 
     runTime = 'early'
@@ -19364,7 +19374,7 @@ class Effect5343(BaseEffect):
     shipBonusDroneDamageMultiplierGBC1
 
     Used by:
-    Variations of ship: Myrmidon (3 of 3)
+    Ships named like: Myrmidon (2 of 2)
     """
 
     type = 'passive'
@@ -19381,7 +19391,7 @@ class Effect5348(BaseEffect):
     shipBonusDroneHitpointsGBC1
 
     Used by:
-    Variations of ship: Myrmidon (3 of 3)
+    Ships named like: Myrmidon (2 of 2)
     """
 
     type = 'passive'
@@ -19620,6 +19630,7 @@ class Effect5364(BaseEffect):
     Implants named like: Halcyon R Booster (5 of 5)
     Implant: AIR Hardshell Booster II
     Implant: Antipharmakon Kosybo
+    Implant: Vis Vitalis Volatile Booster
     Implant: Wisdom of Gheinok
     """
 
@@ -19756,6 +19767,7 @@ class Effect5382(BaseEffect):
     shipBonusMETOptimalAC2
 
     Used by:
+    Ship: Cobra
     Ship: Enforcer
     Ship: Omen Navy Issue
     """
@@ -19875,7 +19887,7 @@ class Effect5397(BaseEffect):
     baseMaxScanDeviationModifierModuleOnline2None
 
     Used by:
-    Variations of module: Scan Pinpointing Array I (2 of 2)
+    Variations of module: Scan Pinpointing Array I (3 of 3)
     """
 
     type = 'passive'
@@ -19893,7 +19905,7 @@ class Effect5398(BaseEffect):
     systemScanDurationModuleModifier
 
     Used by:
-    Modules from group: Scanning Upgrade Time (2 of 2)
+    Modules from group: Scanning Upgrade Time (3 of 3)
     """
 
     type = 'passive'
@@ -19909,7 +19921,7 @@ class Effect5399(BaseEffect):
     baseSensorStrengthModifierModule
 
     Used by:
-    Variations of module: Scan Rangefinding Array I (2 of 2)
+    Modules named like: Scan Rangefinding Array (3 of 3)
     """
 
     type = 'passive'
@@ -20160,6 +20172,7 @@ class Effect5433(BaseEffect):
     Implants named like: Halcyon B Booster (5 of 5)
     Modules named like: Memetic Algorithm Bank (8 of 8)
     Implant: Neural Lace 'Blackglass' Net Intrusion 920-40
+    Implant: Neural Lace 'Bluefire' Net Ablation 960-10
     Implant: Poteque 'Prospector' Environmental Analysis EY-1005
     Implant: Poteque 'Prospector' Hacking HC-905
     Skill: Hacking
@@ -20283,6 +20296,7 @@ class Effect5459(BaseEffect):
 
     Used by:
     Implant: Neural Lace 'Blackglass' Net Intrusion 920-40
+    Implant: Neural Lace 'Bluefire' Net Ablation 960-10
     """
 
     type = 'passive'
@@ -20297,7 +20311,7 @@ class Effect5460(BaseEffect):
     minigameVirusStrengthBonus
 
     Used by:
-    Ships from group: Covert Ops (7 of 8)
+    Ships from group: Covert Ops (8 of 9)
     Ships named like: Stratios (2 of 2)
     Subsystems named like: Defensive Covert Reconfiguration (4 of 4)
     Variations of ship: Heron (3 of 3)
@@ -20626,23 +20640,6 @@ class Effect5501(BaseEffect):
         fit.modules.filteredItemBoost(lambda mod: mod.item.requiresSkill('Medium Hybrid Turret'),
                                       'damageMultiplier', ship.getModifiedItemAttr('eliteBonusCommandShips2'),
                                       skill='Command Ships', **kwargs)
-
-
-class Effect5503(BaseEffect):
-    """
-    eliteBonusCommandShipDroneTrackingCS2
-
-    Used by:
-    Ship: Eos
-    """
-
-    type = 'passive'
-
-    @staticmethod
-    def handler(fit, ship, context, projectionRange, **kwargs):
-        fit.drones.filteredItemBoost(lambda drone: drone.item.requiresSkill('Drones'),
-                                     'trackingSpeed', ship.getModifiedItemAttr('eliteBonusCommandShips2'),
-                                     skill='Command Ships', **kwargs)
 
 
 class Effect5505(BaseEffect):
@@ -21070,6 +21067,7 @@ class Effect5610(BaseEffect):
     Used by:
     Ship: Marshal
     Ship: Paladin
+    Ship: Python
     """
 
     type = 'passive'
@@ -21402,8 +21400,12 @@ class Effect5647(BaseEffect):
     Used by:
     Ships from group: Expedition Frigate (2 of 2)
     Ship: Astero
+    Ship: Cenotaph
+    Ship: Cobra
     Ship: Enforcer
     Ship: Pacifier
+    Ship: Sidewinder
+    Ship: Tholos
     Ship: Victor
     Ship: Victorieux Luxury Yacht
     Ship: Virtuoso
@@ -21785,6 +21787,7 @@ class Effect5779(BaseEffect):
     Used by:
     Ship: Pacifier
     Ship: Rifter
+    Ship: Sidewinder
     """
 
     type = 'passive'
@@ -24483,6 +24486,7 @@ class Effect6164(BaseEffect):
 
     Used by:
     Celestials named like: Drifter Incursion (6 of 6)
+    Celestial: Drifter Crisis
     """
 
     runTime = 'early'
@@ -24588,6 +24592,7 @@ class Effect6174(BaseEffect):
 
     Used by:
     Ships named like: Hurricane (2 of 2)
+    Ship: Cenotaph
     Ship: Khizriel
     """
 
@@ -24608,6 +24613,7 @@ class Effect6175(BaseEffect):
     Used by:
     Ships named like: Cyclone (2 of 2)
     Ships named like: Drake (2 of 2)
+    Ship: Cenotaph
     """
 
     type = 'passive'
@@ -31577,7 +31583,7 @@ class Effect6783(BaseEffect):
 
     Used by:
     Ships from group: Carrier (4 of 4)
-    Ships from group: Combat Battlecruiser (20 of 20)
+    Ships from group: Combat Battlecruiser (21 of 21)
     Ships from group: Command Ship (8 of 8)
     Ships from group: Force Auxiliary (6 of 6)
     Ships from group: Supercarrier (6 of 6)
@@ -32045,6 +32051,7 @@ class Effect6865(BaseEffect):
 
     Used by:
     Ship: Pacifier
+    Ship: Sidewinder
     """
 
     type = 'passive'
@@ -32060,6 +32067,7 @@ class Effect6866(BaseEffect):
 
     Used by:
     Ship: Pacifier
+    Ship: Sidewinder
     """
 
     type = 'passive'
@@ -32101,22 +32109,24 @@ class Effect6871(BaseEffect):
     type = 'passive'
 
     @staticmethod
-    def handler(fit, src, context, projectionRange, **kwargs):
+    def handler(fit, ship, context, projectionRange, **kwargs):
 
         # Get pilot sec status bonus directly here, instead of going through the intermediary effects
         # via https://forums.eveonline.com/default.aspx?g=posts&t=515826
         try:
-            bonus = max(0, min(50.0, (src.owner.character.secStatus * 10)))
+            sec_status = ship.owner.getPilotSecurity(low_limit=0, high_limit=5)
         except (KeyboardInterrupt, SystemExit):
             raise
         except:
-            bonus = None
+            return
 
-        if bonus is not None:
-            fit.modules.filteredItemBoost(lambda mod: mod.item.requiresSkill('Repair Systems'),
-                                      'armorDamageAmount', bonus, stackingPenalties=True, **kwargs)
-            fit.modules.filteredItemBoost(lambda mod: mod.item.requiresSkill('Shield Operation'),
-                                      'shieldBonus', bonus, stackingPenalties=True, **kwargs)
+        bonus = sec_status * 10
+        fit.modules.filteredItemBoost(
+            lambda mod: mod.item.requiresSkill('Repair Systems'),
+            'armorDamageAmount', bonus, **kwargs)
+        fit.modules.filteredItemBoost(
+            lambda mod: mod.item.requiresSkill('Shield Operation'),
+            'shieldBonus', bonus, **kwargs)
 
 
 class Effect6872(BaseEffect):
@@ -32139,6 +32149,7 @@ class Effect6873(BaseEffect):
     eliteBonusReconWarpVelocity3
 
     Used by:
+    Ship: Cobra
     Ship: Enforcer
     """
 
@@ -32154,6 +32165,7 @@ class Effect6874(BaseEffect):
     shipBonusMedMissileFlightTimeCC2
 
     Used by:
+    Ship: Cobra
     Ship: Enforcer
     """
 
@@ -32173,6 +32185,7 @@ class Effect6877(BaseEffect):
 
     Used by:
     Ship: Marshal
+    Ship: Python
     """
 
     type = 'passive'
@@ -32188,6 +32201,7 @@ class Effect6878(BaseEffect):
 
     Used by:
     Ship: Marshal
+    Ship: Python
     """
 
     type = 'passive'
@@ -32195,7 +32209,7 @@ class Effect6878(BaseEffect):
     @staticmethod
     def handler(fit, src, context, projectionRange, **kwargs):
         fit.modules.filteredItemBoost(lambda mod: mod.item.group.name == 'Warp Scrambler', 'maxRange',
-                                      src.getModifiedItemAttr('eliteBonusBlackOps4'), stackingPenalties=True, skill='Black Ops', **kwargs)
+                                      src.getModifiedItemAttr('eliteBonusBlackOps4'), skill='Black Ops', **kwargs)
 
 
 class Effect6879(BaseEffect):
@@ -32204,6 +32218,7 @@ class Effect6879(BaseEffect):
 
     Used by:
     Ship: Marshal
+    Ship: Python
     """
 
     type = 'passive'
@@ -32220,6 +32235,7 @@ class Effect6880(BaseEffect):
 
     Used by:
     Ship: Marshal
+    Ship: Python
     """
 
     type = 'passive'
@@ -32240,6 +32256,7 @@ class Effect6881(BaseEffect):
 
     Used by:
     Ship: Marshal
+    Ship: Python
     """
 
     type = 'passive'
@@ -34772,6 +34789,11 @@ class Effect7117(BaseEffect):
     roleBonusWarpSpeed
 
     Used by:
+    Ships from group: Blockade Runner (5 of 5)
+    Ships from group: Covert Ops (9 of 9)
+    Ships from group: Hauler (5 of 18)
+    Ships from group: Interceptor (10 of 10)
+    Ships from group: Interdictor (4 of 4)
     Ship: Azariel
     Ship: Cynabal
     Ship: Dramiel
@@ -35261,6 +35283,7 @@ class Effect7202(BaseEffect):
 
     Used by:
     Celestials named like: Triglavian Invasion System Effects (3 of 3)
+    Celestial: Drifter Crisis
     """
 
     runTime = 'early'
@@ -35279,6 +35302,7 @@ class Effect7203(BaseEffect):
 
     Used by:
     Celestials named like: Triglavian Invasion System Effects (3 of 3)
+    Celestial: Drifter Crisis
     """
 
     runTime = 'early'
@@ -35561,7 +35585,8 @@ class Effect7237(BaseEffect):
     systemWarpSpeedBonus
 
     Used by:
-    Celestial: Dazh Liminality Locus
+    Celestial: Drifter Crisis
+    Celestial: Final Liminality
     Celestial: Turnur Aftermath
     """
 
@@ -35869,7 +35894,8 @@ class Effect8031(BaseEffect):
     systemMaxTargets
 
     Used by:
-    Celestial: Dazh Liminality Locus
+    Celestial: Final Liminality
+    Celestial: Triglavian Minor Victory
     """
 
     runTime = 'early'
@@ -37150,7 +37176,7 @@ class Effect8151(BaseEffect):
     shipBonusCloakedVelocityRole1
 
     Used by:
-    Ships from group: Black Ops (5 of 5)
+    Ships from group: Black Ops (6 of 6)
     """
 
     type = 'passive'
@@ -37655,64 +37681,12 @@ class Effect8264(BaseEffect):
             skill='Industrial Command Ships', **kwargs)
 
 
-class Effect8267(BaseEffect):
-    """
-    weaponDisruptorResistanceBonusPassive
-
-    Used by:
-    Implants named like: Harvest Anti Disruptor Booster (4 of 4)
-    """
-
-    type = 'passive'
-
-    @staticmethod
-    def handler(fit, container, context, projectionRange, **kwargs):
-        fit.ship.boostItemAttr(
-            'weaponDisruptionResistance',
-            container.getModifiedItemAttr('weaponDisruptionResistanceBonus'), **kwargs)
-
-
-class Effect8268(BaseEffect):
-    """
-    nosferatuDurationBonusPassive
-
-    Used by:
-    Implants named like: Harvest Nosferatu Booster (4 of 4)
-    """
-
-    type = 'passive'
-
-    @staticmethod
-    def handler(fit, module, context, projectionRange, **kwargs):
-        fit.modules.filteredItemBoost(
-            lambda mod: mod.item.group.name == 'Energy Nosferatu', 'duration',
-            module.getModifiedItemAttr('durationBonus'), **kwargs)
-
-
-class Effect8269(BaseEffect):
-    """
-    stasisWebifierMaxRangeAddPassive
-
-    Used by:
-    Implants named like: Harvest Webifier Booster (4 of 4)
-    """
-
-    type = 'passive'
-
-    @staticmethod
-    def handler(fit, module, context, projectionRange, **kwargs):
-        fit.modules.filteredItemIncrease(
-            lambda mod: mod.item.group.name == 'Stasis Web', 'maxRange',
-            module.getModifiedItemAttr('stasisWebRangeAdd'), **kwargs)
-
-
 class Effect8270(BaseEffect):
     """
     capacitorWarfareResistanceBonusPassive
 
     Used by:
     Implants named like: Halcyon Y Booster (5 of 5)
-    Implants named like: Tetrimon Anti Drain Booster (4 of 4)
     """
 
     type = 'passive'
@@ -38063,34 +38037,6 @@ class Effect8323(BaseEffect):
             skill='Gallente Hauler', **kwargs)
 
 
-class Effect8327(BaseEffect):
-    """
-    Not used by any item
-    """
-
-    type = 'passive'
-
-    @staticmethod
-    def handler(fit, container, context, projectionRange, **kwargs):
-        fit.modules.filteredItemBoost(
-            lambda mod: mod.item.requiresSkill('Archaeology'), 'maxRange',
-            container.getModifiedItemAttr('rangeSkillBonus'), **kwargs)
-
-
-class Effect8328(BaseEffect):
-    """
-    Not used by any item
-    """
-
-    type = 'passive'
-
-    @staticmethod
-    def handler(fit, container, context, projectionRange, **kwargs):
-        fit.modules.filteredItemIncrease(
-            lambda mod: mod.item.requiresSkill('Archaeology'), 'virusStrength',
-            container.getModifiedItemAttr('virusStrengthBonus'), **kwargs)
-
-
 class Effect8360(BaseEffect):
     """
     shipBonusMissileReloadTimeGC2
@@ -38162,8 +38108,7 @@ class Effect8377(BaseEffect):
 
     Used by:
     Ships from group: Battleship (34 of 35)
-    Ships from group: Black Ops (5 of 5)
-    Ships from group: Marauder (4 of 4)
+    Ships from group: Black Ops (6 of 6)
     """
 
     runTime = 'early'
@@ -38307,20 +38252,6 @@ class Effect8479(BaseEffect):
         fit.drones.filteredItemBoost(
             lambda drone: drone.item.requiresSkill('Drones'), 'falloff',
             container.getModifiedItemAttr('falloffBonus'), **kwargs)
-
-
-class Effect8594(BaseEffect):
-    """
-    Not used by any item
-    """
-
-    type = 'passive'
-
-    @staticmethod
-    def handler(fit, booster, context, projectionRange, **kwargs):
-        for type in ('Em', 'Explosive', 'Kinetic', 'Thermal'):
-            fit.ship.boostItemAttr(f'armor{type}DamageResonance',
-                                   booster.getModifiedItemAttr('armorDamageResistanceBonus'), **kwargs)
 
 
 class Effect11055(BaseEffect):
@@ -40803,16 +40734,16 @@ class Effect12098(BaseEffect):
     jumpPortalPassengerBonusPercentSkill
 
     Used by:
-    Skill: Capital Jump Portal Generation
+    Ships from group: Carrier (4 of 4)
     """
 
     type = 'passive'
 
     @staticmethod
-    def handler(fit, skill, context, projectionRange, **kwargs):
+    def handler(fit, src, context, projectionRange, **kwargs):
         fit.ship.boostItemAttr(
-            'conduitJumpPassengerCount',
-            skill.getModifiedItemAttr('conduitPassengerBonusPercent') * skill.level, **kwargs)
+            'conduitJumpPassengerCount', src.getModifiedItemAttr('conduitPassengerBonusPercent'),
+            skill='Capital Jump Portal Generation', **kwargs)
 
 
 class Effect12102(BaseEffect):
@@ -40867,3 +40798,574 @@ class Effect12127(BaseEffect):
                     'Missile Launcher Heavy',
                     'Missile Launcher Rapid Light'),
                 attr, ship.getModifiedItemAttr('upwellHaulersMediumMissileFittingBonus'), **kwargs)
+
+
+class Effect12165(BaseEffect):
+    """
+    ATFrigDmgBonus
+
+    Used by:
+    Ship: Sidewinder
+    """
+
+    type = 'passive'
+
+    @staticmethod
+    def handler(fit, ship, context, projectionRange, **kwargs):
+        # Get pilot sec status bonus directly here, instead of going through the intermediary effects
+        try:
+            sec_status = ship.owner.getPilotSecurity(low_limit=-10, high_limit=0)
+        except (KeyboardInterrupt, SystemExit):
+            raise
+        except:
+            return
+        bonus = ship.getModifiedItemAttr('ATFrigDmgBonus') * sec_status
+        fit.modules.filteredItemBoost(
+            lambda mod: (mod.item.requiresSkill('Small Energy Turret')
+                         or mod.item.requiresSkill('Small Hybrid Turret')
+                         or mod.item.requiresSkill('Small Projectile Turret')),
+            'damageMultiplier', bonus, **kwargs)
+        for dmgType in ('em', 'kinetic', 'explosive', 'thermal'):
+            fit.modules.filteredChargeBoost(
+                lambda mod: mod.charge.requiresSkill('Rockets') or mod.charge.requiresSkill('Light Missiles'),
+                f'{dmgType}Damage', bonus, **kwargs)
+
+
+class Effect12176(BaseEffect):
+    """
+    shipBonusAllShieldresistATCC1
+
+    Used by:
+    Ship: Cobra
+    """
+
+    type = 'passive'
+
+    @staticmethod
+    def handler(fit, ship, context, projectionRange, **kwargs):
+        for dmgType in ('em', 'thermal', 'kinetic', 'explosive'):
+            fit.ship.boostItemAttr(
+                'shield{}DamageResonance'.format(dmgType.capitalize()),
+                ship.getModifiedItemAttr('shipBonusCC3'),
+                skill='Caldari Cruiser', **kwargs)
+
+
+class Effect12179(BaseEffect):
+    """
+    ShipBonusAllShieldResistATCF1
+
+    Used by:
+    Ship: Sidewinder
+    """
+
+    type = 'passive'
+
+    @staticmethod
+    def handler(fit, ship, context, projectionRange, **kwargs):
+        for dmgType in ('em', 'thermal', 'kinetic', 'explosive'):
+            fit.ship.boostItemAttr(
+                'shield{}DamageResonance'.format(dmgType.capitalize()),
+                ship.getModifiedItemAttr('shipBonus3CF'),
+                skill='Caldari Frigate', **kwargs)
+
+
+class Effect12180(BaseEffect):
+    """
+    roleBonusATCruiserMJDFittingReduction
+
+    Used by:
+    Ship: Cobra
+    """
+
+    type = 'passive'
+
+    @staticmethod
+    def handler(fit, ship, context, projectionRange, **kwargs):
+        fit.modules.filteredItemBoost(
+            lambda mod: mod.item.group.name == 'Micro Jump Drive',
+            'cpu', ship.getModifiedItemAttr('flagCruiserFittingBonusPropMods'), **kwargs)
+        fit.modules.filteredItemBoost(
+            lambda mod: mod.item.group.name == 'Micro Jump Drive',
+            'power', ship.getModifiedItemAttr('flagCruiserFittingBonusPropMods'), **kwargs)
+
+
+class Effect12181(BaseEffect):
+    """
+    ATcruiserTackleBonus1
+
+    Used by:
+    Ship: Cobra
+    """
+
+    type = 'passive'
+
+    @staticmethod
+    def handler(fit, ship, context, projectionRange, **kwargs):
+        # Get pilot sec status bonus directly here, instead of going through the intermediary effects
+        try:
+            sec_status = ship.owner.getPilotSecurity(low_limit=-10, high_limit=0)
+        except (KeyboardInterrupt, SystemExit):
+            raise
+        except:
+            return
+        bonus = ship.getModifiedItemAttr('ATcruiserStasisWebifierBonus') * sec_status
+        fit.modules.filteredItemBoost(lambda mod: mod.item.group.name == 'Stasis Web', 'maxRange', bonus, **kwargs)
+
+
+class Effect12183(BaseEffect):
+    """
+    shipBonusATpropDuration
+
+    Used by:
+    Ship: Python
+    """
+
+    type = 'passive'
+
+    @staticmethod
+    def handler(fit, ship, context, projectionRange, **kwargs):
+        fit.modules.filteredItemBoost(
+            lambda mod: mod.item.group.name in ('Propulsion Module', 'Microwarpdrive'),
+            'duration', ship.getModifiedItemAttr('shipBonusATprobDuration'), **kwargs)
+
+
+class Effect12184(BaseEffect):
+    """
+    shipBonusATAllShieldResistCB3
+
+    Used by:
+    Ship: Python
+    """
+
+    type = 'passive'
+
+    @staticmethod
+    def handler(fit, ship, context, projectionRange, **kwargs):
+        for dmgType in ('em', 'thermal', 'kinetic', 'explosive'):
+            fit.ship.boostItemAttr(
+                'shield{}DamageResonance'.format(dmgType.capitalize()),
+                ship.getModifiedItemAttr('shipBonusCB3'),
+                skill='Caldari Battleship', **kwargs)
+
+
+class Effect12185(BaseEffect):
+    """
+    shipBonusBurstJammer ATB
+
+    Used by:
+    Ship: Python
+    """
+
+    type = 'passive'
+
+    @staticmethod
+    def handler(fit, ship, context, projectionRange, **kwargs):
+        # Get pilot sec status bonus directly here, instead of going through the intermediary effects
+        try:
+            sec_status = ship.owner.getPilotSecurity(low_limit=-10, high_limit=0)
+        except (KeyboardInterrupt, SystemExit):
+            raise
+        except:
+            return
+        bonus = ship.getModifiedItemAttr('ATBurstJammerStrengthBonus') * sec_status
+        for attr in ('ecmBurstRange', 'scanRadarStrengthBonus', 'scanGravimetricStrengthBonus', 'scanLadarStrengthBonus', 'scanMagnetometricStrengthBonus'):
+            fit.modules.filteredItemBoost(lambda mod: mod.item.group.name == 'Burst Jammer', attr, bonus, **kwargs)
+
+
+class Effect12188(BaseEffect):
+    """
+    shipRoleBonusSPTDamage
+
+    Used by:
+    Ship: Tholos
+    """
+
+    type = 'passive'
+
+    @staticmethod
+    def handler(fit, container, context, projectionRange, **kwargs):
+        fit.modules.filteredItemBoost(
+            lambda mod: mod.item.requiresSkill('Small Projectile Turret'), 'damageMultiplier',
+            container.getModifiedItemAttr('shipBonusRole1'), **kwargs)
+
+
+class Effect12189(BaseEffect):
+    """
+    shipRoleBonusMPTDamage
+
+    Used by:
+    Ship: Cenotaph
+    """
+
+    type = 'passive'
+
+    @staticmethod
+    def handler(fit, container, context, projectionRange, **kwargs):
+        fit.modules.filteredItemBoost(
+            lambda mod: mod.item.requiresSkill('Medium Projectile Turret'), 'damageMultiplier',
+            container.getModifiedItemAttr('shipBonusRole1'), **kwargs)
+
+
+class Effect12190(BaseEffect):
+    """
+    shipRoleBonusRocketDamage
+
+    Used by:
+    Ship: Tholos
+    """
+
+    type = 'passive'
+
+    @staticmethod
+    def handler(fit, ship, context, projectionRange, **kwargs):
+        for damageType in ('em', 'explosive', 'kinetic', 'thermal'):
+            fit.modules.filteredChargeBoost(
+                lambda mod: mod.charge.requiresSkill('Rockets'), f'{damageType}Damage',
+                ship.getModifiedItemAttr('shipBonusRole2'), **kwargs)
+
+
+class Effect12191(BaseEffect):
+    """
+    shipRoleBonusHAMDamage
+
+    Used by:
+    Ship: Cenotaph
+    """
+
+    type = 'passive'
+
+    @staticmethod
+    def handler(fit, ship, context, projectionRange, **kwargs):
+        for damageType in ('em', 'explosive', 'kinetic', 'thermal'):
+            fit.modules.filteredChargeBoost(
+                lambda mod: mod.charge.requiresSkill('Heavy Assault Missiles'), f'{damageType}Damage',
+                ship.getModifiedItemAttr('shipBonusRole2'), **kwargs)
+
+
+class Effect12192(BaseEffect):
+    """
+    stasisWebifierResistanceBonusMD1
+
+    Used by:
+    Ship: Tholos
+    """
+
+    type = 'passive'
+
+    @staticmethod
+    def handler(fit, ship, context, projectionRange, **kwargs):
+        fit.ship.boostItemAttr(
+            'stasisWebifierResistance', ship.getModifiedItemAttr('shipBonusMD1'),
+            skill='Minmatar Destroyer', **kwargs)
+
+
+class Effect12193(BaseEffect):
+    """
+    stasisWebifierResistanceBonusMBC1
+
+    Used by:
+    Ship: Cenotaph
+    """
+
+    type = 'passive'
+
+    @staticmethod
+    def handler(fit, ship, context, projectionRange, **kwargs):
+        fit.ship.boostItemAttr(
+            'stasisWebifierResistance', ship.getModifiedItemAttr('shipBonusMBC1'),
+            skill='Minmatar Battlecruiser', **kwargs)
+
+
+class Effect12194(BaseEffect):
+    """
+    shipBonusShieldBoostCD1
+
+    Used by:
+    Ship: Tholos
+    """
+
+    type = 'passive'
+
+    @staticmethod
+    def handler(fit, src, context, projectionRange, **kwargs):
+        fit.modules.filteredItemBoost(
+            lambda mod: mod.item.requiresSkill('Shield Operation'), 'shieldBonus',
+            src.getModifiedItemAttr('shipBonusCD1'), skill='Caldari Destroyer', **kwargs)
+
+
+class Effect12195(BaseEffect):
+    """
+    shipBonusShieldBoostCBC1
+
+    Used by:
+    Ship: Cenotaph
+    """
+
+    type = 'passive'
+
+    @staticmethod
+    def handler(fit, src, context, projectionRange, **kwargs):
+        fit.modules.filteredItemBoost(
+            lambda mod: mod.item.requiresSkill('Shield Operation'), 'shieldBonus',
+            src.getModifiedItemAttr('shipBonusCBC1'), skill='Caldari Battlecruiser', **kwargs)
+
+
+class Effect12202(BaseEffect):
+    """
+    ATcruiserTackleBonus2
+
+    Used by:
+    Ship: Cobra
+    """
+
+    type = 'passive'
+
+    @staticmethod
+    def handler(fit, ship, context, projectionRange, **kwargs):
+        # Get pilot sec status bonus directly here, instead of going through the intermediary effects
+        try:
+            sec_status = ship.owner.getPilotSecurity(low_limit=-10, high_limit=0)
+        except (KeyboardInterrupt, SystemExit):
+            raise
+        except:
+            return
+        bonus = ship.getModifiedItemAttr('ATcruiserScramblerDisruptorBonus') * sec_status
+        fit.modules.filteredItemBoost(lambda mod: mod.item.group.name == 'Warp Scrambler', 'maxRange', bonus, **kwargs)
+
+
+class Effect12203(BaseEffect):
+    """
+    ATfrigDroneBonus
+
+    Used by:
+    Ship: Sidewinder
+    """
+
+    type = 'passive'
+
+    @staticmethod
+    def handler(fit, ship, context, projectionRange, **kwargs):
+        for attr in ('shieldCapacity', 'armorHP', 'hp', 'damageMultiplier'):
+            fit.drones.filteredItemBoost(
+                lambda drone: drone.item.requiresSkill('Light Drone Operation'),
+                attr, ship.getModifiedItemAttr('ATfrigDroneBonus'), **kwargs)
+
+
+class Effect12213(BaseEffect):
+    """
+    shipBonusMPTFalloffMC3
+
+    Used by:
+    Ship: Stabber Fleet Issue
+    """
+
+    type = 'passive'
+
+    @staticmethod
+    def handler(fit, ship, context, projectionRange, **kwargs):
+        fit.modules.filteredItemBoost(
+            lambda mod: mod.item.requiresSkill('Medium Projectile Turret'), 'falloff',
+            ship.getModifiedItemAttr('ShipBonusMC3'), skill='Minmatar Cruiser', **kwargs)
+
+
+class Effect12214(BaseEffect):
+    """
+    AtcruiserDroneBonus
+
+    Used by:
+    Ship: Cobra
+    """
+
+    type = 'passive'
+
+    @staticmethod
+    def handler(fit, ship, context, projectionRange, **kwargs):
+        for attr in ('shieldCapacity', 'armorHP', 'hp', 'damageMultiplier'):
+            fit.drones.filteredItemBoost(
+                lambda drone: drone.item.requiresSkill('Medium Drone Operation'),
+                attr, ship.getModifiedItemAttr('ATcruiserDroneBonus'), **kwargs)
+
+
+class Effect12217(BaseEffect):
+    """
+    skillDotMaxHPPercentagePerTickBonus
+
+    Used by:
+    Skill: Breacher Pod Launcher Operation
+    """
+
+    type = 'passive'
+
+    @staticmethod
+    def handler(fit, skill, context, projectionRange, **kwargs):
+        fit.modules.filteredChargeBoost(
+            lambda mod: mod.charge.requiresSkill('Breacher Pod Launcher Operation'), 'dotMaxHPPercentagePerTick',
+            skill.getModifiedItemAttr('dotMaxHPPercentagePerTickBonus') * skill.level, **kwargs)
+
+
+class Effect12218(BaseEffect):
+    """
+    skillDotMaxDamagePerTickBonus
+
+    Used by:
+    Skill: Breacher Pod Clone Efficacity
+    """
+
+    type = 'passive'
+
+    @staticmethod
+    def handler(fit, skill, context, projectionRange, **kwargs):
+        fit.modules.filteredChargeBoost(
+            lambda mod: mod.charge.requiresSkill('Breacher Pod Launcher Operation'), 'dotMaxDamagePerTick',
+            skill.getModifiedItemAttr('dotMaxDamagePerTickBonus') * skill.level, **kwargs)
+
+
+class Effect12219(BaseEffect):
+    """
+    skillDotPodVelocityBonus
+
+    Used by:
+    Skill: Breacher Pod Projection
+    """
+
+    type = 'passive'
+
+    @staticmethod
+    def handler(fit, skill, context, projectionRange, **kwargs):
+        fit.modules.filteredChargeBoost(
+            lambda mod: mod.charge.requiresSkill('Breacher Pod Launcher Operation'), 'maxVelocity',
+            skill.getModifiedItemAttr('speedFactor') * skill.level, **kwargs)
+
+
+class Effect12220(BaseEffect):
+    """
+    skillDotLauncherRoFBonus
+
+    Used by:
+    Skill: Breacher Pod Rapid Firing
+    """
+
+    type = 'passive'
+
+    @staticmethod
+    def handler(fit, skill, context, projectionRange, **kwargs):
+        fit.modules.filteredItemBoost(
+            lambda mod: mod.item.requiresSkill('Breacher Pod Launcher Operation'),
+            'speed', skill.getModifiedItemAttr('rofBonus') * skill.level, **kwargs)
+
+
+class Effect12221(BaseEffect):
+    """
+    skillDotDurationBonus
+
+    Used by:
+    Skill: Breacher Pod Clone Longevity
+    """
+
+    type = 'passive'
+
+    @staticmethod
+    def handler(fit, skill, context, projectionRange, **kwargs):
+        fit.modules.filteredChargeBoost(
+            lambda mod: mod.charge.requiresSkill('Breacher Pod Launcher Operation'), 'dotDuration',
+            skill.getModifiedItemAttr('durationBonus') * skill.level, **kwargs)
+
+
+class Effect12249(BaseEffect):
+    """
+    shipBonusDroneDamageHeavyMediumLightMultiplierGBC1
+
+    Used by:
+    Ship: Eos
+    """
+
+    type = 'passive'
+
+    @staticmethod
+    def handler(fit, ship, context, projectionRange, **kwargs):
+        fit.drones.filteredItemBoost(
+            lambda drone: (
+                drone.item.requiresSkill('Light Drone Operation')
+                or drone.item.requiresSkill('Medium Drone Operation')
+                or drone.item.requiresSkill('Heavy Drone Operation')),
+            'damageMultiplier', ship.getModifiedItemAttr('shipBonusGBC1'),
+            skill='Gallente Battlecruiser', **kwargs)
+
+
+class Effect12250(BaseEffect):
+    """
+    shipBonusSentryDroneDamageAndSentryHPMultiplierGBC3
+
+    Used by:
+    Ship: Eos
+    """
+
+    type = 'passive'
+
+    @staticmethod
+    def handler(fit, ship, context, projectionRange, **kwargs):
+        for attrName in ('damageMultiplier', 'shieldCapacity', 'armorHP', 'hp'):
+            fit.drones.filteredItemBoost(
+                lambda drone: drone.item.requiresSkill('Sentry Drone Interfacing'), attrName,
+                ship.getModifiedItemAttr('shipBonusGBC3'), skill='Gallente Battlecruiser', **kwargs)
+
+
+class Effect12251(BaseEffect):
+    """
+    shipBonusDroneHPHeavyMediumLightGBC1
+
+    Used by:
+    Ship: Eos
+    """
+
+    type = 'passive'
+
+    @staticmethod
+    def handler(fit, ship, context, projectionRange, **kwargs):
+        for attrName in ('shieldCapacity', 'armorHP', 'hp'):
+            fit.drones.filteredItemBoost(
+                lambda drone: (
+                    drone.item.requiresSkill('Light Drone Operation')
+                    or drone.item.requiresSkill('Medium Drone Operation')
+                    or drone.item.requiresSkill('Heavy Drone Operation')),
+                attrName, ship.getModifiedItemAttr('shipBonusGBC1'),
+                skill='Gallente Battlecruiser', **kwargs)
+
+
+class Effect12252(BaseEffect):
+    """
+    eliteBonusCommandShipDroneTrackingHeavyMediumLightCS2
+
+    Used by:
+    Ship: Eos
+    """
+
+    type = 'passive'
+
+    @staticmethod
+    def handler(fit, ship, context, projectionRange, **kwargs):
+        fit.drones.filteredItemBoost(
+            lambda drone: (
+                drone.item.requiresSkill('Light Drone Operation')
+                or drone.item.requiresSkill('Medium Drone Operation')
+                or drone.item.requiresSkill('Heavy Drone Operation')),
+            'trackingSpeed', ship.getModifiedItemAttr('eliteBonusCommandShips2'),
+            skill='Command Ships', **kwargs)
+
+
+class Effect12253(BaseEffect):
+    """
+    eliteBonusCommandShipDroneTrackingSentryCS4
+
+    Used by:
+    Ship: Eos
+    """
+
+    type = 'passive'
+
+    @staticmethod
+    def handler(fit, ship, context, projectionRange, **kwargs):
+        fit.drones.filteredItemBoost(
+            lambda drone: drone.item.requiresSkill('Sentry Drone Interfacing'),
+            'trackingSpeed', ship.getModifiedItemAttr('eliteBonusCommandShips4'),
+            skill='Command Ships', **kwargs)

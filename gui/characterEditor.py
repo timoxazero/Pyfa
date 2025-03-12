@@ -115,7 +115,7 @@ class CharacterEntityEditor(EntityEditor):
         sChar = Character.getInstance()
 
         if entity.alphaCloneID:
-            trimmed_name = re.sub('[ \(\u03B1\)]+$', '', name)
+            trimmed_name = re.sub('[ \\(\u03B1\\)]+$', '', name)
             sChar.rename(entity, trimmed_name)
         else:
             sChar.rename(entity, name)
@@ -480,6 +480,35 @@ class SkillTreeView(wx.Panel):
             list += "{} {}\n".format(skill.item.name, skill.level)
 
         toClipboard(list)
+
+    def exportSkillsSuperCondensed(self, evt):
+        char = self.charEditor.entityEditor.getActiveEntity()
+
+        skills = {}
+        explicit_levels = {}
+        implicit_levels = {}
+        for s in char.__class__.getSkillNameMap().keys():
+            skill = char.getSkill(s)
+            if skill.level < 1:
+                continue
+            skills[skill.item.ID] = skill
+            explicit_levels[skill.item.ID] = skill.level
+
+        for skill in skills.values():
+            for req_skill, level in skill.item.requiredSkills.items():
+                if req_skill.ID not in implicit_levels or implicit_levels[req_skill.ID] < level:
+                    implicit_levels[req_skill.ID] = level
+
+        condensed = {}
+        for typeID, level in explicit_levels.items():
+            if typeID not in implicit_levels or implicit_levels[typeID] < level:
+                condensed[skills[typeID].item.name] = level
+
+        lines = []
+        for skill in sorted(condensed):
+            lines.append(f'{skill}\t{condensed[skill]}')
+
+        toClipboard('\n'.join(lines))
 
     def onSecStatus(self, event):
         sChar = Character.getInstance()
@@ -918,7 +947,7 @@ class SecStatusDialog(wx.Dialog):
         self.m_staticText1.Wrap(-1)
         bSizer1.Add(self.m_staticText1, 1, wx.ALL | wx.EXPAND, 5)
 
-        self.floatSpin = FloatSpin(self, value=sec, min_val=-5.0, max_val=5.0, increment=0.1, digits=2, size=(-1, -1))
+        self.floatSpin = FloatSpin(self, value=sec, min_val=-10.0, max_val=5.0, increment=0.1, digits=2, size=(-1, -1))
         bSizer1.Add(self.floatSpin, 0, wx.ALIGN_CENTER | wx.ALL, 5)
 
         btnOk = wx.Button(self, wx.ID_OK)

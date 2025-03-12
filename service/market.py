@@ -184,7 +184,7 @@ class SearchWorkerThread(threading.Thread):
     def _prepareRequestNormal(self, request):
         # Escape regexp-specific symbols, and un-escape whitespaces
         request = re.escape(request)
-        request = re.sub(r'\\(?P<ws>\s+)', '\g<ws>', request)
+        request = re.sub(r'\\(?P<ws>\s+)', r'\g<ws>', request)
         # Imitate wildcard search
         request = re.sub(r'\\\*', r'\\w*', request)
         request = re.sub(r'\\\?', r'\\w?', request)
@@ -324,6 +324,9 @@ class Market:
             "Metamorphosis"               : self.les_grp,  # Seems to be anniversary gift
             "Shapash"                     : self.les_grp,  # AT19 prize
             "Cybele"                      : self.les_grp,  # AT19 prize
+            "Sidewinder"                  : self.les_grp,  # AT20 prize
+            "Cobra"                       : self.les_grp,  # AT20 prize
+            "Python"                      : self.les_grp,  # AT20 prize
         }
 
         self.ITEMS_FORCEGROUP_R = self.__makeRevDict(self.ITEMS_FORCEGROUP)
@@ -985,3 +988,21 @@ class Market:
         metatab = self.META_MAP_REVERSE_GROUPED.get(metagrpid)
         metalvl = item.metaLevel or 0
         return catname, mktgrpid, parentname, metatab, metalvl, item.name
+
+    def printAllItems(self):
+        items = set()
+
+        def handleMg(marketGroup, path=()):
+            marketGroup = self.getMarketGroup(marketGroup, eager=("items", "items.metaGroup", "children"))
+            path = path + (marketGroup.name,)
+            print(' > '.join(path))
+            for item in self.getItemsByMarketGroup(marketGroup):
+                items.add(item.ID)
+            for mgc in self.getMarketGroupChildren(marketGroup):
+                handleMg(mgc, path=path)
+
+        for mg in self.ROOT_MARKET_GROUPS:
+            handleMg(mg)
+        print(sorted(items))
+
+
