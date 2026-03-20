@@ -27,6 +27,7 @@ from gui.viewColumn import ViewColumn
 from gui.bitmap_loader import BitmapLoader
 from gui.utils.numberFormatter import formatAmount
 from gui.utils.listFormatter import formatList
+from eos.utils.float import floatUnerr
 from eos.utils.spoolSupport import SpoolType, SpoolOptions
 import eos.config
 
@@ -93,7 +94,7 @@ class Miscellanea(ViewColumn):
                 text = "{} dmg".format(formatAmount(dmg, 3, 0, 6))
                 tooltip = "Raw damage done"
             return text, tooltip
-        elif itemGroup in ("Energy Weapon", "Hybrid Weapon", "Projectile Weapon", "Combat Drone", "Fighter Drone"):
+        elif itemGroup in ("Energy Weapon", "Hybrid Weapon", "Projectile Weapon", "Fighter Drone"):
             trackingSpeed = stuff.getModifiedItemAttr("trackingSpeed")
             optimalSig = stuff.getModifiedItemAttr("optimalSigRadius")
             if not trackingSpeed or not optimalSig:
@@ -102,6 +103,89 @@ class Miscellanea(ViewColumn):
             text = "{0}".format(formatAmount(normalizedTracking, 3, 0, 3))
             tooltip = "Tracking speed"
             return text, tooltip
+        elif itemGroup == "Combat Drone":
+            text_parts = []
+            tooltip_parts = []
+            trackingSpeed = stuff.getModifiedItemAttr("trackingSpeed")
+            optimalSig = stuff.getModifiedItemAttr("optimalSigRadius")
+            if trackingSpeed and optimalSig:
+                normalizedTracking = trackingSpeed * 40000 / optimalSig
+                text_parts.append("{0}".format(formatAmount(normalizedTracking, 3, 0, 3)))
+                tooltip_parts.append("Tracking speed")
+            if 'entityEnergyNeutralizerFalloff' in item.effects:
+                neutAmount = stuff.getModifiedItemAttr("energyNeutralizerAmount")
+                cycleTime = stuff.getModifiedItemAttr("energyNeutralizerDuration")
+                if neutAmount and cycleTime:
+                    capPerSec = float(-neutAmount) * 1000 / cycleTime
+                    text_parts.append("{0}/s".format(formatAmount(capPerSec, 3, 0, 3)))
+                    tooltip_parts.append("Energy neutralization per second")
+            if 'npcEntityWeaponDisruptor' in item.effects:
+                falloffRangeBonus = stuff.getModifiedItemAttr("falloffBonus")
+                optimalRangeBonus = stuff.getModifiedItemAttr("maxRangeBonus")
+                trackingSpeedBonus = stuff.getModifiedItemAttr("trackingSpeedBonus")
+                if falloffRangeBonus or optimalRangeBonus or trackingSpeedBonus:
+                    display = 0
+                    for bonus in (falloffRangeBonus, optimalRangeBonus, trackingSpeedBonus):
+                        if abs(bonus) > abs(display):
+                            display = bonus
+                    if display:
+                        ttEntries = []
+                        if display == optimalRangeBonus:
+                            ttEntries.append("optimal range")
+                        if display == falloffRangeBonus:
+                            ttEntries.append("falloff range")
+                        if display == trackingSpeedBonus:
+                            ttEntries.append("tracking speed")
+                        text_parts.append("{0}%".format(formatAmount(display, 3, 0, 3), forceSign=True))
+                        tooltip_parts.append("{0} disruption".format(formatList(ttEntries)).capitalize())
+            if 'entityECMFalloff' in item.effects:
+                grav = stuff.getModifiedItemAttr("scanGravimetricStrengthBonus")
+                ladar = stuff.getModifiedItemAttr("scanLadarStrengthBonus")
+                radar = stuff.getModifiedItemAttr("scanRadarStrengthBonus")
+                magnet = stuff.getModifiedItemAttr("scanMagnetometricStrengthBonus")
+                if grav is not None and ladar is not None and radar is not None and magnet is not None:
+                    display = max(grav, ladar, radar, magnet)
+                    if not display:
+                        return "", None
+                    ttEntries = []
+                    if display == grav:
+                        ttEntries.append("gravimetric")
+                    if display == ladar:
+                        ttEntries.append("ladar")
+                    if display == magnet:
+                        ttEntries.append("magnetometric")
+                    if display == radar:
+                        ttEntries.append("radar")
+                    plu = "" if len(ttEntries) == 1 else "s"
+                    text_parts.append("{0}".format(formatAmount(display, 3, 0, 3)))
+                    tooltip_parts.append("{0} strength{1}".format(formatList(ttEntries), plu).capitalize())
+            if 'remoteSensorDampEntity' in item.effects:
+                lockRangeBonus = stuff.getModifiedItemAttr("maxTargetRangeBonus")
+                scanResBonus = stuff.getModifiedItemAttr("scanResolutionBonus")
+                if lockRangeBonus or scanResBonus:
+                    display = 0
+                    for bonus in (lockRangeBonus, scanResBonus):
+                        if abs(bonus) > abs(display):
+                            display = bonus
+                    if display:
+                        ttEntries = []
+                        if display == lockRangeBonus:
+                            ttEntries.append("lock range")
+                        if display == scanResBonus:
+                            ttEntries.append("scan resolution")
+                        text_parts.append("{0}%".format(formatAmount(display, 3, 0, 3, forceSign=True)))
+                        tooltip_parts.append("{0} dampening".format(formatList(ttEntries)).capitalize())
+            if 'remoteWebifierEntity' in item.effects:
+                speedFactor = stuff.getModifiedItemAttr("speedFactor")
+                if speedFactor:
+                    text_parts.append("{0}%".format(formatAmount(speedFactor, 3, 0, 3)))
+                    tooltip_parts.append("Speed reduction")
+            if 'remoteTargetPaintEntity' in item.effects:
+                sigRadBonus = stuff.getModifiedItemAttr("signatureRadiusBonus")
+                if sigRadBonus:
+                    text_parts.append("{0}%".format(formatAmount(sigRadBonus, 3, 0, 3, forceSign=True)))
+                    tooltip_parts.append("Signature radius increase")
+            return " | ".join(text_parts), '\n'.join(tooltip_parts)
         elif itemGroup == "Precursor Weapon":
             info = []
             trackingSpeed = stuff.getModifiedItemAttr("trackingSpeed")
@@ -195,7 +279,7 @@ class Miscellanea(ViewColumn):
             tooltip = "Warp core strength modification"
             return text, tooltip
         elif (
-            itemGroup in ("Stasis Web", "Stasis Webifying Drone", "Structure Stasis Webifier") or
+            itemGroup in ("Stasis Web", "Stasis Grappler", "Stasis Webifying Drone", "Structure Stasis Webifier") or
             (itemGroup in ("Structure Burst Projector", "Burst Projectors") and "doomsdayAOEWeb" in item.effects)
         ):
             speedFactor = stuff.getModifiedItemAttr("speedFactor")
@@ -291,7 +375,7 @@ class Miscellanea(ViewColumn):
             "Gyrostabilizer",
             "Magnetic Field Stabilizer",
             "Heat Sink",
-            "Ballistic Control system",
+            "Ballistic Control System",
             "Structure Weapon Upgrade",
             "Entropic Radiation Sink",
             "Vorton Projector Upgrade"
@@ -300,7 +384,7 @@ class Miscellanea(ViewColumn):
                 "Gyrostabilizer": ("damageMultiplier", "speedMultiplier", "Projectile weapon"),
                 "Magnetic Field Stabilizer": ("damageMultiplier", "speedMultiplier", "Hybrid weapon"),
                 "Heat Sink": ("damageMultiplier", "speedMultiplier", "Energy weapon"),
-                "Ballistic Control system": ("missileDamageMultiplierBonus", "speedMultiplier", "Missile"),
+                "Ballistic Control System": ("missileDamageMultiplierBonus", "speedMultiplier", "Missile"),
                 "Structure Weapon Upgrade": ("missileDamageMultiplierBonus", "speedMultiplier", "Missile"),
                 "Entropic Radiation Sink": ("damageMultiplier", "speedMultiplier", "Precursor weapon"),
                 "Vorton Projector Upgrade": ("damageMultiplier", "speedMultiplier", "Vorton projector")}
@@ -547,18 +631,24 @@ class Miscellanea(ViewColumn):
             if not yps:
                 return "", None
             yph = yps * 3600
-            wps = stuff.getMiningWPS(ignoreState=True)
-            wph = wps * 3600
+            dps = stuff.getMiningDPS(ignoreState=True)
+            dph = dps * 3600
+            try:
+                efficiency = yps / dps
+            except ZeroDivisionError:
+                efficiency = 0
             textParts = []
-            textParts.append(formatAmount(yps, 3, 0, 3))
             tipLines = []
+            textParts.append('{} m\u00B3/s'.format(formatAmount(yps, 3, 0, 3)))
             tipLines.append("{} m\u00B3 mining yield per second ({} m\u00B3 per hour)".format(
                 formatAmount(yps, 3, 0, 3), formatAmount(yph, 3, 0, 3)))
-            if wps > 0:
-                textParts.append(formatAmount(wps, 3, 0, 3))
-                tipLines.append("{} m\u00B3 mining waste per second ({} m\u00B3 per hour)".format(
-                    formatAmount(wps, 3, 0, 3), formatAmount(wph, 3, 0, 3)))
-            text = '{} m\u00B3/s'.format('+'.join(textParts))
+            tipLines.append("{} m\u00B3 mining drain per second ({} m\u00B3 per hour)".format(
+                formatAmount(dps, 3, 0, 3), formatAmount(dph, 3, 0, 3)))
+            if floatUnerr(efficiency) != 1:
+                eff_text = '{}%'.format(formatAmount(efficiency * 100, 4, 0, 0))
+                textParts.append(eff_text)
+                tipLines.append(f"{eff_text} mining efficiency")
+            text = '{}'.format(' | '.join(textParts))
             tooltip = '\n'.join(tipLines)
             return text, tooltip
         elif itemGroup == "Logistic Drone":
@@ -701,7 +791,7 @@ class Miscellanea(ViewColumn):
                 formatAmount(itemArmorResistanceShiftHardenerExp, 3, 0, 3),
             )
             return text, tooltip
-        elif itemGroup in ("Cargo Scanner", "Ship Scanner", "Survey Scanner"):
+        elif itemGroup in ("Cargo Scanner", "Ship Scanner"):
             duration = stuff.getModifiedItemAttr("duration")
             if not duration:
                 return "", None
@@ -766,15 +856,36 @@ class Miscellanea(ViewColumn):
                 elif buffId == 22:  # Skirmish Burst: Rapid Deployment: AB/MWD Speed Increase
                     textSections.append(f"{formatAmount(buffValue, 3, 0, 3, forceSign=True)}%")
                     tooltipSections.append("AB/MWD speed increase")
-                elif buffId == 23:  # Mining Burst: Mining Laser Field Enhancement: Mining/Survey Range
+                elif buffId == 23:  # Mining Burst: Mining Laser Field Enhancement: Mining Range
                     textSections.append(f"{formatAmount(buffValue, 3, 0, 3, forceSign=True)}%")
-                    tooltipSections.append("mining/survey module range")
+                    tooltipSections.append("mining module range")
                 elif buffId == 24:  # Mining Burst: Mining Laser Optimization: Mining Capacitor/Duration
                     textSections.append(f"{formatAmount(buffValue, 3, 0, 3, forceSign=True)}%")
                     tooltipSections.append("mining module duration & capacitor use")
                 elif buffId == 25:  # Mining Burst: Mining Equipment Preservation: Crystal Volatility
                     textSections.append(f"{formatAmount(buffValue, 3, 0, 3, forceSign=True)}%")
                     tooltipSections.append("mining crystal volatility")
+                elif buffId == 2464:  # Expedition Burst: Probe Strength
+                    textSections.append(f"{formatAmount(buffValue, 3, 0, 3, forceSign=True)}%")
+                    tooltipSections.append("scan probe strength")
+                elif buffId == 2465:  # Expedition Burst: Directional Scanner, Hacking and Salvager Range
+                    textSections.append(f"{formatAmount(buffValue, 3, 0, 3, forceSign=True)}%")
+                    tooltipSections.append("dscan, hacking & salvaging range")
+                elif buffId == 2466:  # Expedition Burst: Maximum Scan Deviation Modifier
+                    textSections.append(f"{formatAmount(buffValue, 3, 0, 3, forceSign=True)}%")
+                    tooltipSections.append("scan probe deviation")
+                elif buffId == 2468:  # Expedition Burst: Virus Coherence
+                    textSections.append(f"{formatAmount(buffValue, 3, 0, 3, forceSign=True)}")
+                    tooltipSections.append("virus coherence")
+                elif buffId == 2481:  # Expedition Burst: Salvager duration bonus
+                    textSections.append(f"{formatAmount(buffValue, 3, 0, 3, forceSign=True)}%")
+                    tooltipSections.append("salvager cycle time")
+                elif buffId == 2516:  # Mining Burst: Mining Crit Chance
+                    textSections.append(f"{formatAmount(buffValue, 3, 0, 3, forceSign=True)}%")
+                    tooltipSections.append("crit chance")
+                elif buffId == 2517:  # Mining Burst: Mining Residue Chance Reduction
+                    textSections.append(f"{formatAmount(buffValue, 3, 0, 3, forceSign=True)}%")
+                    tooltipSections.append("waste chance")
             if not textSections:
                 return '', None
             text = ' | '.join(textSections)

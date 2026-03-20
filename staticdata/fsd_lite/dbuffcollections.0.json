@@ -70,7 +70,7 @@
     "displayNameID": 517442, 
     "itemModifiers": [
       {
-        "dogmaAttributeID": 37
+        "dogmaAttributeID": 3171
       }
     ], 
     "locationGroupModifiers": [], 
@@ -712,16 +712,16 @@
   }, 
   "23": {
     "aggregateMode": "Maximum", 
-    "developerDescription": "Mining Burst: Mining Laser Field Enhancement: Mining/Survey Range", 
-    "displayName_de": "Bergbau-/Überwachungsmodul-Reichweitenbonus", 
-    "displayName_en-us": "Mining/Survey module range bonus", 
-    "displayName_es": "Bonificación de alcance de módulo de minería/prospección", 
-    "displayName_fr": "Bonus à la portée des modules d'extraction et d'exploration", 
-    "displayName_it": "Mining/Survey module range bonus", 
-    "displayName_ja": "採掘／調査モジュール範囲ボーナス", 
-    "displayName_ko": "채굴/조사 모듈 범위 보너스", 
-    "displayName_ru": "Влияние на дальность действия буровых и досмотровых модулей", 
-    "displayName_zh": "采矿/测量装备距离加成", 
+    "developerDescription": "Mining Burst: Mining Laser Field Enhancement: Mining Range", 
+    "displayName_de": "Bergbaumodul-Reichweitenbonus", 
+    "displayName_en-us": "Mining module range bonus", 
+    "displayName_es": "Bonificación de alcance del módulo de minería", 
+    "displayName_fr": "Bonus à la portée du module d'extraction", 
+    "displayName_it": "Mining module range bonus", 
+    "displayName_ja": "採掘モジュール射程ボーナス", 
+    "displayName_ko": "채굴 모듈 범위 보너스", 
+    "displayName_ru": "Увеличение дальности буровых модулей", 
+    "displayName_zh": "采矿装备范围加成", 
     "displayNameID": 518720, 
     "itemModifiers": [], 
     "locationGroupModifiers": [], 
@@ -738,10 +738,6 @@
       {
         "dogmaAttributeID": 54, 
         "skillID": 25544
-      }, 
-      {
-        "dogmaAttributeID": 197, 
-        "skillID": 3426
       }
     ], 
     "operationName": "PostPercent", 
@@ -4120,15 +4116,15 @@
   "2441": {
     "aggregateMode": "Maximum", 
     "developerDescription": "Sov System Modifier Shield Booster Bonus", 
-    "displayName_de": "Local Shield Booster Bonus", 
+    "displayName_de": "Bonus für lokalen Schildbooster", 
     "displayName_en-us": "Local Shield Booster Bonus", 
-    "displayName_es": "Local Shield Booster Bonus", 
-    "displayName_fr": "Local Shield Booster Bonus", 
+    "displayName_es": "Bonificación de potenciador de escudo local", 
+    "displayName_fr": "Bonus au booster de bouclier local", 
     "displayName_it": "Local Shield Booster Bonus", 
-    "displayName_ja": "Local Shield Booster Bonus", 
-    "displayName_ko": "Local Shield Booster Bonus", 
-    "displayName_ru": "Local Shield Booster Bonus", 
-    "displayName_zh": "Local Shield Booster Bonus", 
+    "displayName_ja": "ローカルシールドブースターボーナス", 
+    "displayName_ko": "실드 부스터 보너스", 
+    "displayName_ru": "Бонус для местного модуля накачки щитов", 
+    "displayName_zh": "自身护盾回充增量器加成", 
     "displayNameID": 1015276, 
     "itemModifiers": [], 
     "locationGroupModifiers": [], 
@@ -4149,15 +4145,15 @@
   "2442": {
     "aggregateMode": "Maximum", 
     "developerDescription": "Sov System Modifier Armor Repairer Bonus", 
-    "displayName_de": "Local Armor Repairer Bonus", 
+    "displayName_de": "Bonus für Panzerungsreparatursystem", 
     "displayName_en-us": "Local Armor Repairer Bonus", 
-    "displayName_es": "Local Armor Repairer Bonus", 
-    "displayName_fr": "Local Armor Repairer Bonus", 
+    "displayName_es": "Bonificación de reparador de blindaje local", 
+    "displayName_fr": "Bonus au réparateur de blindage local", 
     "displayName_it": "Local Armor Repairer Bonus", 
-    "displayName_ja": "Local Armor Repairer Bonus", 
-    "displayName_ko": "Local Armor Repairer Bonus", 
-    "displayName_ru": "Local Armor Repairer Bonus", 
-    "displayName_zh": "Local Armor Repairer Bonus", 
+    "displayName_ja": "ローカルアーマーリペアラボーナス", 
+    "displayName_ko": "장갑수리 장치 보너스", 
+    "displayName_ru": "Бонус для местной установки ремонта брони", 
+    "displayName_zh": "自身装甲维修器加成", 
     "displayNameID": 1015333, 
     "itemModifiers": [], 
     "locationGroupModifiers": [], 
@@ -4174,5 +4170,1853 @@
     ], 
     "operationName": "PostPercent", 
     "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2464": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Expedition Burst: Probe Strength ", 
+    "displayName_de": "Bonus auf Stärke von Scansonden", 
+    "displayName_en-us": "Scan Probe Strength Bonus", 
+    "displayName_es": "Bonificación de intensidad de la sonda de escaneo", 
+    "displayName_fr": "Bonus de puissance de balayage de sonde", 
+    "displayName_it": "Scan Probe Strength Bonus", 
+    "displayName_ja": "スキャンプローブ強度ボーナス", 
+    "displayName_ko": "스캔 프로브 강도 보너스", 
+    "displayName_ru": "Прибавка к эффективности поиска разведзондами", 
+    "displayName_zh": "扫描探针强度加成", 
+    "displayNameID": 1017848, 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [
+      {
+        "dogmaAttributeID": 6118, 
+        "skillID": 3412
+      }
+    ], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2465": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Expedition Burst: Directional Scanner, Hacking and Salvager Range", 
+    "displayName_de": "Reichweitenbonus auf Richtungsscanner-, Hacking- und Bergungsmodule", 
+    "displayName_en-us": "Directional scanner, hacking and salvager module range bonus", 
+    "displayName_es": "Bonificación de alcance de escáner direccional, hackeo y módulo recuperador", 
+    "displayName_fr": "Bonus de portée du scanner directionnel, du piratage et du module récupérateur", 
+    "displayName_it": "Directional scanner, hacking and salvager module range bonus", 
+    "displayName_ja": "指向性スキャナー、ハッキング、サルベージャーモジュールの射程ボーナス", 
+    "displayName_ko": "전방위 스캐너, 해킹 및 샐비지 모듈 거리 보너스", 
+    "displayName_ru": "Увеличение дальности пеленгаторов, модулей взлома и демонтажа", 
+    "displayName_zh": "定向扫描器、破译装备和打捞器范围加成", 
+    "displayNameID": 1017853, 
+    "itemModifiers": [
+      {
+        "dogmaAttributeID": 5796
+      }
+    ], 
+    "locationGroupModifiers": [
+      {
+        "dogmaAttributeID": 54, 
+        "groupID": 538
+      }, 
+      {
+        "dogmaAttributeID": 54, 
+        "groupID": 1122
+      }
+    ], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2466": {
+    "aggregateMode": "Minimum", 
+    "developerDescription": "Expedition Burst: Maximum Scan Deviation Modifier", 
+    "displayName_de": "Bonus auf Abweichung von Scansonden", 
+    "displayName_en-us": "Scan Probe Deviation Bonus", 
+    "displayName_es": "Bonificación de desviación de sondas de escaneo", 
+    "displayName_fr": "Bonus à la déviation de balayage de sonde", 
+    "displayName_it": "Scan Probe Deviation Bonus", 
+    "displayName_ja": "スキャンプローブ誤差ボーナス", 
+    "displayName_ko": "스캔 프로브 오차 보너스", 
+    "displayName_ru": "Уменьшение отклонения для разведзондов", 
+    "displayName_zh": "探针扫描偏差加成", 
+    "displayNameID": 1017854, 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [
+      {
+        "dogmaAttributeID": 6119, 
+        "skillID": 3412
+      }
+    ], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2468": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Expedition Burst: Virus Coherence", 
+    "displayName_de": "Kohärenzbonus des Analysegeräts", 
+    "displayName_en-us": "Analyzer Coherence Bonus", 
+    "displayName_es": "Bonificación de coherencia de analizador", 
+    "displayName_fr": "Bonus de résistance de l'analyseur", 
+    "displayName_it": "Analyzer Coherence Bonus", 
+    "displayName_ja": "アナライザーコヒーレンスボーナス", 
+    "displayName_ko": "분석기 결합도 보너스", 
+    "displayName_ru": "Прибавка к целостности вируса анализатора", 
+    "displayName_zh": "分析仪同步率加成", 
+    "displayNameID": 1017921, 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [
+      {
+        "dogmaAttributeID": 1909, 
+        "groupID": 538
+      }
+    ], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "ModAdd", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2473": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Disable Smart Bomb Activation", 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [
+      {
+        "dogmaAttributeID": 1349, 
+        "groupID": 72
+      }
+    ], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "ModAdd", 
+    "showOutputValueInUI": "Hide"
+  }, 
+  "2474": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Mining Burst: Enhanced Mining Scanner", 
+    "displayName_de": "Verbesserter Bergbauscanner", 
+    "displayName_en-us": "Enhanced Mining Surveyor", 
+    "displayName_es": "Escáner minero mejorado", 
+    "displayName_fr": "Scanner d'extraction minière amélioré", 
+    "displayName_it": "Enhanced Mining Surveyor", 
+    "displayName_ja": "強化型採掘用スキャナー", 
+    "displayName_ko": "향상된 채굴 스캐너", 
+    "displayName_ru": "Улучшенный буровой сканер", 
+    "displayName_zh": "增强型采矿扫描器", 
+    "displayNameID": 1021435, 
+    "itemModifiers": [
+      {
+        "dogmaAttributeID": 5979
+      }
+    ], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostAssignment", 
+    "showOutputValueInUI": "Hide"
+  }, 
+  "2480": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Connected to PhaseStabilizer", 
+    "displayName_de": "Verbunden", 
+    "displayName_en-us": "Connected", 
+    "displayName_es": "Conectada", 
+    "displayName_fr": "Connecté", 
+    "displayName_it": "Connected", 
+    "displayName_ja": "接続済", 
+    "displayName_ko": "접속됨", 
+    "displayName_ru": "Подключен", 
+    "displayName_zh": "已连接", 
+    "displayNameID": 1022189, 
+    "itemModifiers": [
+      {
+        "dogmaAttributeID": 6042
+      }
+    ], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "ModAdd", 
+    "showOutputValueInUI": "Hide"
+  }, 
+  "2481": {
+    "aggregateMode": "Minimum", 
+    "developerDescription": "Expedition Burst: Salvager duration bonus", 
+    "displayName_de": "Bonus auf Dauer von Bergungsmodulen", 
+    "displayName_en-us": "Salvager Module Duration Bonus", 
+    "displayName_es": "Bonificación de duración del módulo recuperador", 
+    "displayName_fr": "Bonus à la durée du module récupérateur", 
+    "displayName_it": "Salvager Module Duration Bonus", 
+    "displayName_ja": "サルベージャーモジュール継続時間ボーナス", 
+    "displayName_ko": "샐비저 모듈 지속 시간 보너스", 
+    "displayName_ru": "Увеличение времени работы демонтажных модулей", 
+    "displayName_zh": "打捞器持续时间加成", 
+    "displayNameID": 1022798, 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [
+      {
+        "dogmaAttributeID": 73, 
+        "skillID": 25863
+      }
+    ], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2482": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Sisters of EVE Landmark Bonus 1 - Warp Speed", 
+    "displayName_de": "Warpgeschwindigkeitsbonus (Thera)", 
+    "displayName_en-us": "Warp Speed Bonus (Thera)", 
+    "displayName_es": "Bonificación de velocidad de warp (Thera)", 
+    "displayName_fr": "Bonus de vitesse de warp (Thera)", 
+    "displayName_it": "Warp Speed Bonus (Thera)", 
+    "displayName_ja": "ワープ速度ボーナス（テラ）", 
+    "displayName_ko": "워프 속도 보너스(테라)", 
+    "displayName_ru": "Ускорение хода в варп-режиме (Thera)", 
+    "displayName_zh": "跃迁速度加成（席拉）", 
+    "displayNameID": 1025503, 
+    "itemModifiers": [
+      {
+        "dogmaAttributeID": 600
+      }
+    ], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2483": {
+    "aggregateMode": "Minimum", 
+    "developerDescription": "Sisters of EVE Landmark Bonus 2 - Heat Damage Reduction", 
+    "displayName_de": "Modul-Hitzeschadenreduktion (Turnur-Nachwirkung)", 
+    "displayName_en-us": "Module Heat Damage Reduction (Turnur Aftermath)", 
+    "displayName_es": "Reducción de daño por calor del módulo (Secuelas de Turnur)", 
+    "displayName_fr": "Réduction des dégâts thermiques du module (Répercussions de Turnur)", 
+    "displayName_it": "Module Heat Damage Reduction (Turnur Aftermath)", 
+    "displayName_ja": "モジュール熱ダメージ減少（ターナーの余波）", 
+    "displayName_ko": "모듈 과부하 피해 감소(투르누르 폐허)", 
+    "displayName_ru": "Снижение теплового урона для модулей (Turnur после катастрофы)", 
+    "displayName_zh": "装备超载伤害降低（图尔鲁尔余波）", 
+    "displayNameID": 1025518, 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [
+      {
+        "dogmaAttributeID": 1211
+      }
+    ], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowInverted"
+  }, 
+  "2484": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Sisters of EVE Landmark Bonus 3 - Structure Hitpoint Bonus", 
+    "displayName_de": "Bonus auf Rumpf-HP (Zarzakh-Gravitationsgefahr)", 
+    "displayName_en-us": "Hull Hitpoint Bonus (Zarzakh Gravity Hazard)", 
+    "displayName_es": "Bonificación de puntos de vida del casco (peligro de gravedad de Zarzakh)", 
+    "displayName_fr": "Bonus de points de vie de la coque (danger gravitationnel de Zarzakh)", 
+    "displayName_it": "Hull Hitpoint Bonus (Zarzakh Gravity Hazard)", 
+    "displayName_ja": "船体HPボーナス（ザルザクの重力災害）", 
+    "displayName_ko": "선체 내구도 보너스(자르자크 중력파 충격)", 
+    "displayName_ru": "Увеличение прочности корпуса (гравитационные волны в Zarzakh)", 
+    "displayName_zh": "船体HP加成（扎尔扎克引力危害）", 
+    "displayNameID": 1025519, 
+    "itemModifiers": [
+      {
+        "dogmaAttributeID": 9
+      }
+    ], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2485": {
+    "aggregateMode": "Minimum", 
+    "developerDescription": "Sisters of EVE Landmark Bonus 4 - Web Resistance", 
+    "displayName_de": "Netz-Resistenz (Spurenkosmos)", 
+    "displayName_en-us": "Web Resistance (Trace Cosmos)", 
+    "displayName_es": "Resistencia a redes ralentizadoras (Cosmos de Vestigios)", 
+    "displayName_fr": "Résistance de stase (Trace Cosmos)", 
+    "displayName_it": "Web Resistance (Trace Cosmos)", 
+    "displayName_ja": "ウェビファイヤーへのレジスタンス（トレースコスモス）", 
+    "displayName_ko": "스테이시스 웹 저항력(트레이스 코스모스)", 
+    "displayName_ru": "+ к сопротивляемости стазис-индукции (Рубцы космоса)", 
+    "displayName_zh": "光束抗性（宇宙之痕）", 
+    "displayNameID": 1025520, 
+    "itemModifiers": [
+      {
+        "dogmaAttributeID": 2115
+      }
+    ], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowInverted"
+  }, 
+  "2486": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Sisters of EVE Landmark Bonus 5 - Max Velocity", 
+    "displayName_de": "Maximalgeschwindigkeit (EVE-Gate)", 
+    "displayName_en-us": "Max Velocity (EVE Gate)", 
+    "displayName_es": "Velocidad máxima (Portal de EVE)", 
+    "displayName_fr": "Vitesse maximale (EVE Gate)", 
+    "displayName_it": "Max Velocity (EVE Gate)", 
+    "displayName_ja": "最高速度（EVE Gate）", 
+    "displayName_ko": "최대 속도(이브 게이트)", 
+    "displayName_ru": "Увеличение максимальной скорости (врата EVE)", 
+    "displayName_zh": "最大速度（EVE之门）", 
+    "displayNameID": 1025521, 
+    "itemModifiers": [
+      {
+        "dogmaAttributeID": 37
+      }
+    ], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2487": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Sisters of EVE Landmark Bonus 6 - Warp Speed", 
+    "displayName_de": "Warpgeschwindigkeitsbonus (Reservoir der Ausstrahlung)", 
+    "displayName_en-us": "Warp Speed Bonus (Pool of Radiance)", 
+    "displayName_es": "Bonificación de velocidad de warp (Laguna de Fulgor)", 
+    "displayName_fr": "Bonus à la vitesse de warp (Pool of Radiance)", 
+    "displayName_it": "Warp Speed Bonus (Pool of Radiance)", 
+    "displayName_ja": "ワープ速度ボーナス（輝きの淵）", 
+    "displayName_ko": "워프 속도 보너스(레디언스 풀)", 
+    "displayName_ru": "Ускорение хода в варп-режиме (Сияющий пруд)", 
+    "displayName_zh": "跃迁速度加成（眩光池）", 
+    "displayNameID": 1025532, 
+    "itemModifiers": [
+      {
+        "dogmaAttributeID": 600
+      }
+    ], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2488": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Sisters of EVE Landmark Bonus 7 - Probe Strength", 
+    "displayName_de": "Bonus auf Scanleistung von Sonden (Denkmal von Katia Sae)", 
+    "displayName_en-us": "Probe Scan Strength Bonus (Katia Sae Memorial)", 
+    "displayName_es": "Bonificación de intensidad del escaneo de sonda (Monumento a Katia Sae)", 
+    "displayName_fr": "Bonus de puissance de balayage de sonde (Mémorial de Katia Sae)", 
+    "displayName_it": "Probe Scan Strength Bonus (Katia Sae Memorial)", 
+    "displayName_ja": "プローブスキャン強度ボーナス（カティア・サエ記念碑）", 
+    "displayName_ko": "프로브 스캔 강도 보너스('Katia Sae의 여정' 기념비)", 
+    "displayName_ru": "Прибавка к эффективности поиска разведзондами (памятник экспедиции Katia Sae)", 
+    "displayName_zh": "探针扫描强度加成（Katia Sae纪念碑）", 
+    "displayNameID": 1025522, 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [
+      {
+        "dogmaAttributeID": 6118, 
+        "skillID": 3412
+      }
+    ], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2489": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Sisters of EVE Landmark Bonus 8 - Warp Speed", 
+    "displayName_de": "Warpgeschwindigkeitsbonus (Cord of the Elements)", 
+    "displayName_en-us": "Warp Speed Bonus (Cord of the Elements)", 
+    "displayName_es": "Bonificación de velocidad de warp (Cordón de los Elementos)", 
+    "displayName_fr": "Bonus de vitesse de warp (Cord of the Elements)", 
+    "displayName_it": "Warp Speed Bonus (Cord of the Elements)", 
+    "displayName_ja": "ワープ速度ボーナス（コードオブエレメンタル）", 
+    "displayName_ko": "워프 속도 보너스(엘리먼트 코드)", 
+    "displayName_ru": "Ускорение хода в варп-режиме (Хребет стихий)", 
+    "displayName_zh": "跃迁速度加成（考得）", 
+    "displayNameID": 1025523, 
+    "itemModifiers": [
+      {
+        "dogmaAttributeID": 600
+      }
+    ], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2490": {
+    "aggregateMode": "Minimum", 
+    "developerDescription": "Sisters of EVE Landmark Bonus 9 - Salvager Cycle Time", 
+    "displayName_de": "Bonus auf Bergungsmoduldauer (Schlacht von Vak’Atioth)", 
+    "displayName_en-us": "Salvager Module Duration Bonus (Battle of Vak'Atioth)", 
+    "displayName_es": "Bonificación de duración del módulo recuperador (Batalla de Vak'Atioth)", 
+    "displayName_fr": "Bonus à la durée du module récupérateur (bataille de Vak'Atioth)", 
+    "displayName_it": "Salvager Module Duration Bonus (Battle of Vak'Atioth)", 
+    "displayName_ja": "サルベージャーモジュール継続時間ボーナス（ヴァカチオスの戦い）", 
+    "displayName_ko": "샐비저 모듈 지속 시간 보너스(바크 아티오스 전투)", 
+    "displayName_ru": "Увеличение времени работы демонтажных модулей (бой за Вак'Атиот)", 
+    "displayName_zh": "打捞器持续时间加成（瓦克艾蒂斯之战）", 
+    "displayNameID": 1025524, 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [
+      {
+        "dogmaAttributeID": 73, 
+        "skillID": 25863
+      }
+    ], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowInverted"
+  }, 
+  "2491": {
+    "aggregateMode": "Minimum", 
+    "developerDescription": "Sisters of EVE Landmark Bonus 10 - Salvager Cycle Time", 
+    "displayName_de": "Bonus auf Dauer von Bergungsmodulen (M2-XFE-Massaker)", 
+    "displayName_en-us": "Salvager Module Duration Bonus (M2-XFE Massacre)", 
+    "displayName_es": "Bonificación de duración del módulo recuperador (Masacre de M2-XFE)", 
+    "displayName_fr": "Bonus à la durée du module récupérateur (Massacre en M2-XFE)", 
+    "displayName_it": "Salvager Module Duration Bonus (M2-XFE Massacre)", 
+    "displayName_ja": "サルベージャーモジュール継続時間ボーナス（M2-XFEでの虐殺）", 
+    "displayName_ko": "샐비저 모듈 지속 시간 보너스(M2-XFE 성계 대참사)", 
+    "displayName_ru": "Увеличение времени работы демонтажных модулей (Бойня в M2-XFE)", 
+    "displayName_zh": "打捞器持续时间加成（M2-XFE屠杀）", 
+    "displayNameID": 1025525, 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [
+      {
+        "dogmaAttributeID": 73, 
+        "skillID": 25863
+      }
+    ], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowInverted"
+  }, 
+  "2492": {
+    "aggregateMode": "Minimum", 
+    "developerDescription": "Sisters of EVE Landmark Bonus 11 - Salvager Cycle Time", 
+    "displayName_de": "Bonus auf Dauer von Bergungsmodulen (Titanomachy)", 
+    "displayName_en-us": "Salvager Module Duration Bonus (Titanomachy)", 
+    "displayName_es": "Bonificación de duración del módulo recuperador (Titanomaquia)", 
+    "displayName_fr": "Bonus à la durée du module récupérateur (Titanomachie)", 
+    "displayName_it": "Salvager Module Duration Bonus (Titanomachy)", 
+    "displayName_ja": "サルベージャーモジュール継続時間ボーナス（ティタノマキア）", 
+    "displayName_ko": "샐비저 모듈 지속 시간 보너스(타이타노마키)", 
+    "displayName_ru": "Увеличение времени работы демонтажных модулей (Титаномахия)", 
+    "displayName_zh": "打捞器持续时间加成（泰坦之战）", 
+    "displayNameID": 1025526, 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [
+      {
+        "dogmaAttributeID": 73, 
+        "skillID": 25863
+      }
+    ], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowInverted"
+  }, 
+  "2493": {
+    "aggregateMode": "Minimum", 
+    "developerDescription": "Sisters of EVE Landmark Bonus 12 - Salvager Cycle Time", 
+    "displayName_de": "Bonus auf Bergungsmoduldauer (Golgothan-Felder)", 
+    "displayName_en-us": "Salvager Module Duration Bonus (Golgothan Fields)", 
+    "displayName_es": "Bonificación de duración del módulo recuperador (Campos de Golgothan)", 
+    "displayName_fr": "Bonus à la durée du module récupérateur (Golgothan Fields)", 
+    "displayName_it": "Salvager Module Duration Bonus (Golgothan Fields)", 
+    "displayName_ja": "サルベージャーモジュール継続時間ボーナス（ゴルゴザンフィールド）", 
+    "displayName_ko": "샐비저 모듈 지속 시간 보너스(골고산 필드)", 
+    "displayName_ru": "Увеличение времени работы демонтажных модулей (Поля Голгофы)", 
+    "displayName_zh": "打捞器持续时间加成（格洛之域）", 
+    "displayNameID": 1025527, 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [
+      {
+        "dogmaAttributeID": 73, 
+        "skillID": 25863
+      }
+    ], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowInverted"
+  }, 
+  "2494": {
+    "aggregateMode": "Minimum", 
+    "developerDescription": "Sisters of EVE Landmark Bonus 13 - Salvager Cycle Time", 
+    "displayName_de": "Bonus auf Dauer von Bergungsmodulen (Geburtstagsfeier)", 
+    "displayName_en-us": "Salvager Module Duration Bonus (Birthday Bash)", 
+    "displayName_es": "Bonificación de duración del módulo recuperador (fiesta de cumpleaños)", 
+    "displayName_fr": "Bonus à la durée du module récupérateur (Fête d'anniversaire)", 
+    "displayName_it": "Salvager Module Duration Bonus (Birthday Bash)", 
+    "displayName_ja": "サルベージャーモジュール継続時間ボーナス（誕生祝い）", 
+    "displayName_ko": "샐비저 모듈 지속 시간 보너스(생일 파티)", 
+    "displayName_ru": "Увеличение времени работы демонтажных модулей (вечеринка в день рождения)", 
+    "displayName_zh": "打捞器持续时间加成（生日派对）", 
+    "displayNameID": 1025528, 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [
+      {
+        "dogmaAttributeID": 73, 
+        "skillID": 25863
+      }
+    ], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowInverted"
+  }, 
+  "2495": {
+    "aggregateMode": "Minimum", 
+    "developerDescription": "Sisters of EVE Landmark Bonus 14 - Salvager Cycle Time", 
+    "displayName_de": "Bonus auf Dauer von Bergungsmodulen (Belagerung von C-J6MT)", 
+    "displayName_en-us": "Salvager Module Duration Bonus (Siege of C-J6MT)", 
+    "displayName_es": "Bonificación de duración del módulo recuperador (asedio de C-J6MT)", 
+    "displayName_fr": "Bonus à la durée du module récupérateur (Siège de C-J6MT)", 
+    "displayName_it": "Salvager Module Duration Bonus (Siege of C-J6MT)", 
+    "displayName_ja": "サルベージャーモジュール継続時間ボーナス（C-J6MT包囲戦）", 
+    "displayName_ko": "샐비저 모듈 지속 시간 보너스(C-J6MT 공성전)", 
+    "displayName_ru": "Увеличение времени работы демонтажных модулей (осада C-J6MT)", 
+    "displayName_zh": "打捞器持续时间加成（C-J6MT会战）", 
+    "displayNameID": 1025529, 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [
+      {
+        "dogmaAttributeID": 73, 
+        "skillID": 25863
+      }
+    ], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowInverted"
+  }, 
+  "2496": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Sisters of EVE Landmark Bonus 15 - Warp Speed Bonus", 
+    "displayName_de": "Warpgeschwindigkeitsbonus (EVE Travel Agency)", 
+    "displayName_en-us": "Warp Speed Bonus (EVE Travel Agency)", 
+    "displayName_es": "Bonificación de velocidad de warp (Agencia de viajes EVE)", 
+    "displayName_fr": "Bonus de vitesse de warp (Agence de voyage d'EVE)", 
+    "displayName_it": "Warp Speed Bonus (EVE Travel Agency)", 
+    "displayName_ja": "ワープ速度ボーナス（EVEトラベルエージェンシー）", 
+    "displayName_ko": "워프 속도 보너스(EVE 여행사)", 
+    "displayName_ru": "Ускорение хода в варп-режиме (Туристическое агентство EVE)", 
+    "displayName_zh": "跃迁速度加成（新伊甸旅行社）", 
+    "displayNameID": 1025530, 
+    "itemModifiers": [
+      {
+        "dogmaAttributeID": 600
+      }
+    ], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2497": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Sisters of EVE Landmark Bonus 16 - Shield and Armor Hitpoint Bonus", 
+    "displayName_de": "Bonus auf Schild- und Panzerungstrefferpunkte (Allianzturnier-Denkmal)", 
+    "displayName_en-us": "Shield and Armor Hitpoint Bonus (Alliance Tournament Monument)", 
+    "displayName_es": "Bonificación de puntos de vida del escudo y blindaje (Monumento del Torneo de Alianzas)", 
+    "displayName_fr": "Bonus de points de vie du bouclier et du blindage (Monument de l'Alliance Tournament)", 
+    "displayName_it": "Shield and Armor Hitpoint Bonus (Alliance Tournament Monument)", 
+    "displayName_ja": "シールドとアーマーのHPボーナス（アライアンス・トーナメント記念碑）", 
+    "displayName_ko": "실드 및 장갑 내구도 보너스(얼라이언스 토너먼트 기념비)", 
+    "displayName_ru": "Увеличение прочности щитов и брони (монумент в честь Турнира альянсов)", 
+    "displayName_zh": "护盾和装甲值加成（联盟争霸赛纪念碑）", 
+    "displayNameID": 1025531, 
+    "itemModifiers": [
+      {
+        "dogmaAttributeID": 263
+      }, 
+      {
+        "dogmaAttributeID": 265
+      }
+    ], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2498": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Sisters of EVE Landmark Bonus 17 - Molea Cemetery", 
+    "displayName_de": "Bonus auf die Dauer von Kommandostrahlen (Molea-Friedhof)", 
+    "displayName_en-us": "Command Burst Duration Bonus (Molea Cemetery)", 
+    "displayName_es": "Bonificación de duración del estallido de mando (Cementerio de Molea)", 
+    "displayName_fr": "Bonus à la durée des salves de commandement (cimetière de Molea)", 
+    "displayName_it": "Command Burst Duration Bonus (Molea Cemetery)", 
+    "displayName_ja": "コマンドバースト継続時間ボーナス（モレアの墓地）", 
+    "displayName_ko": "커맨드 버스트 지속 시간 보너스(몰레아 공동묘지)", 
+    "displayName_ru": "Увеличение времени работы импульсных оптимизаторов (кладбище Молеа)", 
+    "displayName_zh": "指挥脉冲波持续时间加成（莫利亚墓园）", 
+    "displayNameID": 1025533, 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [
+      {
+        "dogmaAttributeID": 2535, 
+        "skillID": 3348
+      }
+    ], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2499": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Sisters of EVE Landmark Bonus 18 - Probe Strength", 
+    "displayName_de": "Bonus auf Scanleistung von Sonden (Gebiet Eins)", 
+    "displayName_en-us": "Probe Scan Strength Bonus (Site One)", 
+    "displayName_es": "Bonificación de intensidad del escaneo de sonda (zona uno)", 
+    "displayName_fr": "Bonus de puissance de balayage de sonde (Site Un)", 
+    "displayName_it": "Probe Scan Strength Bonus (Site One)", 
+    "displayName_ja": "プローブスキャン強度ボーナス（サイトワン）", 
+    "displayName_ko": "프로브 스캔 강도 보너스(사이트 원)", 
+    "displayName_ru": "Прибавка к эффективности поиска разведзондами (Зона Один)", 
+    "displayName_zh": "探针扫描强度加成（地点一）", 
+    "displayNameID": 1025534, 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [
+      {
+        "dogmaAttributeID": 6118, 
+        "skillID": 3412
+      }
+    ], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2500": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Sisters of EVE Landmark Bonus 19 - Maximum Velocity", 
+    "displayName_de": "Bonus auf maximaler Geschwindigkeit (Drifter-Wurmloch)", 
+    "displayName_en-us": "Maximum Velocity Bonus (Drifter Wormhole)", 
+    "displayName_es": "Bonificación de velocidad máxima (agujero de gusano drifter)", 
+    "displayName_fr": "Bonus de vitesse maximale (trou de ver drifter)", 
+    "displayName_it": "Maximum Velocity Bonus (Drifter Wormhole)", 
+    "displayName_ja": "最高速度ボーナス（ドリフターのワームホール）", 
+    "displayName_ko": "최대 속도 보너스(드리프터 웜홀)", 
+    "displayName_ru": "Увеличение максимальной скорости (червоточина Скитальцев)", 
+    "displayName_zh": "最大速度加成（流浪者虫洞）", 
+    "displayNameID": 1025535, 
+    "itemModifiers": [
+      {
+        "dogmaAttributeID": 37
+      }
+    ], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2501": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Sisters of EVE Landmark Bonus 20 - Probe Strength Bonus", 
+    "displayName_de": "Bonus auf Scanleistung von Sonden (Finale Liminalität)", 
+    "displayName_en-us": "Probe Scan Strength Bonus (Final Liminality)", 
+    "displayName_es": "Bonificación de intensidad del escaneo de sonda (liminalidad final)", 
+    "displayName_fr": "Bonus de puissance de balayage de sonde (Dernière liminalité)", 
+    "displayName_it": "Probe Scan Strength Bonus (Final Liminality)", 
+    "displayName_ja": "プローブスキャン強度ボーナス（最終リミナリティ）", 
+    "displayName_ko": "프로브 스캔 강도 보너스(최종 임계선)", 
+    "displayName_ru": "Прибавка к эффективности поиска разведзондами (Последнее ограничение)", 
+    "displayName_zh": "探针扫描强度加成（最终阶段）", 
+    "displayNameID": 1025536, 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [
+      {
+        "dogmaAttributeID": 6118, 
+        "skillID": 3412
+      }
+    ], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2502": {
+    "aggregateMode": "Minimum", 
+    "developerDescription": "Sisters of EVE Metaliminal Storm Bonus 1 - Gamma", 
+    "displayName_de": "Bonus auf die Resistenz gegen Energiekriegsführung (Metaliminaler Gamma-Sturm)", 
+    "displayName_en-us": "Energy Warfare Resistance Bonus (Metaliminal Gamma Storm)", 
+    "displayName_es": "Bonificación de resistencia a la guerra de energía (tormenta gamma metaliminal)", 
+    "displayName_fr": "Bonus de résistance à la guerre d'énergie (tempête métaliminale gamma)", 
+    "displayName_it": "Energy Warfare Resistance Bonus (Metaliminal Gamma Storm)", 
+    "displayName_ja": "エネルギー戦レジスタンス・ボーナス（メタリミナルガンマ線嵐）", 
+    "displayName_ko": "에너지전 저항 보너스(메타경계성 감마 폭풍)", 
+    "displayName_ru": "+ к сопротивляемости энергетич. воздействию (металиминальная гамма-буря)", 
+    "displayName_zh": "电容战抗性加成（超阈限伽马风暴）", 
+    "displayNameID": 1025540, 
+    "itemModifiers": [
+      {
+        "dogmaAttributeID": 2045
+      }
+    ], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowInverted"
+  }, 
+  "2503": {
+    "aggregateMode": "Minimum", 
+    "developerDescription": "Sisters of EVE Metaliminal Storm Bonus 2 - Plasma", 
+    "displayName_de": "Modul-Hitzeschadenreduktion (Metaliminal-Plasmasturm)", 
+    "displayName_en-us": "Module Heat Damage Reduction (Metaliminal Plasma Storm)", 
+    "displayName_es": "Reducción de daño por calor de módulo (tormenta plasmática metaliminal)", 
+    "displayName_fr": "Réduction des dégâts thermiques des modules (tempête de plasma métaliminal)", 
+    "displayName_it": "Module Heat Damage Reduction (Metaliminal Plasma Storm)", 
+    "displayName_ja": "モジュール熱ダメージ減少（メタリミナルプラズマ嵐）", 
+    "displayName_ko": "모듈 과부하 피해 감소(메타경계성 플라즈마 폭풍)", 
+    "displayName_ru": "Снижение теплового урона для модулей (металиминальная пламенная буря)", 
+    "displayName_zh": "装备超载伤害降低（超阈限等离子体风暴）", 
+    "displayNameID": 1025539, 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [
+      {
+        "dogmaAttributeID": 1211
+      }
+    ], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowInverted"
+  }, 
+  "2504": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Sisters of EVE Metaliminal Storm Bonus 3 - Exotic", 
+    "displayName_de": "Bonus auf Scanauflösung (Metaliminaler exotischer Sturm)", 
+    "displayName_en-us": "Scan Resolution Bonus (Metaliminal Exotic Storm)", 
+    "displayName_es": "Bonificación de resolución de escaneo (tormenta exótica metaliminal)", 
+    "displayName_fr": "Bonus de résolution du balayage (tempête métaliminale exotique)", 
+    "displayName_it": "Scan Resolution Bonus (Metaliminal Exotic Storm)", 
+    "displayName_ja": "スキャン分解能ボーナス（メタリミナルエキゾチック嵐）", 
+    "displayName_ko": "스캔 정밀도 보너스(메타경계성 엑조틱 폭풍)", 
+    "displayName_ru": "Повышение эффективности сканирования (металиминальная экзотическая буря)", 
+    "displayName_zh": "扫描分辨率加成（超阈限异种风暴）", 
+    "displayNameID": 1025538, 
+    "itemModifiers": [
+      {
+        "dogmaAttributeID": 564
+      }
+    ], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2505": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Sisters of EVE Metaliminal Storm Bonus 4 - Electric", 
+    "displayName_de": "Energiespeicher-Bonus (Metaliminaler elektrischer Sturm)", 
+    "displayName_en-us": "Capacitor Amount Bonus (Metaliminal Electric Storm)", 
+    "displayName_es": "Bonificación de cantidad de condensador (tormenta eléctrica metaliminal)", 
+    "displayName_fr": "Bonus de volume du capaciteur (tempête électrique métaliminale)", 
+    "displayName_it": "Capacitor Amount Bonus (Metaliminal Electric Storm)", 
+    "displayName_ja": "キャパシタ量ボーナス（メタリミナル電気嵐）", 
+    "displayName_ko": "캐패시터 용량 보너스(메타경계성 전기 폭풍)", 
+    "displayName_ru": "Увеличение заряда накопителя (металиминальная электрическая буря)", 
+    "displayName_zh": "电容量加成（超阈限电子风暴）", 
+    "displayNameID": 1025537, 
+    "itemModifiers": [
+      {
+        "dogmaAttributeID": 482
+      }
+    ], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2506": {
+    "aggregateMode": "Minimum", 
+    "developerDescription": "Sisters of EVE Sov Modifier Bonus 1 - Gamma Neut Resistances", 
+    "displayName_de": "Resistenzbonus gegen Energiekriegsführung (Gamma-Stabilitätsgenerator)", 
+    "displayName_en-us": "Energy Warfare Resistance Bonus (Gamma Stability Generator)", 
+    "displayName_es": "Bonificación de resistencia a la guerra de energía (generador de estabilidad Gamma)", 
+    "displayName_fr": "Bonus de résistance à la guerre d'énergie (générateur de stabilité gamma)", 
+    "displayName_it": "Energy Warfare Resistance Bonus (Gamma Stability Generator)", 
+    "displayName_ja": "エネルギー戦レジスタンス・ボーナス（ガンマ安定化ジェネレーター）", 
+    "displayName_ko": "에너지전 저항 보너스(감마 안정성 생성기)", 
+    "displayName_ru": "+ к сопротивляемости энергетическому воздействию (генератор гамма-эффектов)", 
+    "displayName_zh": "能量战抗性加成（伽玛稳定发生器）", 
+    "displayNameID": 1025541, 
+    "itemModifiers": [
+      {
+        "dogmaAttributeID": 2045
+      }
+    ], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowInverted"
+  }, 
+  "2507": {
+    "aggregateMode": "Minimum", 
+    "developerDescription": "Sisters of EVE Sov Modifier Bonus 2 - Plasma", 
+    "displayName_de": "Modul-Hitzereduktionsbonus (Plasmastabilitätsgenerator)", 
+    "displayName_en-us": "Module Heat Reduction Bonus (Plasma Stability Generator)", 
+    "displayName_es": "Bonificación de reducción de calor del módulo (generador de estabilidad plasmática)", 
+    "displayName_fr": "Bonus de réduction de chaleur du module (générateur de stabilité plasma)", 
+    "displayName_it": "Module Heat Reduction Bonus (Plasma Stability Generator)", 
+    "displayName_ja": "モジュールの熱減少ボーナス（プラズマ安定化ジェネレーター）", 
+    "displayName_ko": "모듈 과부하 감소 보너스(플라즈마 안정성 생성기)", 
+    "displayName_ru": "Снижение теплового урона для модулей (генератор плазменных эффектов)", 
+    "displayName_zh": "装备散热加成（等离子稳定发生器）", 
+    "displayNameID": 1025542, 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [
+      {
+        "dogmaAttributeID": 1211
+      }
+    ], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowInverted"
+  }, 
+  "2508": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Sisters of EVE Sov Modifier Bonus 3 - exotic", 
+    "displayName_de": "Scanauflösungsbonus (Exotischer Stabilitätsgenerator)", 
+    "displayName_en-us": "Scan Resolution Bonus (Exotic Stability Generator)", 
+    "displayName_es": "Bonificación de resolución de escaneo (generador de estabilidad exótico)", 
+    "displayName_fr": "Bonus de résolution du balayage (générateur de stabilité exotique)", 
+    "displayName_it": "Scan Resolution Bonus (Exotic Stability Generator)", 
+    "displayName_ja": "スキャン分解能ボーナス（エキゾチック安定化ジェネレーター）", 
+    "displayName_ko": "스캔 정밀도 보너스(엑조틱 안정성 생성기)", 
+    "displayName_ru": "Повышение эффективности сканирования (генератор экзотических эффектов)", 
+    "displayName_zh": "扫描分辨率加成（异种稳定发生器）", 
+    "displayNameID": 1025543, 
+    "itemModifiers": [
+      {
+        "dogmaAttributeID": 564
+      }
+    ], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2509": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Sisters of EVE Sov Modifier Bonus 4 - Electric", 
+    "displayName_de": "Bonus auf Energiespeicherkapazität (Elektrischer Stabilitätsgenerator)", 
+    "displayName_en-us": "Capacitor Capacity Bonus (Electric Stability Generator)", 
+    "displayName_es": "Bonificación de capacidad del condensador (generador de estabilidad eléctrica)", 
+    "displayName_fr": "Bonus de charge du capaciteur (générateur de stabilité électrique)", 
+    "displayName_it": "Capacitor Capacity Bonus (Electric Stability Generator)", 
+    "displayName_ja": "キャパシタ容量ボーナス（電気安定化ジェネレーター）", 
+    "displayName_ko": "캐패시터 용량 보너스(전기 안정성 생성기)", 
+    "displayName_ru": "Увеличение ёмкости накопителя (генератор электрических эффектов)", 
+    "displayName_zh": "电容容量加成（电力稳定发生器）", 
+    "displayNameID": 1025544, 
+    "itemModifiers": [
+      {
+        "dogmaAttributeID": 482
+      }
+    ], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2510": {
+    "aggregateMode": "Minimum", 
+    "developerDescription": "Sisters of EVE Wormhole Bonus 1 - Black Hole", 
+    "displayName_de": "Netz-Resistenzbonus (Schwarzes Loch)", 
+    "displayName_en-us": "Web Resistance Bonus (Black Hole)", 
+    "displayName_es": "Bonificación de resistencia a redes ralentizadoras (agujero negro)", 
+    "displayName_fr": "Bonus de résistance de stase (Trou noir)", 
+    "displayName_it": "Web Resistance Bonus (Black Hole)", 
+    "displayName_ja": "ウェビファイア・レジスタンスボーナス（ブラックホール）", 
+    "displayName_ko": "스테이시스 웹 저항력 보너스(블랙홀)", 
+    "displayName_ru": "+ к сопротивляемости стазис-индукции (чёрная дыра)", 
+    "displayName_zh": "光束抗性加成（黑洞）", 
+    "displayNameID": 1025545, 
+    "itemModifiers": [
+      {
+        "dogmaAttributeID": 2115
+      }
+    ], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowInverted"
+  }, 
+  "2511": {
+    "aggregateMode": "Minimum", 
+    "developerDescription": "Sisters of EVE Wormhole Bonus 2 - Red Giant", 
+    "displayName_de": "Modul-Hitzeschadenreduktion (Roter Riese)", 
+    "displayName_en-us": "Module Heat Damage Reduction Bonus (Red Giant)", 
+    "displayName_es": "Bonificación de reducción de daño por calor del módulo (gigante roja)", 
+    "displayName_fr": "Bonus de réduction des dégâts thermiques du module (Géante rouge)", 
+    "displayName_it": "Module Heat Damage Reduction Bonus (Red Giant)", 
+    "displayName_ja": "モジュール熱ダメージ減少ボーナス（赤色巨星）", 
+    "displayName_ko": "모듈 과부하 피해 감소 보너스(적색 거성)", 
+    "displayName_ru": "Снижение теплового урона для модулей (красный гигант)", 
+    "displayName_zh": "装备超载伤害降低（红巨星）", 
+    "displayNameID": 1025546, 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [
+      {
+        "dogmaAttributeID": 1211
+      }
+    ], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2512": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Sisters of EVE Wormhole Bonus 3 - Wolf Rayet", 
+    "displayName_de": "Bonus auf die Nachführung von mittleren Energiegeschütztürmen (Wolf Rayet)", 
+    "displayName_en-us": "Medium Energy Turret Tracking Bonus (Wolf Rayet)", 
+    "displayName_es": "Bonificación de rastreo de la torreta de energía mediana (Wolf-Rayet)", 
+    "displayName_fr": "Bonus de poursuite pour tourelle à énergie intermédiaire (Wolf Rayet)", 
+    "displayName_it": "Medium Energy Turret Tracking Bonus (Wolf Rayet)", 
+    "displayName_ja": "中型エネルギータレット・トラッキングボーナス（ウォルフ・ライエ）", 
+    "displayName_ko": "중형 에너지 터렛 트래킹 보너스(볼프-레이에)", 
+    "displayName_ru": "Ускорение наведения средних лазерных орудий (звезда Вольфа-Райе)", 
+    "displayName_zh": "中型能量炮台跟踪速度加成（沃尔夫-拉叶星）", 
+    "displayNameID": 1025547, 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [
+      {
+        "dogmaAttributeID": 160, 
+        "skillID": 3306
+      }
+    ], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2513": {
+    "aggregateMode": "Minimum", 
+    "developerDescription": "Sisters of EVE Wormhole Bonus 4 - Pulsar", 
+    "displayName_de": "Bonus auf die Resistenz gegen Energiekriegsführung (Pulsar)", 
+    "displayName_en-us": "Energy Warfare Resistance Bonus (Pulsar)", 
+    "displayName_es": "Bonificación de resistencia a la guerra de energía (púlsar)", 
+    "displayName_fr": "Bonus de résistance à la guerre d'énergie (Pulsar)", 
+    "displayName_it": "Energy Warfare Resistance Bonus (Pulsar)", 
+    "displayName_ja": "エネルギー戦レジスタンス・ボーナス（パルサー）", 
+    "displayName_ko": "에너지전 저항 보너스(펄서)", 
+    "displayName_ru": "+ к сопротивляемости энергетич. воздействию (пульсар)", 
+    "displayName_zh": "能量战抗性加成（脉冲星）", 
+    "displayNameID": 1025548, 
+    "itemModifiers": [
+      {
+        "dogmaAttributeID": 2045
+      }
+    ], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowInverted"
+  }, 
+  "2514": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Sisters of EVE Wormhole Bonus 5 - Cataclysmic", 
+    "displayName_de": "Bonus auf Energiespeicherkapazität (Kataklysmische Variable)", 
+    "displayName_en-us": "Capacitor Capacity Bonus (Cataclysmic Variable)", 
+    "displayName_es": "Bonificación de capacidad del condensador (variable cataclísmica)", 
+    "displayName_fr": "Bonus de charge du capaciteur (variable cataclysmique)", 
+    "displayName_it": "Capacitor Capacity Bonus (Cataclysmic Variable)", 
+    "displayName_ja": "キャパシタ容量ボーナス（激変星）", 
+    "displayName_ko": "캐패시터 용량 보너스(격변변광성)", 
+    "displayName_ru": "Увеличение ёмкости накопителя (катаклизмическая переменная)", 
+    "displayName_zh": "电容容量加成（激变变星）", 
+    "displayNameID": 1025549, 
+    "itemModifiers": [
+      {
+        "dogmaAttributeID": 482
+      }
+    ], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2515": {
+    "aggregateMode": "Minimum", 
+    "developerDescription": "Sisters of EVE Wormhole Bonus 6 - Magnetar", 
+    "displayName_de": "Resistenzbonus auf Sensordämpfer- und Waffendisruptor (Magnetar)", 
+    "displayName_en-us": "Sensor Dampener and Weapon Disruptor resistance bonus (Magnetar)", 
+    "displayName_es": "Bonificación de resistencia de los atenuadores de sensor y los disruptores de armas (Magnetar)", 
+    "displayName_fr": "Bonus de résistance pour atténuateur de détection et perturbateur d'armement (Magnetar)", 
+    "displayName_it": "Sensor Dampener and Weapon Disruptor resistance bonus (Magnetar)", 
+    "displayName_ja": "センサーダンプナーと兵器妨害器のレジスタンスボーナス（帯磁星）", 
+    "displayName_ko": "센서 댐프너 및 무기 디스럽터 저항력 보너스(마그네타)", 
+    "displayName_ru": "+ к сопротивляемости подавителям сенсоров и орудий (магнетар)", 
+    "displayName_zh": "感应抑阻器和武器扰断器抗性加成（磁星）", 
+    "displayNameID": 1025550, 
+    "itemModifiers": [
+      {
+        "dogmaAttributeID": 2112
+      }, 
+      {
+        "dogmaAttributeID": 2113
+      }
+    ], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowInverted"
+  }, 
+  "2516": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Mining Burst: Mining Crit Chance", 
+    "displayName_de": "Bonus auf kritische Erfolgswahrscheinlichkeit beim Bergbau", 
+    "displayName_en-us": "Mining critical success chance bonus", 
+    "displayName_es": "Bonificación de probabilidad de éxito crítico de minería", 
+    "displayName_fr": "Bonus de chances de succès critique d'extraction minière", 
+    "displayName_it": "Mining critical success chance bonus", 
+    "displayName_ja": "採掘のクリティカル率ボーナス", 
+    "displayName_ko": "대량 채굴 확률 보너스", 
+    "displayName_ru": "Повышение вероятности крит. удара при бурении", 
+    "displayName_zh": "采矿暴击成功率加成", 
+    "displayNameID": 1028422, 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [
+      {
+        "dogmaAttributeID": 5967, 
+        "skillID": 3386
+      }, 
+      {
+        "dogmaAttributeID": 5967, 
+        "skillID": 16281
+      }
+    ], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2517": {
+    "aggregateMode": "Minimum", 
+    "developerDescription": "Mining Burst: Mining Residue Chance Reduction", 
+    "displayName_de": "Rückstandswahrscheinlichkeits-Reduktion", 
+    "displayName_en-us": "Residue Probability Reduction", 
+    "displayName_es": "Reducción de probabilidad de residuos", 
+    "displayName_fr": "Réduction de la probabilité de résidus", 
+    "displayName_it": "Residue Probability Reduction", 
+    "displayName_ja": "残留物率減少", 
+    "displayName_ko": "손실 확률 감소", 
+    "displayName_ru": "Снижение вероятности получения отходов", 
+    "displayName_zh": "产生残渣几率降低", 
+    "displayNameID": 1028423, 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [
+      {
+        "dogmaAttributeID": 3154, 
+        "skillID": 3386
+      }, 
+      {
+        "dogmaAttributeID": 3154, 
+        "skillID": 16281
+      }, 
+      {
+        "dogmaAttributeID": 3154, 
+        "skillID": 25544
+      }
+    ], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2518": {
+    "aggregateMode": "Minimum", 
+    "developerDescription": "Sisters of EVE Metaliminal Storm Bonus 5 - Winter Nexus Storm", 
+    "displayName_de": "Thermalresistenz-Bonus (unbeständiger Eissturm)", 
+    "displayName_en-us": "Thermal Resistance Bonus (Volatile Ice Storm)", 
+    "displayName_es": "Bonificación de resistencia térmica (tormenta de hielo volátil)", 
+    "displayName_fr": "Bonus de résistance thermique (tempête de glace volatile)", 
+    "displayName_it": "Thermal Resistance Bonus (Volatile Ice Storm)", 
+    "displayName_ja": "サーマルレジスタンスボーナス（揮発性アイスストーム）", 
+    "displayName_ko": "열 저항력 보너스(불안정한 얼음 폭풍)", 
+    "displayName_ru": "Бонус к сопротивляемости термальному урону (нестабильная ледяная буря)", 
+    "displayName_zh": "热能抗性加成（不稳定冰风暴）", 
+    "displayNameID": 1030721, 
+    "itemModifiers": [
+      {
+        "dogmaAttributeID": 110
+      }, 
+      {
+        "dogmaAttributeID": 270
+      }, 
+      {
+        "dogmaAttributeID": 274
+      }
+    ], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowInverted"
+  }, 
+  "2519": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Sisters of EVE Landmark Bonus 21", 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PreAssignment", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2520": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Sisters of EVE Landmark Bonus 22", 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PreAssignment", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2521": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Sisters of EVE Landmark Bonus 23", 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PreAssignment", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2522": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Sisters of EVE Landmark Bonus 24", 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PreAssignment", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2523": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Sisters of EVE Landmark Bonus 25", 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PreAssignment", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2524": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Sisters of EVE Landmark Bonus 27", 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PreAssignment", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2525": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Sisters of EVE Landmark Bonus 28", 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PreAssignment", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2526": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Sisters of EVE Landmark Bonus 26", 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PreAssignment", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2527": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Sisters of EVE Landmark Bonus 29", 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PreAssignment", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2528": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Sisters of EVE Landmark Bonus 30", 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PreAssignment", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2529": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Gallente Elections Warp Speed Bonus", 
+    "displayName_de": "Warpgeschwindigkeitsbonus", 
+    "displayName_en-us": "Warp Speed Bonus", 
+    "displayName_es": "Bonificación de velocidad de warp", 
+    "displayName_fr": "Bonus de vitesse de warp", 
+    "displayName_it": "Warp Speed Bonus", 
+    "displayName_ja": "ワープ速度ボーナス", 
+    "displayName_ko": "워프 속도 보너스", 
+    "displayName_ru": "Повышение скорости варп-прыжка", 
+    "displayName_zh": "跃迁速度加成", 
+    "displayNameID": 1035896, 
+    "itemModifiers": [
+      {
+        "dogmaAttributeID": 600
+      }
+    ], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2530": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Hybrid Turret Tracking", 
+    "displayName_de": "Nachführungsgeschwindigkeitsbonus von Hybridgeschütztürmen", 
+    "displayName_en-us": "Hybrid Turret Tracking Speed Bonus", 
+    "displayName_es": "Bonificación de velocidad de rastreo de la torreta híbrida", 
+    "displayName_fr": "Bonus à la vitesse de poursuite des tourelles hybrides", 
+    "displayName_it": "Hybrid Turret Tracking Speed Bonus", 
+    "displayName_ja": "ハイブリッドタレット追跡速度ボーナス", 
+    "displayName_ko": "하이브리드 터렛 트래킹 속도 증가", 
+    "displayName_ru": "Бонус к скорости наведения гибридных орудий", 
+    "displayName_zh": "混合炮台跟踪速度加成", 
+    "displayNameID": 1035899, 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [
+      {
+        "dogmaAttributeID": 160, 
+        "skillID": 3301
+      }, 
+      {
+        "dogmaAttributeID": 160, 
+        "skillID": 3304
+      }, 
+      {
+        "dogmaAttributeID": 160, 
+        "skillID": 3307
+      }, 
+      {
+        "dogmaAttributeID": 160, 
+        "skillID": 21666
+      }
+    ], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2533": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Gallente Elections Local Armor Repair", 
+    "displayName_de": "Bonus für Panzerungsreparatursystem", 
+    "displayName_en-us": "Local Armor Repairer Bonus", 
+    "displayName_es": "Bonificación de reparador de blindaje local", 
+    "displayName_fr": "Bonus au réparateur de blindage local", 
+    "displayName_it": "Local Armor Repairer Bonus", 
+    "displayName_ja": "ローカルアーマーリペアラボーナス", 
+    "displayName_ko": "장갑 수리 장치 보너스", 
+    "displayName_ru": "Бонус для местной установки ремонта брони", 
+    "displayName_zh": "自身装甲维修器加成", 
+    "displayNameID": 1035904, 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [
+      {
+        "dogmaAttributeID": 84, 
+        "skillID": 3393
+      }, 
+      {
+        "dogmaAttributeID": 84, 
+        "skillID": 21803
+      }
+    ], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2534": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Triglavian System Effect - Maximum Locked Targets Percentage", 
+    "displayName_de": "Maximum Targets Penalty", 
+    "displayName_en-us": "Maximum Targets Penalty", 
+    "displayName_es": "Maximum Targets Penalty", 
+    "displayName_fr": "Maximum Targets Penalty", 
+    "displayName_it": "Maximum Targets Penalty", 
+    "displayName_ja": "Maximum Targets Penalty", 
+    "displayName_ko": "Maximum Targets Penalty", 
+    "displayName_ru": "Maximum Targets Penalty", 
+    "displayName_zh": "Maximum Targets Penalty", 
+    "displayNameID": 1036727, 
+    "itemModifiers": [
+      {
+        "dogmaAttributeID": 192
+      }
+    ], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2535": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Triglavian System Effect - Warp Speed Multiplier Percentage", 
+    "displayName_de": "Warp Speed Penalty", 
+    "displayName_en-us": "Warp Speed Penalty", 
+    "displayName_es": "Warp Speed Penalty", 
+    "displayName_fr": "Warp Speed Penalty", 
+    "displayName_it": "Warp Speed Penalty", 
+    "displayName_ja": "Warp Speed Penalty", 
+    "displayName_ko": "Warp Speed Penalty", 
+    "displayName_ru": "Warp Speed Penalty", 
+    "displayName_zh": "Warp Speed Penalty", 
+    "displayNameID": 1036726, 
+    "itemModifiers": [
+      {
+        "dogmaAttributeID": 600
+      }
+    ], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2536": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Horde Mode - Smart Bomb Blocker", 
+    "displayName_de": "<color=\"#FFFF454B\">Aktivierung blockiert:</color> Smart Bombs", 
+    "displayName_en-us": "<color=\"#FFFF454B\">Activation Blocked:</color> Smart Bombs", 
+    "displayName_es": "<color=\"#FFFF454B\">Activación bloqueada:</color> bombas inteligentes", 
+    "displayName_fr": "<color=\"#FFFF454B\">Activation bloquée :</color> bombes de proximité", 
+    "displayName_it": "<color=\"#FFFF454B\">Activation Blocked:</color> Smart Bombs", 
+    "displayName_ja": "<color=\"#FFFF454B\">起動ブロック：</color>スマートボム", 
+    "displayName_ko": "<color=\"#FFFF454B\">모듈 사용 금지:</color> 스마트폭탄", 
+    "displayName_ru": "<color=\"#FFFF454B\">Заблокированы:</color> импульсные излучатели", 
+    "displayName_zh": "<color=\"#FFFF454B\">启动受阻：</color>立体炸弹", 
+    "displayNameID": 1036280, 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [
+      {
+        "dogmaAttributeID": 1349, 
+        "groupID": 72
+      }
+    ], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "ModAdd", 
+    "showOutputValueInUI": "Hide"
+  }, 
+  "2537": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Horde Mode - Micro Jump Field Generator Blocker", 
+    "displayName_de": "<color=\"#FFFF454B\">Aktivierung blockiert:</color> Mikrosprungfeldgeneratoren", 
+    "displayName_en-us": "<color=\"#FFFF454B\">Activation Blocked:</color> Micro Jump Field Generators", 
+    "displayName_es": "<color=\"#FFFF454B\">Activación bloqueada:</color> generadores de campo de microsalto", 
+    "displayName_fr": "<color=\"#FFFF454B\">Activation bloquée :</color> générateurs de champ de microsaut", 
+    "displayName_it": "<color=\"#FFFF454B\">Activation Blocked:</color> Micro Jump Field Generators", 
+    "displayName_ja": "<color=\"#FFFF454B\">起動ブロック：</color>マイクロジャンプフィールドジェネレーター", 
+    "displayName_ko": "<color=\"#FFFF454B\">모듈 사용 금지:</color> 마이크로 점프 필드 생성기", 
+    "displayName_ru": "<color=\"#FFFF454B\">Заблокированы:</color> генераторы разгонного поля", 
+    "displayName_zh": "<color=\"#FFFF454B\">启动受阻：</color>微型跳跃力场发生器", 
+    "displayNameID": 1036279, 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [
+      {
+        "dogmaAttributeID": 1349, 
+        "groupID": 1533
+      }
+    ], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "ModAdd", 
+    "showOutputValueInUI": "Hide"
+  }, 
+  "2538": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Triglavian System Effect - Remote Armor Repair Percentage", 
+    "displayName_de": "Remote Armor Repair Bonus", 
+    "displayName_en-us": "Remote Armor Repair Bonus", 
+    "displayName_es": "Remote Armor Repair Bonus", 
+    "displayName_fr": "Remote Armor Repair Bonus", 
+    "displayName_it": "Remote Armor Repair Bonus", 
+    "displayName_ja": "Remote Armor Repair Bonus", 
+    "displayName_ko": "Remote Armor Repair Bonus", 
+    "displayName_ru": "Remote Armor Repair Bonus", 
+    "displayName_zh": "Remote Armor Repair Bonus", 
+    "displayNameID": 1036730, 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [
+      {
+        "dogmaAttributeID": 84, 
+        "groupID": 325
+      }
+    ], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2539": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Triglavian System Effect - Remote Shield Boost Percentage", 
+    "displayName_de": "Remote Shield Boost Bonus", 
+    "displayName_en-us": "Remote Shield Boost Bonus", 
+    "displayName_es": "Remote Shield Boost Bonus", 
+    "displayName_fr": "Remote Shield Boost Bonus", 
+    "displayName_it": "Remote Shield Boost Bonus", 
+    "displayName_ja": "Remote Shield Boost Bonus", 
+    "displayName_ko": "Remote Shield Boost Bonus", 
+    "displayName_ru": "Remote Shield Boost Bonus", 
+    "displayName_zh": "Remote Shield Boost Bonus", 
+    "displayNameID": 1036729, 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [
+      {
+        "dogmaAttributeID": 68, 
+        "groupID": 41
+      }
+    ], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2548": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Horde Mode - Heat Damage Reduction", 
+    "displayName_de": "Hitzeschadenreduktion", 
+    "displayName_en-us": "Heat Damage Reduction", 
+    "displayName_es": "Reducción de daño por calor", 
+    "displayName_fr": "Réduction des dégâts thermiques", 
+    "displayName_it": "Heat Damage Reduction", 
+    "displayName_ja": "熱ダメージ減少", 
+    "displayName_ko": "열 피해량 감소", 
+    "displayName_ru": "Снижение теплового урона", 
+    "displayName_zh": "超载伤害降低", 
+    "displayNameID": 1037571, 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [
+      {
+        "dogmaAttributeID": 1211
+      }
+    ], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2549": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Horde Mode - Overload Bonus", 
+    "displayName_de": "Erhöhung des Überlastungsbonus", 
+    "displayName_en-us": "Overload Bonus Increase", 
+    "displayName_es": "Aumento de bonificación de sobrecarga", 
+    "displayName_fr": "Augmentation du bonus de surcharge", 
+    "displayName_it": "Overload Bonus Increase", 
+    "displayName_ja": "オーバーロードボーナス増加", 
+    "displayName_ko": "과부하 보너스 증가", 
+    "displayName_ru": "Усиление бонуса к перегрузке модулей", 
+    "displayName_zh": "超载加成提升", 
+    "displayNameID": 1037573, 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [
+      {
+        "dogmaAttributeID": 1181
+      }, 
+      {
+        "dogmaAttributeID": 1205
+      }, 
+      {
+        "dogmaAttributeID": 1206
+      }, 
+      {
+        "dogmaAttributeID": 1208
+      }, 
+      {
+        "dogmaAttributeID": 1210
+      }, 
+      {
+        "dogmaAttributeID": 1222
+      }, 
+      {
+        "dogmaAttributeID": 1223
+      }, 
+      {
+        "dogmaAttributeID": 1225
+      }, 
+      {
+        "dogmaAttributeID": 1226
+      }, 
+      {
+        "dogmaAttributeID": 1230
+      }, 
+      {
+        "dogmaAttributeID": 1231
+      }, 
+      {
+        "dogmaAttributeID": 1935
+      }, 
+      {
+        "dogmaAttributeID": 1936
+      }, 
+      {
+        "dogmaAttributeID": 1937
+      }
+    ], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2550": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Horde Mode - Signature Radius Reduction", 
+    "displayName_de": "Signaturradiusreduktion", 
+    "displayName_en-us": "Signature Radius Reduction", 
+    "displayName_es": "Reducción de radio de la señal", 
+    "displayName_fr": "Réduction du rayon de signature", 
+    "displayName_it": "Signature Radius Reduction", 
+    "displayName_ja": "シグネチャ半径縮小", 
+    "displayName_ko": "시그니처 반경 감소", 
+    "displayName_ru": "Уменьшение радиуса сигнатуры", 
+    "displayName_zh": "信号半径降低", 
+    "displayNameID": 1037574, 
+    "itemModifiers": [
+      {
+        "dogmaAttributeID": 552
+      }
+    ], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2551": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Horde Mode - Capacitor Capacity Bonus", 
+    "displayName_de": "Bonus auf Energiespeicherkapazität", 
+    "displayName_en-us": "Capacitor Capacity Bonus", 
+    "displayName_es": "Bonificación de capacidad del condensador", 
+    "displayName_fr": "Bonus de charge du capaciteur", 
+    "displayName_it": "Capacitor Capacity Bonus", 
+    "displayName_ja": "キャパシタ容量ボーナス", 
+    "displayName_ko": "캐패시터 용량 보너스", 
+    "displayName_ru": "Влияние на ёмкость накопителя", 
+    "displayName_zh": "电容器容量加成", 
+    "displayNameID": 1037575, 
+    "itemModifiers": [
+      {
+        "dogmaAttributeID": 482
+      }
+    ], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2552": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Horde Mode - Ship Velocity Bonus", 
+    "displayName_de": "Schiffsgeschwindigkeitsbonus", 
+    "displayName_en-us": "Ship Velocity Bonus", 
+    "displayName_es": "Bonificación de velocidad de la nave", 
+    "displayName_fr": "Bonus de vitesse du vaisseau", 
+    "displayName_it": "Ship Velocity Bonus", 
+    "displayName_ja": "航行速度ボーナス", 
+    "displayName_ko": "함선 속도 증가", 
+    "displayName_ru": "Бонус к скорости корабля", 
+    "displayName_zh": "舰船速度加成", 
+    "displayNameID": 1037576, 
+    "itemModifiers": [
+      {
+        "dogmaAttributeID": 37
+      }
+    ], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2553": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Horde Mode - Tracking Speed Bonus", 
+    "displayName_de": "Nachführungsgeschwindigkeit-Bonus", 
+    "displayName_en-us": "Tracking Speed Bonus", 
+    "displayName_es": "Bonificación de velocidad de rastreo", 
+    "displayName_fr": "Bonus à la vitesse de poursuite", 
+    "displayName_it": "Tracking Speed Bonus", 
+    "displayName_ja": "追跡速度ボーナス", 
+    "displayName_ko": "트래킹 속도 보너스", 
+    "displayName_ru": "Влияние на скорость слежения", 
+    "displayName_zh": "跟踪速度加成", 
+    "displayNameID": 1037577, 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [
+      {
+        "dogmaAttributeID": 160, 
+        "skillID": 3300
+      }
+    ], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2554": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Horde Mode - Missile Explosion Radius Reduction", 
+    "displayName_de": "Reduktion des Explosionsradius von Lenkwaffen", 
+    "displayName_en-us": "Missile Explosion Radius Reduction", 
+    "displayName_es": "Reducción de radio de explosión de misiles", 
+    "displayName_fr": "Réduction du rayon d'explosion des missiles", 
+    "displayName_it": "Missile Explosion Radius Reduction", 
+    "displayName_ja": "ミサイル爆発半径減少", 
+    "displayName_ko": "미사일 폭발반경 감소", 
+    "displayName_ru": "Уменьшение сигнатуры взрыва ракет", 
+    "displayName_zh": "导弹爆炸半径减小", 
+    "displayNameID": 1037578, 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [
+      {
+        "dogmaAttributeID": 654, 
+        "skillID": 3319
+      }
+    ], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2555": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Horde Mode - Scan Resolution Bonus", 
+    "displayName_de": "Scanauflösungsbonus", 
+    "displayName_en-us": "Scan Resolution Bonus", 
+    "displayName_es": "Bonificación de resolución de escaneo", 
+    "displayName_fr": "Bonus de résolution du balayage", 
+    "displayName_it": "Scan Resolution Bonus", 
+    "displayName_ja": "スキャン分解能ボーナス", 
+    "displayName_ko": "스캔 정밀도 보너스", 
+    "displayName_ru": "Влияние на разрешающую способность сенсоров", 
+    "displayName_zh": "扫描分辨率加成", 
+    "displayNameID": 1037579, 
+    "itemModifiers": [
+      {
+        "dogmaAttributeID": 564
+      }
+    ], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2556": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Horde Mode - Local Armor Repair Amount Bonus", 
+    "displayName_de": "Bonus auf die lokale Panzerungsreparaturmenge", 
+    "displayName_en-us": "Local Armor Repair Amount Bonus", 
+    "displayName_es": "Bonificación de cantidad de reparación del blindaje local", 
+    "displayName_fr": "Bonus au volume de réparation du blindage local", 
+    "displayName_it": "Local Armor Repair Amount Bonus", 
+    "displayName_ja": "ローカルアーマーリペア量ボーナス", 
+    "displayName_ko": "장갑 수리 장치 회복량 증가", 
+    "displayName_ru": "Бонус к эффективности местного ремонта брони", 
+    "displayName_zh": "自身装甲维修量加成", 
+    "displayNameID": 1037580, 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [
+      {
+        "dogmaAttributeID": 84, 
+        "skillID": 3393
+      }, 
+      {
+        "dogmaAttributeID": 84, 
+        "skillID": 21803
+      }
+    ], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2557": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Horde Mode - Local Shield Boost Amount Bonus", 
+    "displayName_de": "Bonus auf die lokale Schildsteigerungsmenge", 
+    "displayName_en-us": "Local Shield Boost Amount Bonus", 
+    "displayName_es": "Bonificación de cantidad de potenciador de escudo local", 
+    "displayName_fr": "Bonus au volume du boost de bouclier local", 
+    "displayName_it": "Local Shield Boost Amount Bonus", 
+    "displayName_ja": "ローカルシールドブースト量ボーナス", 
+    "displayName_ko": "실드 부스터 회복량 증가", 
+    "displayName_ru": "Бонус к эффективности местной накачки щитов", 
+    "displayName_zh": "自身护盾回充量加成", 
+    "displayNameID": 1037581, 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [
+      {
+        "dogmaAttributeID": 68, 
+        "skillID": 3416
+      }, 
+      {
+        "dogmaAttributeID": 68, 
+        "skillID": 21802
+      }
+    ], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2558": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Horde Mode - Remote Armor Repair Amount Bonus", 
+    "displayName_de": "Bonus auf die entfernte Panzerungsreparaturmenge", 
+    "displayName_en-us": "Remote Armor Repair Amount Bonus", 
+    "displayName_es": "Bonificación de cantidad de reparación del blindaje remoto", 
+    "displayName_fr": "Bonus au volume de réparation de blindage à distance", 
+    "displayName_it": "Remote Armor Repair Amount Bonus", 
+    "displayName_ja": "リモートアーマーリペア量ボーナス", 
+    "displayName_ko": "원격 장갑수리 회복량 증가", 
+    "displayName_ru": "Бонус к эффективности дистанционного ремонта брони", 
+    "displayName_zh": "远程装甲维修量加成", 
+    "displayNameID": 1037874, 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [
+      {
+        "dogmaAttributeID": 84, 
+        "skillID": 16069
+      }
+    ], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2559": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Horde Mode - Remote Shield Boost Amount Bonus", 
+    "displayName_de": "Bonus auf die Fernschildsteigerungsmenge", 
+    "displayName_en-us": "Remote Shield Boost Amount Bonus", 
+    "displayName_es": "Bonificación de cantidad de potenciador de escudo remoto", 
+    "displayName_fr": "Bonus au volume du boost de bouclier à distance", 
+    "displayName_it": "Remote Shield Boost Amount Bonus", 
+    "displayName_ja": "リモートシールドブースト量ボーナス", 
+    "displayName_ko": "원격 실드 부스터 회복량 증가", 
+    "displayName_ru": "Бонус к эффективности дистанционной накачки щитов", 
+    "displayName_zh": "远程护盾回充量加成", 
+    "displayNameID": 1037875, 
+    "itemModifiers": [], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [
+      {
+        "dogmaAttributeID": 68, 
+        "skillID": 3422
+      }
+    ], 
+    "operationName": "PostPercent", 
+    "showOutputValueInUI": "ShowNormal"
+  }, 
+  "2560": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Horde Mode - Warp Drive Blocker", 
+    "displayName_de": "<color=\"#FFFF454B\">Aktivierung blockiert:</color> Warpantriebe", 
+    "displayName_en-us": "<color=\"#FFFF454B\">Activation Blocked:</color> Warp Drives", 
+    "displayName_es": "<color=\"#FFFF454B\">Activación bloqueada:</color> motores de warp", 
+    "displayName_fr": "<color=\"#FFFF454B\">Activation bloquée :</color> propulseurs de warp", 
+    "displayName_it": "<color=\"#FFFF454B\">Activation Blocked:</color> Warp Drives", 
+    "displayName_ja": "<color=\"#FFFF454B\">起動ブロック：</color>ワープドライブ", 
+    "displayName_ko": "<color=\"#FFFF454B\">모듈 사용 금지:</color> 워프 드라이브", 
+    "displayName_ru": "<color=\"#FFFF454B\">Заблокированы:</color> варп-двигатели", 
+    "displayName_zh": "<color=\"#FFFF454B\">启动受阻：</color>跃迁引擎", 
+    "displayNameID": 1038311, 
+    "itemModifiers": [
+      {
+        "dogmaAttributeID": 104
+      }
+    ], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "ModAdd", 
+    "showOutputValueInUI": "Hide"
+  }, 
+  "2561": {
+    "aggregateMode": "Maximum", 
+    "developerDescription": "Horde Mode - Cloaking Devices Blocker", 
+    "displayName_de": "<color=\"#FFFF454B\">Aktivierung blockiert:</color> Tarnvorrichtungen", 
+    "displayName_en-us": "<color=\"#FFFF454B\">Activation Blocked:</color> Cloaking Devices", 
+    "displayName_es": "<color=\"#FFFF454B\">Activación bloqueada:</color> dispositivos de camuflaje", 
+    "displayName_fr": "<color=\"#FFFF454B\">Activation bloquée :</color> dispositifs de camouflage", 
+    "displayName_it": "<color=\"#FFFF454B\">Activation Blocked:</color> Cloaking Devices", 
+    "displayName_ja": "<color=\"#FFFF454B\">起動ブロック：</color>遮蔽装置", 
+    "displayName_ko": "<color=\"#FFFF454B\">모듈 사용 금지:</color> 클로킹 장치", 
+    "displayName_ru": "<color=\"#FFFF454B\">Заблокированы:</color> устройства маскировки", 
+    "displayName_zh": "<color=\"#FFFF454B\">启动受阻：</color>隐形装置", 
+    "displayNameID": 1038313, 
+    "itemModifiers": [
+      {
+        "dogmaAttributeID": 2454
+      }
+    ], 
+    "locationGroupModifiers": [], 
+    "locationModifiers": [], 
+    "locationRequiredSkillModifiers": [], 
+    "operationName": "ModAdd", 
+    "showOutputValueInUI": "Hide"
   }
 }
