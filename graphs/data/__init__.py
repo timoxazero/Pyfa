@@ -19,6 +19,7 @@
 
 
 from . import fitDamageStats
+from . import fitDamageEnvelope
 from . import fitEwarStats
 from . import fitRemoteReps
 from . import fitShieldRegen
