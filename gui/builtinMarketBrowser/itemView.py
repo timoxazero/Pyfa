@@ -3,9 +3,10 @@ from logbook import Logger
 
 import gui.builtinMarketBrowser.pfSearchBox as SBox
 import gui.globalEvents as GE
-from config import slotColourMap, slotColourMapDark
+from config import slotColorMap, slotColorMapDark
 from eos.saveddata.module import Module
 from gui.builtinMarketBrowser.events import ItemSelected, RECENTLY_USED_MODULES, CHARGES_FOR_FIT
+from gui.builtinViewColumns.omega import Omega as OmegaCol
 from gui.contextMenu import ContextMenu
 from gui.display import Display
 from gui.utils.staticHelpers import DragDropHelper
@@ -20,7 +21,8 @@ pyfalog = Logger(__name__)
 
 class ItemView(Display):
 
-    DEFAULT_COLS = ["Base Icon",
+    DEFAULT_COLS = ["Omega",
+                    "Base Icon",
                     "Base Name",
                     "attr:power,,,True",
                     "attr:cpu,,,True"]
@@ -53,11 +55,21 @@ class ItemView(Display):
         self.Bind(wx.EVT_CONTEXT_MENU, self.contextMenu)
         self.Bind(wx.EVT_LIST_ITEM_ACTIVATED, self.itemActivated)
         self.Bind(wx.EVT_LIST_BEGIN_DRAG, self.startDrag)
+        self.Bind(wx.EVT_SYS_COLOUR_CHANGED, self.OnSysColorChanged)
 
         # the "charges for active fitting" needs to listen to fitting changes
         self.mainFrame.Bind(GE.FIT_CHANGED, self.fitChanged)
 
         self.active = []
+        self.updateOmegaColumn()
+
+    def updateOmegaColumn(self):
+        show = Fit.getInstance().serviceFittingOptions["showOmegaIcons"]
+        omega_idx = self.getColIndex(OmegaCol)
+        if show and omega_idx is None:
+            self.insertColumnBySpec(0, "Omega")
+        elif not show and omega_idx is not None:
+            self.removeColumn(self.activeColumns[omega_idx])
 
     def delaySearch(self, evt):
         sFit = Fit.getInstance()
@@ -73,7 +85,7 @@ class ItemView(Display):
             pyfalog.debug("Dragging from market: " + dataStr)
 
             data.SetText(dataStr)
-            dropSource = wx.DropSource(self)
+            dropSource = wx.DropSource(self.getDragSourceWindow())
             dropSource.SetData(data)
             DragDropHelper.data = dataStr
             dropSource.DoDragDrop()
@@ -276,7 +288,7 @@ class ItemView(Display):
         # Show them
         Display.populate(self, items)
 
-    def refresh(self, items):
+    def refresh(self, items, dirtyRows=None, dirtyColumns=None):
         if len(items) > 1:
             # Re-sort stuff
             if self.marketBrowser.mode != 'recent':
@@ -284,11 +296,19 @@ class ItemView(Display):
         for i, item in enumerate(items[:9]):
             # set shortcut info for first 9 modules
             item.marketShortcut = i + 1
-        Display.refresh(self, items)
+        Display.refresh(self, items, dirtyRows=dirtyRows, dirtyColumns=dirtyColumns)
+
+    def OnSysColorChanged(self, event):
+        try:
+            if self.active:
+                self.update(self.active)
+        except RuntimeError:
+            pass
+        event.Skip()
 
     def columnBackground(self, colItem, item):
         if self.sFit.serviceFittingOptions["colorFitBySlot"]:
-            colorMap = slotColourMapDark if isDark() else slotColourMap
+            colorMap = slotColorMapDark if isDark() else slotColorMap
             return colorMap.get(Module.calculateSlot(item)) or self.GetBackgroundColour()
         else:
             return self.GetBackgroundColour()

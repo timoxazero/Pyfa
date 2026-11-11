@@ -19,8 +19,7 @@
 
 # noinspection PyPackageRequirements
 import wx
-import gui.mainFrame
-from gui.viewColumn import ViewColumn
+
 from gui.cachingImageList import CachingImageList
 
 
@@ -36,8 +35,18 @@ class Display(wx.ListCtrl):
         self.SetImageList(self.imageList, wx.IMAGE_LIST_SMALL)
         self.activeColumns = []
         self.columnsMinWidth = []
+        # Autosizing a column is expensive on wxMSW in dark mode (wxWidgets #24011), so it is
+        # measured in Python only for columns whose contents actually changed. None means
+        # "measure them all".
+        self._dirtyColumns = None
         self.Bind(wx.EVT_LIST_COL_END_DRAG, self.resizeChecker)
         self.Bind(wx.EVT_LIST_COL_BEGIN_DRAG, self.resizeSkip)
+        self.Bind(wx.EVT_SIZE, self.onResized)
+
+        # Imported here rather than at module scope: gui.mainFrame pulls in the
+        # addition panes, which subclass Display, so importing it at the top makes
+        # this module unimportable unless mainFrame happens to be loaded first.
+        import gui.mainFrame
 
         self.mainFrame = gui.mainFrame.MainFrame.getInstance()
 
@@ -46,6 +55,16 @@ class Display(wx.ListCtrl):
 
         self.imageListBase = self.imageList.ImageCount
 
+
+    def getDragSourceWindow(self):
+        """
+        Window a drag should be started from.
+
+        wxGTK's list control does its mouse handling on an inner window, and Wayland only lets a
+        drag start from the surface which holds the pointer grab, so handing it the control
+        itself gets the drag silently refused. Returns the control itself where it is native.
+        """
+        return getattr(self, 'GetMainWindow', lambda: self)()
 
     # Override native HitTestSubItem (doesn't work as it should on GTK)
     # Source: ObjectListView
@@ -88,7 +107,7 @@ class Display(wx.ListCtrl):
 
     # noinspection PyPropertyAccess
     def addColumn(self, i, col):
-        self.activeColumns.append(col)
+        self.activeColumns.insert(i, col)
         info = wx.ListItem()
         info.SetMask(col.mask | wx.LIST_MASK_FORMAT)
         if col.imageId not in (None, -1):
@@ -98,14 +117,40 @@ class Display(wx.ListCtrl):
         info.SetAlign(wx.LIST_FORMAT_LEFT)
         self.InsertColumn(i, info)
         col.resized = False
-        if i == 0 and col.size != wx.LIST_AUTOSIZE_USEHEADER:
-            col.size += 4
-        self.SetColumnWidth(i, col.size)
+        if col.size == wx.LIST_AUTOSIZE_USEHEADER:
+            self.SetColumnWidth(i, col.size)
+        else:
+            self.sizeFixedColumn(i)
+        if i == 0 and len(self.activeColumns) > 1:
+            # the column which was first until now is not anymore
+            self.sizeFixedColumn(1)
+
+    def firstColumnPadding(self, i):
+        """
+        Extra room a fixed-width column needs at position i.
+
+        The first column of a report list gives up a few pixels to the row's own margin, so a
+        fixed-width column there needs them back. It is tied to the position rather than to the
+        column, as the column in front can change when columns are added or removed.
+        """
+        if i == 0 and self.activeColumns[i].size != wx.LIST_AUTOSIZE_USEHEADER:
+            return 4
+        return 0
+
+    def sizeFixedColumn(self, i):
+        col = self.activeColumns[i]
+        if col.size == wx.LIST_AUTOSIZE_USEHEADER or col.resized:
+            return
+        width = col.size + self.firstColumnPadding(i)
+        if self.GetColumnWidth(i) != width:
+            self.SetColumnWidth(i, width)
 
     def appendColumnBySpec(self, colSpec):
         self.insertColumnBySpec(len(self.activeColumns), colSpec)
 
     def insertColumnBySpec(self, i, colSpec):
+        from gui.viewColumn import ViewColumn
+
         if ":" in colSpec:
             colSpec, params = colSpec.split(":", 1)
             params = params.split(",")
@@ -124,13 +169,49 @@ class Display(wx.ListCtrl):
             col = ViewColumn.getColumn(colSpec)(self, None)
 
         self.addColumn(i, col)
-        self.columnsMinWidth.append(self.GetColumnWidth(i))
+        self.columnsMinWidth.insert(i, self.GetColumnWidth(i) - self.firstColumnPadding(i))
+        self.invalidateColumnWidths()
+
+    def invalidateColumnWidths(self):
+        """Size every column again on the next refresh."""
+        self._dirtyColumns = None
+
+    def onResized(self, event):
+        # the width a column wants can depend on how much room there is, most visibly for the
+        # last one, so anything measured before the resize no longer holds
+        self.invalidateColumnWidths()
+        event.Skip()
+
+    def columnWidth(self, i):
+        """Measure a column without invoking wxMSW's native autosize implementation."""
+        dc = wx.ClientDC(self)
+        defaultFont = self.GetFont()
+        dc.SetFont(defaultFont)
+
+        column = self.GetColumn(i)
+        width = dc.GetTextExtent(column.GetText())[0]
+
+        for row in range(self.GetItemCount()):
+            item = self.GetItem(row, i)
+            itemFont = item.GetFont()
+            dc.SetFont(itemFont if itemFont.IsOk() else defaultFont)
+            itemWidth = dc.GetTextExtent(item.GetText())[0]
+            if item.GetImage() != -1:
+                itemWidth += self.imageList.GetSize(0)[0] + 4
+            width = max(width, itemWidth)
+
+        # Match the native list control's room around text and images.
+        return width + 24
 
     def removeColumn(self, col):
         i = self.getColIndex(type(col))
         del self.activeColumns[i]
         del self.columnsMinWidth[i]
         self.DeleteColumn(i)
+        if i == 0 and self.activeColumns:
+            # another column moved to the front
+            self.sizeFixedColumn(0)
+        self.invalidateColumnWidths()
 
     def getColIndex(self, colClass):
         for i, col in enumerate(self.activeColumns):
@@ -160,8 +241,9 @@ class Display(wx.ListCtrl):
 
     def checkColumnSize(self, column):
         colItem = self.activeColumns[column]
-        if self.GetColumnWidth(column) < self.columnsMinWidth[column]:
-            self.SetColumnWidth(column, self.columnsMinWidth[column])
+        minWidth = self.columnsMinWidth[column] + self.firstColumnPadding(column)
+        if self.GetColumnWidth(column) < minWidth:
+            self.SetColumnWidth(column, minWidth)
         colItem.resized = True
 
     def getLastItem(self, state=wx.LIST_STATE_DONTCARE):
@@ -190,6 +272,10 @@ class Display(wx.ListCtrl):
             listItemCount = self.GetItemCount()
             stuffItemCount = len(stuff)
 
+            if listItemCount != stuffItemCount:
+                # rows coming or going can change what any column needs
+                self.invalidateColumnWidths()
+
             if listItemCount < stuffItemCount:
                 for i in range(stuffItemCount - listItemCount):
                     self.InsertItem(self.GetItemCount(), "")
@@ -204,64 +290,80 @@ class Display(wx.ListCtrl):
                         self.DeleteItem(self.getLastItem())
                     self.Refresh()
 
-    def refresh(self, stuff):
+    def refresh(self, stuff, dirtyRows=None, dirtyColumns=None):
         if stuff is None:
             return
         item = -1
+        # columns whose text or image moved, and so may now need a different width
+        changedColumns = set()
         for id_, st in enumerate(stuff):
 
             item = self.GetNextItem(item)
+            if dirtyRows is not None and id(st) not in dirtyRows:
+                continue
 
             for i, col in enumerate(self.activeColumns):
+                if dirtyColumns is not None and i not in dirtyColumns:
+                    continue
                 colItem = self.GetItem(item, i)
                 oldText = colItem.GetText()
                 oldImageId = colItem.GetImage()
-                oldColour = colItem.GetBackgroundColour()
+                oldColor = colItem.GetBackgroundColour()
                 newText = col.getText(st)
                 if newText is False:
                     col.delayedText(st, self, colItem)
                     newText = "\u21bb"
-                newColour = self.columnBackground(colItem, st)
+                newColor = self.columnBackground(colItem, st)
 
                 newImageId = col.getImageId(st)
 
                 colItem.SetText(newText)
                 colItem.SetImage(newImageId)
-                colItem.SetBackgroundColour(newColour)
+                colItem.SetBackgroundColour(newColor)
 
                 mask = 0
 
                 if oldText != newText:
                     mask |= wx.LIST_MASK_TEXT
                     colItem.SetText(newText)
+                    changedColumns.add(i)
                 if oldImageId != newImageId:
                     mask |= wx.LIST_MASK_IMAGE
                     colItem.SetImage(newImageId)
+                    changedColumns.add(i)
 
                 if mask:
                     colItem.SetMask(mask)
                     self.SetItem(colItem)
                 else:
-                    if newColour != oldColour:
+                    if newColor != oldColor:
                         self.SetItem(colItem)
 
+            if self.GetItemData(item) != id_:
                 self.SetItemData(item, id_)
+
+        if self._dirtyColumns is None:
+            # nothing measured yet, or something happened which affects all of them
+            toMeasure = set(range(len(self.activeColumns)))
+        else:
+            toMeasure = self._dirtyColumns | changedColumns
+        self._dirtyColumns = set()
 
         for i, col in enumerate(self.activeColumns):
             if not col.resized:
                 if col.size == wx.LIST_AUTOSIZE_USEHEADER:
-                    self.SetColumnWidth(i, wx.LIST_AUTOSIZE_USEHEADER)
-                    headerWidth = self.GetColumnWidth(i)
-                    self.SetColumnWidth(i, wx.LIST_AUTOSIZE)
-                    baseWidth = self.GetColumnWidth(i)
-                    if baseWidth < headerWidth:
-                        self.SetColumnWidth(i, headerWidth)
+                    if i not in toMeasure:
+                        # nothing which affects this column moved, the width it has still fits
+                        continue
+                    width = self.columnWidth(i)
+                    if self.GetColumnWidth(i) != width:
+                        self.SetColumnWidth(i, width)
                 else:
-                    self.SetColumnWidth(i, col.size)
+                    self.sizeFixedColumn(i)
 
-    def update(self, stuff):
+    def update(self, stuff, dirtyRows=None, dirtyColumns=None):
         self.populate(stuff)
-        self.refresh(stuff)
+        self.refresh(stuff, dirtyRows=dirtyRows, dirtyColumns=dirtyColumns)
 
     def getColumn(self, point):
         row, _, col = self.HitTestSubItem(point)

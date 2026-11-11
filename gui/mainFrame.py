@@ -27,6 +27,7 @@ from time import gmtime, strftime
 
 # noinspection PyPackageRequirements
 import wx
+from gui.utils.dark import bindBackgroundToTheme
 import wx.adv
 from logbook import Logger
 # noinspection PyPackageRequirements
@@ -37,7 +38,7 @@ import gui.fitCommands as cmd
 import gui.globalEvents as GE
 from eos.config import gamedata_date, gamedata_version
 from eos.modifiedAttributeDict import ModifiedAttributeDict
-from graphs import GraphFrame
+import graphs
 from gui.additionsPane import AdditionsPane
 from gui.bitmap_loader import BitmapLoader
 from gui.builtinMarketBrowser.events import ItemSelected
@@ -154,7 +155,7 @@ class MainFrame(wx.Frame):
 
         # Fix for msw (have the frame background color match panel color
         if 'wxMSW' in wx.PlatformInfo:
-            self.SetBackgroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_BTNFACE))
+            bindBackgroundToTheme(self, wx.SYS_COLOUR_BTNFACE)
 
         # Load and set the icon for pyfa main window
         i = wx.Icon(BitmapLoader.getBitmap("pyfa", "gui"))
@@ -242,8 +243,16 @@ class MainFrame(wx.Frame):
         return Fit.getCommandProcessor(fitID)
 
     def ShowUpdateBox(self, release, version):
-        with UpdateDialog(self, release, version) as dlg:
-            dlg.ShowModal()
+        # This runs right after startup, so any failure here must not be able
+        # to take the whole application down with it
+        try:
+            with UpdateDialog(self, release, version) as dlg:
+                dlg.ShowModal()
+        except (KeyboardInterrupt, SystemExit):
+            raise
+        except Exception as e:
+            pyfalog.error("Caught exception while showing the update notification dialog")
+            pyfalog.error(e)
 
     def LoadPreviousOpenFits(self):
         sFit = Fit.getInstance()
@@ -432,10 +441,10 @@ class MainFrame(wx.Frame):
         wx.adv.AboutBox(info)
 
     def OnShowGraphFrame(self, event):
-        GraphFrame.openOne(self)
+        graphs.GraphFrame.openOne(self)
 
     def OnShowGraphFrameHidden(self, event):
-        GraphFrame.openOne(self, includeHidden=True)
+        graphs.GraphFrame.openOne(self, includeHidden=True)
 
     def OnShowDevTools(self, event):
         DevTools.openOne(parent=self)
@@ -719,7 +728,7 @@ class MainFrame(wx.Frame):
             fitItems = {i for i in Fit.fitItemIter(fit, forceFitImplants=True) if i is not fit.ship.item}
             self.disablerAll = wx.WindowDisabler()
             self.waitDialog = wx.BusyInfo(_t("Please Wait..."), parent=self)
-            Price.getInstance().findCheaperReplacements(fitItems, updateFitCb, fetchTimeout=10)
+            Price.getInstance().findCheaperReplacements(fitItems, updateFitCb, fit=fit, fetchTimeout=10)
 
     def AdditionsTabSelect(self, event):
         selTab = self.additionsSelect.index(event.GetId())

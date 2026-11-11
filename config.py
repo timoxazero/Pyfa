@@ -67,14 +67,14 @@ LOGLEVEL_MAP = {
 CATALOG = 'lang'
 
 
-slotColourMapDark = {
+slotColorMapDark = {
     FittingSlot.LOW: wx.Colour(44, 36, 19),  # yellow = low slots 24/13
     FittingSlot.MED: wx.Colour(28, 39, 51),  # blue   = mid slots 8.1/9.5
     FittingSlot.HIGH: wx.Colour(53, 31, 34),  # red    = high slots 6.5/11.5
     FittingSlot.RIG: '',
     FittingSlot.SUBSYSTEM: ''}
 errColorDark = wx.Colour(70, 20, 20)
-slotColourMap = {
+slotColorMap = {
     FittingSlot.LOW: wx.Colour(250, 235, 204),  # yellow = low slots
     FittingSlot.MED: wx.Colour(188, 215, 241),  # blue   = mid slots
     FittingSlot.HIGH: wx.Colour(235, 204, 209),  # red    = high slots
@@ -212,11 +212,11 @@ def defPaths(customSavePath=None):
     from service.settings import EOSSettings, LocaleSettings
     eos.config.settings = EOSSettings.getInstance().EOSSettings  # this is kind of confusing, but whatever
 
-    # set langauge, taking the passed argument or falling back to what's saved in the settings
+    # set language, taking the passed argument or falling back to what's saved in the settings
     localeSettings = LocaleSettings.getInstance()
     language = language or localeSettings.get('locale')
 
-    # sets the lang for eos, using the mapped langauge.
+    # sets the lang for eos, using the mapped language.
     eos.config.set_lang(localeSettings.get_eos_locale())
 
 def defLogging():

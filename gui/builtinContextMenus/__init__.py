@@ -5,6 +5,7 @@ from gui.builtinContextMenus import fitAddBrowse
 from gui.builtinContextMenus import fitAddCurrentlyOpen
 from gui.builtinContextMenus import envEffectAdd
 from gui.builtinContextMenus import commandFitAdd
+from gui.builtinContextMenus import commandLinkAdd
 from gui.builtinContextMenus.targetProfile import adder
 from gui.builtinContextMenus import graphFitAmmoPicker
 # Often-used item manipulations
@@ -52,6 +53,8 @@ from gui.builtinContextMenus.targetProfile import switcher
 # Graph extra options
 from gui.builtinContextMenus import graphDmgApplyProjected
 from gui.builtinContextMenus import graphDmgIgnoreResists
+from gui.builtinContextMenus import graphAmmoOptimalIgnoreResists
+from gui.builtinContextMenus import graphAmmoOptimalApplyProjected
 from gui.builtinContextMenus import graphLockRange
 from gui.builtinContextMenus import graphDroneControlRange
 from gui.builtinContextMenus import graphDmgDroneMode

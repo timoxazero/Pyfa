@@ -56,7 +56,7 @@ class AttributeEditor(AuxiliaryFrame):
 
         leftSizer = wx.BoxSizer(wx.VERTICAL)
         leftPanel = wx.Panel(panel, wx.ID_ANY,
-                             style=wx.DOUBLE_BORDER if 'wxMSW' in wx.PlatformInfo else wx.SIMPLE_BORDER)
+                             style=wx.DOUBLE_BORDER if 'wxMSW' in wx.PlatformInfo else wx.BORDER_NONE)
 
         self.searchBox = SearchBox(leftPanel)
         self.itemView = ItemView(leftPanel)
@@ -227,10 +227,10 @@ class ItemView(d.Display):
         self.activeItems = items
         d.Display.populate(self, items)
 
-    def refresh(self, items):
+    def refresh(self, items, dirtyRows=None, dirtyColumns=None):
         if len(items) > 1:
             items.sort(key=self.itemSort)
-        d.Display.refresh(self, items)
+        d.Display.refresh(self, items, dirtyRows=dirtyRows, dirtyColumns=dirtyColumns)
 
 
 class AttributeGrid(wxpg.PropertyGrid):

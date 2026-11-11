@@ -11,6 +11,10 @@ label = subprocess.check_output([
 with open('.version', 'w+') as f:
     f.write(label.decode())
 
+# Use PYFA_VERSION from the environment (set in CI), falling back to the
+# git-describe label so local builds don't crash on a None plist value.
+pyfa_version = os.getenv('PYFA_VERSION') or label.decode()
+
 block_cipher = None
 
 added_files = [
@@ -38,7 +42,7 @@ import_these = [
 icon = os.path.join(os.getcwd(), "dist_assets", "mac", "pyfa.icns")
 
 # Walk directories that do dynamic importing
-paths = ('eos/db/migrations', 'service/conversions')
+paths = ('eos/db/migrations', 'service/conversions', 'graphs/gui')
 for root, folders, files in chain.from_iterable(os.walk(path) for path in paths):
     for file_ in files:
         if file_.endswith(".py") and not file_.startswith("_"):
@@ -69,7 +73,8 @@ exe = EXE(pyz,
           name='pyfa',
           debug=False,
           strip=False,
-          upx=True,
+          # UPX is known to produce broken binaries on macOS arm64
+          upx=False,
           console=False ,
           icon=icon,
           contents_directory='app',
@@ -81,14 +86,14 @@ coll = COLLECT(
     a.zipfiles,
     a.datas,
     strip=False,
-    upx=True,
+    upx=False,
     name='pyfa',
 )
 
 app = BUNDLE(
     coll,
     name='pyfa.app',
-    version=os.getenv('PYFA_VERSION'),
+    version=pyfa_version,
     icon=icon,
     bundle_identifier=None,
     info_plist={
@@ -97,7 +102,7 @@ app = BUNDLE(
         'CFBundleName': 'pyfa',
         'CFBundleDisplayName': 'pyfa',
         'CFBundleIdentifier': 'org.pyfaorg.pyfa',
-        'CFBundleVersion': os.getenv('PYFA_VERSION'),
-        'CFBundleShortVersionString': os.getenv('PYFA_VERSION'),
+        'CFBundleVersion': pyfa_version,
+        'CFBundleShortVersionString': pyfa_version,
     }
 )

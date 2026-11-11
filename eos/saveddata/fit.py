@@ -603,6 +603,13 @@ class Fit:
     def addProjectedEcm(self, strength):
         self.__ecmProjectedList.append(strength)
 
+    def __applyCommandLinks(self):
+        # Generic links inject their buffs into commandBonuses, same path as real command fits
+        from eos.saveddata.commandLink import applyCommandLinkToFit
+        for link in self.commandLinks:
+            if link.active:
+                applyCommandLinkToFit(self, link)
+
     def __runCommandBoosts(self, runTime="normal"):
         pyfalog.debug("Applying gang boosts for {0}", repr(self))
         for warfareBuffID in list(self.commandBonuses.keys()):
@@ -968,6 +975,12 @@ class Fit:
                             mod.item.requiresSkill("Shield Emission Systems")
                             or mod.item.requiresSkill("Capital Shield Emission Systems")),
                         "shieldBonus", value, stackingPenalties=True)
+                elif warfareBuffID == 2544:  # FW Moderate Site BC Skill Bonus
+                    for base in ('shipBonusABC', 'shipBonusCBC', 'shipBonusGBC', 'shipBonusMBC', 'shipBonusPBC'):
+                        for i in range(1, 5):
+                            self.ship.boostItemAttr(f'{base}{i}', value)
+                elif warfareBuffID == 2545:  # FW ELT-5 Site T3D HP Bonus
+                    self.ship.increaseItemAttr("proximityDbuffEffectTacticalDestroyerHP", value)
 
             del self.commandBonuses[warfareBuffID]
 
@@ -1026,6 +1039,10 @@ class Fit:
                     continue
 
                 commandInfo.booster_fit.calculateModifiedAttributes(self, CalcType.COMMAND)
+
+        # Apply generic command links
+        if type != CalcType.COMMAND and self.commandLinks and not self.__calculated:
+            self.__applyCommandLinks()
 
         # If we're not explicitly asked to project fit onto something,
         # set self as target fit
@@ -1946,6 +1963,11 @@ class Fit:
             eos.db.saveddata_session.flush()
             eos.db.saveddata_session.refresh(fit)
 
+        # Both associations below are keyed by the copy's id, so it has to be in the database
+        # before they can be set up: until it is saved there is no id to key them on
+        eos.db.saveddata_session.add(fitCopy)
+        eos.db.saveddata_session.flush()
+
         for fit in self.commandFits:
             fitCopy.commandFitDict[fit.ID] = fit
             forceUpdateSavedata(fit)
@@ -1963,6 +1985,11 @@ class Fit:
             copyProjectionInfo.amount = originalProjectionInfo.amount
             copyProjectionInfo.projectionRange = originalProjectionInfo.projectionRange
             forceUpdateSavedata(fit)
+
+        # Generic command links are owned rows, copy directly
+        from eos.saveddata.commandLink import CommandLink
+        for link in self.commandLinks:
+            fitCopy.commandLinks.append(CommandLink(link.linkType, link.strength, link.mindlink, link.active))
 
         return fitCopy
 

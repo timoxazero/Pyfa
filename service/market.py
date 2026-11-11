@@ -286,7 +286,6 @@ class Market:
             "Megathron Federate Issue"    : self.les_grp,  # Reward during Crielere event
             "Raven State Issue"           : self.les_grp,  # AT4 prize
             "Tempest Tribal Issue"        : self.les_grp,  # AT4 prize
-            "Apotheosis"                  : self.les_grp,  # 5th EVE anniversary present
             "Zephyr"                      : self.les_grp,  # 2010 new year gift
             "Primae"                      : self.les_grp,  # Promotion of planetary interaction
             "Council Diplomatic Shuttle"  : self.les_grp,  # CSM X celebration
@@ -321,7 +320,6 @@ class Market:
             "Boobook"                     : self.les_grp,  # 19th EVE anniversary gift
             "Geri"                        : self.les_grp,  # AT18 prize
             "Bestla"                      : self.les_grp,  # AT18 prize
-            "Metamorphosis"               : self.les_grp,  # Seems to be anniversary gift
             "Shapash"                     : self.les_grp,  # AT19 prize
             "Cybele"                      : self.les_grp,  # AT19 prize
             "Sidewinder"                  : self.les_grp,  # AT20 prize
@@ -329,6 +327,8 @@ class Market:
             "Python"                      : self.les_grp,  # AT20 prize
             "Skua"                        : self.les_grp,  # AT21 prize
             "Anhinga"                     : self.les_grp,  # AT21 prize
+            "Herald"                      : self.les_grp,  # AT22 prize
+            "Penitence"                   : self.les_grp,  # AT22 prize
         }
 
         self.ITEMS_FORCEGROUP_R = self.__makeRevDict(self.ITEMS_FORCEGROUP)
@@ -397,12 +397,6 @@ class Market:
             "Civilian Scourge Light Missile"            : 920,  # Ammunition & Charges > Missiles > Light Missiles > Standard Light Missiles
             "Civilian Small Remote Armor Repairer"      : 1059,  # Ship Equipment > Hull & Armor > Remote Armor Repairers > Small
             "Civilian Small Remote Shield Booster"      : 603,  # Ship Equipment > Shield > Remote Shield Boosters > Small
-            "Hardwiring - Zainou 'Sharpshooter' ZMX10"  : 1493,  # Implants & Boosters > Implants > Skill Hardwiring > Missile Implants > Implant Slot 06
-            "Hardwiring - Zainou 'Sharpshooter' ZMX100" : 1493,  # Implants & Boosters > Implants > Skill Hardwiring > Missile Implants > Implant Slot 06
-            "Hardwiring - Zainou 'Sharpshooter' ZMX1000": 1493,  # Implants & Boosters > Implants > Skill Hardwiring > Missile Implants > Implant Slot 06
-            "Hardwiring - Zainou 'Sharpshooter' ZMX11"  : 1493,  # Implants & Boosters > Implants > Skill Hardwiring > Missile Implants > Implant Slot 06
-            "Hardwiring - Zainou 'Sharpshooter' ZMX110" : 1493,  # Implants & Boosters > Implants > Skill Hardwiring > Missile Implants > Implant Slot 06
-            "Hardwiring - Zainou 'Sharpshooter' ZMX1100": 1493,  # Implants & Boosters > Implants > Skill Hardwiring > Missile Implants > Implant Slot 06
             "Prototype Cerebral Accelerator"            : 2487,  # Implants & Boosters > Booster > Cerebral Accelerators
             "Prototype Iris Probe Launcher"             : 712,  # Ship Equipment > Scanning Equipment > Scan Probe Launchers
             "Standard Cerebral Accelerator"             : 2487,  # Implants & Boosters > Booster > Cerebral Accelerators
@@ -763,7 +757,7 @@ class Market:
         # Add hardcoded items to set
         if mg.ID in self.ITEMS_FORCEDMARKETGROUP_R:
             forceditms = set(self.getItem(itmn) for itmn in self.ITEMS_FORCEDMARKETGROUP_R[mg.ID])
-            baseitms.update(forceditms)
+            baseitms.update(i for i in forceditms if i is not None)
         if vars_:
             parents = set()
             for item in baseitms:
@@ -938,21 +932,33 @@ class Market:
         filtered = [item for item in items if self.getMetaGroupIdByItem(item) in metas]
         return filtered
 
-    def getReplacements(self, identity):
+    def getReplacements(self, identity, setEffectIDs=()):
+        """
+        setEffectIDs - IDs of effects by which modules count towards synchronizer rig sets which matter (as the rig
+        is fitted); replacements have to belong to the same of those sets as the item itself
+        """
         item = self.getItem(identity)
         # We already store needed type IDs in database
         replTypeIDs = {int(i) for i in item.replacements.split(",") if i} if item.replacements is not None else {}
         if not replTypeIDs:
             return ()
+
+        def getSets(setItem):
+            return {e.ID for e in setItem.effects.values()}.intersection(setEffectIDs)
+
+        itemSets = getSets(item)
         # As replacements were generated without keeping track which items were published,
         # filter them out here
         items = []
         for typeID in replTypeIDs:
-            item = self.getItem(typeID)
-            if not item:
+            replItem = self.getItem(typeID)
+            if not replItem:
                 continue
-            if self.getPublicityByItem(item):
-                items.append(item)
+            if not self.getPublicityByItem(replItem):
+                continue
+            if getSets(replItem) != itemSets:
+                continue
+            items.append(replItem)
         return items
 
     def getRecentlyUsed(self):
@@ -997,7 +1003,7 @@ class Market:
         def handleMg(marketGroup, path=()):
             marketGroup = self.getMarketGroup(marketGroup, eager=("items", "items.metaGroup", "children"))
             path = path + (marketGroup.name,)
-            print(' > '.join(path))
+            # print(' > '.join(path))
             for item in self.getItemsByMarketGroup(marketGroup):
                 items.add(item.ID)
             for mgc in self.getMarketGroupChildren(marketGroup):
@@ -1005,6 +1011,8 @@ class Market:
 
         for mg in self.ROOT_MARKET_GROUPS:
             handleMg(mg)
-        print(sorted(items))
+        print('---')
+        for i in sorted(items):
+            print(i)
 
 

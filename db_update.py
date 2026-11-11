@@ -92,9 +92,10 @@ def update_db():
     import eos.db
     import eos.gamedata
     import eos.config
+    from eos.const import SYNCHRONIZER_SETS
 
     # Create the database tables
-    eos.db.gamedata_meta.create_all()
+    eos.db.gamedata_meta.create_all(eos.db.gamedata_engine)
 
     def _readData(minerName, jsonName, keyIdName=None):
         compiled_data = None
@@ -122,12 +123,36 @@ def update_db():
             data.append(row)
         return data
 
-    def _addRows(data, cls, fieldMap=None):
+    def _translate(translations, lang):
+        if not translations:
+            return None
+        text = translations.get('en-us' if lang == 'en' else lang)
+        if text is None:
+            text = translations.get('en-us')
+        return text
+
+    def _addRows(data, cls, fieldMap=None, translatedMap=None):
+        """
+        Translated fields come as {language code: text} maps; translatedMap tells which column
+        prefix each of them goes to (the language suffix is appended), or None to skip it.
+        """
         if fieldMap is None:
             fieldMap = {}
+        if translatedMap is None:
+            translatedMap = {}
         for row in data:
             instance = cls()
             for k, v in row.items():
+                if k in translatedMap:
+                    prefix = translatedMap[k]
+                    if prefix is None:
+                        continue
+                    for lang, suffix in eos.config.translation_mapping.items():
+                        text = _translate(v, lang)
+                        if isinstance(text, str):
+                            text = text.strip()
+                        setattr(instance, prefix + suffix, text)
+                    continue
                 if isinstance(v, str):
                     v = v.strip()
                 setattr(instance, fieldMap.get(k, k), v)
@@ -137,30 +162,31 @@ def update_db():
         print('processing evetypes')
         data = _readData('fsd_built', 'types', keyIdName='typeID')
         for row in data:
+            name = _translate(row['typeName'], 'en') or ''
             if (
                 # Apparently people really want Civilian modules available
-                (row['typeName_en-us'].startswith('Civilian') and "Shuttle" not in row['typeName_en-us'])
-                or row['typeName_en-us'] == 'Capsule'
+                (name.startswith('Civilian') and "Shuttle" not in name)
+                or name == 'Capsule'
                 or row['groupID'] == 4033  # destructible effect beacons
                 or row['typeID'] == 82941  # Metenox service
                 or row['typeID'] in (87164, 87177)  # Trig buff carriers
-                or re.match(r'AIR .+Booster.*', row['typeName_en-us'])
+                or re.match(r'AIR .+Booster.*', name)
             ):
                 row['published'] = True
             # Nearly useless and clutter search results too much
             elif (
-                row['typeName_en-us'].startswith('Limited Synth ')
-                or row['typeName_en-us'].startswith('Expired ')
-                or re.match(r'Grand Prix .*Booster', row['typeName_en-us'])
-                or re.match(r'Mining Blitz .+ Booster Dose .+', row['typeName_en-us'])
-                or row['typeName_en-us'].endswith(' Filament') and (
-                    "'Needlejack'" not in row['typeName_en-us'] and
-                    "'Devana'" not in row['typeName_en-us'] and
-                    "'Pochven'" not in row['typeName_en-us'] and
-                    "'Extraction'" not in row['typeName_en-us'] and
-                    "'Krai Veles'" not in row['typeName_en-us'] and
-                    "'Krai Perun'" not in row['typeName_en-us'] and
-                    "'Krai Svarog'" not in row['typeName_en-us']
+                name.startswith('Limited Synth ')
+                or name.startswith('Expired ')
+                or re.match(r'Grand Prix .*Booster', name)
+                or re.match(r'Mining Blitz .+ Booster Dose .+', name)
+                or name.endswith(' Filament') and (
+                    "'Needlejack'" not in name and
+                    "'Devana'" not in name and
+                    "'Pochven'" not in name and
+                    "'Extraction'" not in name and
+                    "'Krai Veles'" not in name and
+                    "'Krai Perun'" not in name and
+                    "'Krai Svarog'" not in name
                 )
             ):
                 row['published'] = False
@@ -174,41 +200,31 @@ def update_db():
                 # Micro Bombs (Fighters)
                 row['typeID'] in (41549, 41548, 41551, 41550) or
                 # Abyssal weather (environment)
-                row['groupID'] in (
-                    1882,
-                    1975,
-                    1971,
-                    1983)  # the "container" for the abyssal environments
+                row['groupID'] in (1882, 1975, 1971, 1983) or
+                # FW-specific proximity beacons
+                row['typeID'] in (92609, 95625)
             ):
                 newData.append(row)
-        map = {'typeName_en-us': 'typeName', 'description_en-us': '_description'}
-        map.update({'description'+v: '_description'+v for (k, v) in eos.config.translation_mapping.items() if k != 'en'})
-        _addRows(newData, eos.gamedata.Item, fieldMap=map)
+        _addRows(newData, eos.gamedata.Item, translatedMap={'typeName': 'typeName', 'description': '_description'})
         return newData
 
     def processEveGroups():
         print('processing evegroups')
         data = _readData('fsd_built', 'groups', keyIdName='groupID')
-        map = {'groupName_en-us': 'name'}
-        map.update({'groupName'+v: 'name'+v for (k, v) in eos.config.translation_mapping.items() if k != 'en'})
-        _addRows(data, eos.gamedata.Group, fieldMap=map)
+        _addRows(data, eos.gamedata.Group, translatedMap={'groupName': 'name'})
         return data
 
     def processEveCategories():
         print('processing evecategories')
         data = _readData('fsd_built', 'categories', keyIdName='categoryID')
-        map = { 'categoryName_en-us': 'name' }
-        map.update({'categoryName'+v: 'name'+v for (k, v) in eos.config.translation_mapping.items() if k != 'en'})
-        _addRows(data, eos.gamedata.Category, fieldMap=map)
+        _addRows(data, eos.gamedata.Category, translatedMap={'categoryName': 'name'})
 
     def processDogmaAttributes():
         print('processing dogmaattributes')
         data = _readData('fsd_built', 'dogmaattributes', keyIdName='attributeID')
-        map = {
-            'displayName_en-us': 'displayName',
-            # 'tooltipDescription_en-us': 'tooltipDescription'
-        }
-        _addRows(data, eos.gamedata.AttributeInfo, fieldMap=map)
+        _addRows(data, eos.gamedata.AttributeInfo, translatedMap={
+            'displayName': 'displayName',
+            'tooltipDescription': None})
 
     def processDogmaTypeAttributes(eveTypesData):
         print('processing dogmatypeattributes')
@@ -264,7 +280,10 @@ def update_db():
     def processDogmaEffects():
         print('processing dogmaeffects')
         data = _readData('fsd_built', 'dogmaeffects', keyIdName='effectID')
-        _addRows(data, eos.gamedata.Effect, fieldMap={'resistanceAttributeID': 'resistanceID'})
+        _addRows(
+            data, eos.gamedata.Effect,
+            fieldMap={'resistanceAttributeID': 'resistanceID'},
+            translatedMap={'displayName': None, 'description': None})
 
     def processDogmaTypeEffects(eveTypesData):
         print('processing dogmatypeeffects')
@@ -283,28 +302,24 @@ def update_db():
     def processDogmaUnits():
         print('processing dogmaunits')
         data = _readData('fsd_built', 'dogmaunits', keyIdName='unitID')
-        _addRows(data, eos.gamedata.Unit, fieldMap={
-            'name': 'unitName',
-            'displayName_en-us': 'displayName'
-        })
+        _addRows(
+            data, eos.gamedata.Unit,
+            fieldMap={'name': 'unitName'},
+            translatedMap={'displayName': 'displayName', 'description': None})
 
     def processMarketGroups():
         print('processing marketgroups')
         data = _readData('fsd_built', 'marketgroups', keyIdName='marketGroupID')
-        map = {
-            'name_en-us': 'marketGroupName',
-            'description_en-us': '_description',
-        }
-        map.update({'name'+v: 'marketGroupName'+v for (k, v) in eos.config.translation_mapping.items() if k != 'en'})
-        map.update({'description' + v: '_description' + v for (k, v) in eos.config.translation_mapping.items() if k != 'en'})
-        _addRows(data, eos.gamedata.MarketGroup, fieldMap=map)
+        _addRows(data, eos.gamedata.MarketGroup, translatedMap={
+            'name': 'marketGroupName',
+            'description': '_description'})
 
     def processMetaGroups():
         print('processing metagroups')
         data = _readData('fsd_built', 'metagroups', keyIdName='metaGroupID')
-        map = {'name_en-us': 'metaGroupName'}
-        map.update({'name' + v: 'metaGroupName' + v for (k, v) in eos.config.translation_mapping.items() if k != 'en'})
-        _addRows(data, eos.gamedata.MetaGroup, fieldMap=map)
+        _addRows(data, eos.gamedata.MetaGroup, translatedMap={
+            'name': 'metaGroupName',
+            'description': None})
 
     def processCloneGrades():
         print('processing clonegrades')
@@ -363,10 +378,8 @@ def update_db():
                     'typeID': row['typeID'],
                 }
                 for (k, v) in eos.config.translation_mapping.items():
-                    if v == '':
-                        v = '_en-us'
                     typeLines = []
-                    traitData = row['traits{}'.format(v)]
+                    traitData = _translate(row['traits'], k)
                     for skillData in sorted(traitData.get('skills', ()), key=lambda i: i['header']):
                         typeLines.append(convertSection(skillData))
                     if 'role' in traitData:
@@ -379,7 +392,7 @@ def update_db():
                 newData.append(newRow)
             except:
                 pass
-        _addRows(newData, eos.gamedata.Traits, fieldMap={'traitText_en-us': 'traitText'})
+        _addRows(newData, eos.gamedata.Traits)
 
     def processMetadata():
         print('processing metadata')
@@ -433,6 +446,11 @@ def update_db():
             1289: 1287,
             1290: 1288}
         skillReqAttribsFlat = set(skillReqAttribs.keys()).union(skillReqAttribs.values())
+        # Modules counting towards synchronizer rig sets differ from their equivalents only by the set they count
+        # towards (effect, and the attribute it adds to the rig); which of them stay replaceable depends on
+        # synchronizers fitted, and is decided by the market service
+        synchronizerSetEffects = set(SYNCHRONIZER_SETS)
+        synchronizerSetAttribs = {s.moduleAttrID for s in SYNCHRONIZER_SETS.values()}
         # Get data on type groups
         # Format: {type ID: group ID}
         typesGroups = {}
@@ -442,6 +460,8 @@ def update_db():
         # Format: {type ID: set(effect, IDs)}
         typesEffects = {}
         for row in dogmaTypeEffectsData:
+            if row['effectID'] in synchronizerSetEffects:
+                continue
             typesEffects.setdefault(row['typeID'], set()).add(row['effectID'])
         # Get data on type attributes
         # Format: {type ID: {attribute ID: attribute value}}
@@ -464,7 +484,7 @@ def update_db():
                 633,  # metaLevel
                 1692,  # metaGroupID
                 1768  # typeColorScheme
-            ):
+            ) or attributeID in synchronizerSetAttribs:
                 continue
             else:
                 typeNormalAttribs = typesNormalAttribs.setdefault(row['typeID'], {})
@@ -546,7 +566,7 @@ def update_db():
                 continue
             if row.get('groupID') not in implant_groups:
                 continue
-            typeName = row.get('typeName_en-us', '')
+            typeName = _translate(row['typeName'], 'en') or ''
             # Regular sets matching
             m = re.match(r'(?P<grade>(High|Mid|Low)-grade) (?P<set>\w+) (?P<implant>(Alpha|Beta|Gamma|Delta|Epsilon|Omega))', typeName, re.IGNORECASE)
             if m:
@@ -607,9 +627,9 @@ def update_db():
         # Drifter weapons are published for some reason
         eos.gamedata.Item.name.in_(('Lux Kontos', 'Lux Xiphos', 'Lux Ballistra', 'Lux Kopis'))
     )).all():
-        if 'Asteroid Mining Crystal' in item.name:
+        if item.name in ('Abyssal Ore Processing', 'Mutated Drone Specialization'):
             continue
-        if 'Mutated Drone Specialization' in item.name:
+        if 'Asteroid Mining Crystal' in item.name:
             continue
         item.published = False
 
@@ -622,7 +642,9 @@ def update_db():
         dumpDatetime = epochDelta.days + epochDelta.seconds / (24 * 60 * 60)
         query = (
             eos.db.gamedata_session.query(eos.gamedata.Item)
-            .join(eos.gamedata.Item.group, eos.gamedata.Group.category, eos.gamedata.Attribute)
+            .join(eos.gamedata.Item.group)
+            .join(eos.gamedata.Group.category)
+            .join(eos.gamedata.Item._Item__attributes)
             .filter(and_(
                 eos.gamedata.Item.published,
                 eos.gamedata.Category.name == 'Implant',
@@ -641,11 +663,14 @@ def update_db():
         eos.db.gamedata_session.delete(cat)
 
     # Unused normally, can be useful for customizing items
-    def _copyItem(srcName, tgtTypeID, tgtName):
+    def _copyItem(srcName, tgtTypeID, tgtName, tgtGroupName = None):
         eveType = eos.db.gamedata_session.query(eos.gamedata.Item).filter(eos.gamedata.Item.name == srcName).one()
         eos.db.gamedata_session.expunge(eveType)
         sqlalchemy.orm.make_transient(eveType)
         eveType.ID = tgtTypeID
+        if tgtGroupName is not None:
+            eveGroup = eos.db.gamedata_session.query(eos.gamedata.Group).filter(eos.gamedata.Group.name == tgtGroupName).one()
+            eveType.group = eveGroup
         for suffix in eos.config.translation_mapping.values():
             setattr(eveType, f'typeName{suffix}', tgtName)
         eos.db.gamedata_session.add(eveType)
@@ -665,6 +690,27 @@ def update_db():
                 eos.db.gamedata_session.add(attr)
             else:
                 attr.value = value
+
+    def processCloneGradeRestrictions():
+        print('processing clone grade restrictions')
+        alpha_caps = {}
+        for clone in eos.db.gamedata_session.query(eos.gamedata.AlphaClone).all():
+            for skill in clone.skills:
+                alpha_caps[skill.typeID] = skill.level
+        for item in eos.db.gamedata_session.query(eos.gamedata.Item).all():
+            if not item.reqskills:
+                continue
+            try:
+                reqskills = json.loads(item.reqskills)
+            except (ValueError, TypeError):
+                continue
+            for skill_type_id, required_level in reqskills.items():
+                max_alpha_level = alpha_caps.get(int(skill_type_id))
+                if max_alpha_level is None or required_level > max_alpha_level:
+                    _hardcodeAttribs(item.ID, {"cloneGradeRestriction": 1})
+                    break
+
+    processCloneGradeRestrictions()
 
     def _hardcodeEffects(typeID, effectMap, clearEffects=True):
         item = eos.db.gamedata_session.query(eos.gamedata.Item).filter(eos.gamedata.Item.ID == typeID).one()
@@ -754,156 +800,193 @@ def update_db():
             _hardcodeEffects(typeID, effectMap, clearEffects=True)
             eos.db.gamedata_session.flush()
 
+    def hardcodeFwProxyEffects():
+        typeBuffMap = {
+            # BC level up
+            92609: ('FW Moderate Site BC Skill Bonus', {
+                'warfareBuff1ID': 2544,
+                'warfareBuff1Value': 20}),
+            # T3D HP
+            95625: ('FW ELT-5 Site T3D HP Bonus', {
+                'warfareBuff1ID': 2545,
+                'warfareBuff1Value': 500})}
+        effectMap = {100003: 'pyfaCustomFwProxyBuffEffect'}
+        for typeID, (name, attrMap) in typeBuffMap.items():
+            item = eos.db.gamedata_session.query(eos.gamedata.Item).filter(eos.gamedata.Item.ID == typeID).one()
+            item.published = True
+            item.name = name
+            _hardcodeAttribs(typeID, attrMap)
+            _hardcodeEffects(typeID, effectMap, clearEffects=True)
+            eos.db.gamedata_session.flush()
 
-    def hardcodeShapash():
-        shapashTypeID = 1000000
-        _copyItem(srcName='Utu', tgtTypeID=shapashTypeID, tgtName='Shapash')
+
+    def hardcodeHerald():
+        heraldTypeID = 1000000
+        _copyItem(
+            srcName='Sentinel',
+            tgtTypeID=heraldTypeID,
+            tgtName='Herald',
+            tgtGroupName='Assault Frigate')
         attrMap = {
             # Fitting
-            'powerOutput': 50,
-            'cpuOutput': 225,
-            'capacitorCapacity': 420,
+            'powerOutput': 69,
+            'cpuOutput': 222,
+            'capacitorCapacity': 675,
             'rechargeRate': 187500,
             # Slots
-            'hiSlots': 3,
-            'medSlots': 4,
-            'lowSlots': 4,
+            'hiSlots': 2,
+            'medSlots': 5,
+            'lowSlots': 5,
+            'turretSlotsLeft': 2,
             'launcherSlotsLeft': 0,
-            'turretSlotsLeft': 3,
             # Rigs
             'rigSlots': 2,
             'rigSize': 1,
             'upgradeCapacity': 400,
             # Shield
-            'shieldCapacity': 575,
+            'shieldCapacity': 664,
             'shieldRechargeRate': 625000,
             'shieldEmDamageResonance': 1 - 0.0,
-            'shieldThermalDamageResonance': 1 - 0.6,
-            'shieldKineticDamageResonance': 1 - 0.85,
-            'shieldExplosiveDamageResonance': 1 - 0.5,
+            'shieldThermalDamageResonance': 1 - 0.2,
+            'shieldKineticDamageResonance': 1 - 0.55,
+            'shieldExplosiveDamageResonance': 1 - 0.875,
             # Armor
-            'armorHP': 1015,
+            'armorHP': 1337,
             'armorEmDamageResonance': 1 - 0.5,
-            'armorThermalDamageResonance': 1 - 0.675,
-            'armorKineticDamageResonance': 1 - 0.8375,
-            'armorExplosiveDamageResonance': 1 - 0.1,
+            'armorThermalDamageResonance': 1 - 0.35,
+            'armorKineticDamageResonance': 1 - 0.625,
+            'armorExplosiveDamageResonance': 1 - 0.80,
             # Structure
-            'hp': 1274,
+            'hp': 1100,
             'emDamageResonance': 1 - 0.33,
             'thermalDamageResonance': 1 - 0.33,
             'kineticDamageResonance': 1 - 0.33,
             'explosiveDamageResonance': 1 - 0.33,
-            'mass': 1215000,
-            'volume': 29500,
+            'mass': 1010100,
+            'volume': 28100,
             'capacity': 165,
             # Navigation
-            'maxVelocity': 325,
-            'agility': 3.467,
-            'warpSpeedMultiplier': 5.5,
+            'maxVelocity': 420,
+            'agility': 3.3,
+            'warpSpeedMultiplier': 5,
             # Drones
-            'droneCapacity': 75,
-            'droneBandwidth': 25,
+            'droneCapacity': 60,
+            'droneBandwidth': 20,
             # Targeting
-            'maxTargetRange': 49000,
-            'maxLockedTargets': 6,
-            'scanRadarStrength': 0,
+            'maxTargetRange': 69000,
+            'maxLockedTargets': 7,
+            'scanRadarStrength': 21,
             'scanLadarStrength': 0,
-            'scanMagnetometricStrength': 9,
+            'scanMagnetometricStrength': 0,
             'scanGravimetricStrength': 0,
-            'signatureRadius': 39,
-            'scanResolution': 550,
+            'signatureRadius': 35,
+            'scanResolution': 650,
             # Misc
-            'energyWarfareResistance': 0,
-            'stasisWebifierResistance': 0,
-            'weaponDisruptionResistance': 0}
+            'energyWarfareResistance': 0.5,
+            'sensorDampenerResistance': 1,
+            'stasisWebifierResistance': 1,
+            'weaponDisruptionResistance': 1}
         effectMap = {
-            100100: 'pyfaCustomShapashAfArAmount',
-            100101: 'pyfaCustomShapashAfShtTrackingOptimal',
-            100102: 'pyfaCustomShapashGfShtDamage',
-            100103: 'pyfaCustomShapashGfPointRange',
-            100104: 'pyfaCustomShapashGfPropOverheat',
-            100105: 'pyfaCustomShapashRolePlateMass',
-            100106: 'pyfaCustomShapashRoleHeat'}
-        _hardcodeAttribs(shapashTypeID, attrMap)
-        _hardcodeEffects(shapashTypeID, effectMap)
+            100100: 'pyfaCustomHeraldAsfSetOptimal',
+            100101: 'pyfaCustomHeraldAsfSetDmg',
+            100102: 'pyfaCustomHeraldAsfArmorRes',
+            100103: 'pyfaCustomHeraldEafCapRech',
+            100104: 'pyfaCustomHeraldAmfWdStr',
+            100105: 'pyfaCustomHeraldAmfSetRof',
+            100106: 'pyfaCustomHeraldRoleMwdSigBlow'}
+        _hardcodeAttribs(heraldTypeID, attrMap)
+        _hardcodeEffects(heraldTypeID, effectMap)
 
-    def hardcodeCybele():
-        cybeleTypeID = 1000001
-        _copyItem(srcName='Adrestia', tgtTypeID=cybeleTypeID, tgtName='Cybele')
+    def hardcodePenitence():
+        penitenceTypeID = 1000001
+        _copyItem(
+            srcName='Curse',
+            tgtTypeID=penitenceTypeID,
+            tgtName='Penitence',
+            tgtGroupName='Heavy Interdiction Cruiser')
         attrMap = {
             # Fitting
-            'powerOutput': 1284,
-            'cpuOutput': 400,
-            'capacitorCapacity': 2400,
-            'rechargeRate': 334000,
+            'powerOutput': 1450,
+            'cpuOutput': 460,
+            'capacitorCapacity': 3800,
+            'rechargeRate': 360000,
             'hiSlots': 5,
-            'medSlots': 4,
-            'lowSlots': 6,
-            'launcherSlotsLeft': 0,
-            'turretSlotsLeft': 5,
+            'medSlots': 6,
+            'lowSlots': 7,
+            'turretSlotsLeft': 2,
+            'launcherSlotsLeft': 4,
             # Rigs
             'rigSlots': 2,
             'rigSize': 2,
             'upgradeCapacity': 400,
             # Shield
-            'shieldCapacity': 1200,
+            'shieldCapacity': 2730,
             'shieldRechargeRate': 1250000,
             'shieldEmDamageResonance': 1 - 0.0,
-            'shieldThermalDamageResonance': 1 - 0.5,
-            'shieldKineticDamageResonance': 1 - 0.9,
-            'shieldExplosiveDamageResonance': 1 - 0.5,
+            'shieldThermalDamageResonance': 1 - 0.2,
+            'shieldKineticDamageResonance': 1 - 0.7,
+            'shieldExplosiveDamageResonance': 1 - 0.875,
             # Armor
-            'armorHP': 1900,
+            'armorHP': 3540,
             'armorEmDamageResonance': 1 - 0.5,
-            'armorThermalDamageResonance': 1 - 0.69,
-            'armorKineticDamageResonance': 1 - 0.85,
-            'armorExplosiveDamageResonance': 1 - 0.1,
+            'armorThermalDamageResonance': 1 - 0.35,
+            'armorKineticDamageResonance': 1 - 0.625,
+            'armorExplosiveDamageResonance': 1 - 0.80,
             # Structure
-            'hp': 2300,
+            'hp': 2400,
             'emDamageResonance': 1 - 0.33,
             'thermalDamageResonance': 1 - 0.33,
             'kineticDamageResonance': 1 - 0.33,
             'explosiveDamageResonance': 1 - 0.33,
-            'mass': 11100000,
-            'volume': 112000,
-            'capacity': 450,
+            'mass': 11810000,
+            'volume': 118000,
+            'capacity': 475,
             # Navigation
-            'maxVelocity': 235,
-            'agility': 0.457,
-            'warpSpeedMultiplier': 4.5,
+            'maxVelocity': 230,
+            'agility': 0.48,
+            'warpSpeedMultiplier': 4,
             # Drones
-            'droneCapacity': 100,
+            'droneCapacity': 300,
             'droneBandwidth': 50,
             # Targeting
-            'maxTargetRange': 60000,
-            'maxLockedTargets': 6,
-            'scanRadarStrength': 0,
+            'maxTargetRange': 110500,
+            'maxLockedTargets': 10,
+            'scanRadarStrength': 28,
             'scanLadarStrength': 0,
-            'scanMagnetometricStrength': 15,
+            'scanMagnetometricStrength': 0,
             'scanGravimetricStrength': 0,
             'signatureRadius': 115,
             'scanResolution': 330,
             # Misc
-            'energyWarfareResistance': 0,
-            'stasisWebifierResistance': 0,
-            'weaponDisruptionResistance': 0}
+            'energyWarfareResistance': 1,
+            'sensorDampenerResistance': 1,
+            'stasisWebifierResistance': 1,
+            'weaponDisruptionResistance': 1}
         effectMap = {
-            100200: 'pyfaCustomCybeleHacMhtFalloff',
-            100201: 'pyfaCustomCybeleHacMhtTracking',
-            100202: 'pyfaCustomCybeleGcMhtDamage',
-            100203: 'pyfaCustomCybeleGcArAmount',
-            100204: 'pyfaCustomCybeleGcPointRange',
-            100205: 'pyfaCustomCybeleRoleVelocity',
-            100206: 'pyfaCustomCybeleRolePlateMass'}
-        _hardcodeAttribs(cybeleTypeID, attrMap)
-        _hardcodeEffects(cybeleTypeID, effectMap)
+            100200: 'pyfaCustomPenitenceRecEneOptimal',
+            100201: 'pyfaCustomPenitenceRecEneFalloff',
+            100202: 'pyfaCustomPenitenceRecEneAmount',
+            100203: 'pyfaCustomPenitenceHicWdfgOptimal',
+            100204: 'pyfaCustomPenitenceAmcWdStr',
+            100205: 'pyfaCustomPenitenceAmcDroneHpDmg',
+            100206: 'pyfaCustomPenitenceAmcDroneControl',
+            100207: 'pyfaCustomPenitenceRoleArmorRes',
+            100208: 'pyfaCustomPenitenceRoleDroneSpeed',
+            100209: 'pyfaCustomPenitenceRoleWdfgSig'}
+        _hardcodeAttribs(penitenceTypeID, attrMap)
+        _hardcodeEffects(penitenceTypeID, effectMap)
 
     hardcodeSuppressionTackleRange()
     hardcodeSovUpgradeBuffs()
     hardcodeTrigSystemEffects()
+    hardcodeFwProxyEffects()
+
+    # hardcodeHerald()
+    # hardcodePenitence()
 
     eos.db.gamedata_session.commit()
-    eos.db.gamedata_engine.execute('VACUUM')
+    with eos.db.gamedata_engine.begin() as connection:
+        connection.exec_driver_sql('VACUUM')
 
     print('done')
 
